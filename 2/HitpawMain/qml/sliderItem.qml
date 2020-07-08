@@ -29,21 +29,22 @@ Rectangle {
         anchors.right: parent.right
         width: 96
         height:32
-
+        decimals: 2
+        horizontalAlignment:Qt.AlignLeft
         style: SpinBoxStyle{
             background: Rectangle {
                 implicitWidth: 96
                 implicitHeight: 32
-                border.color: Qt.rgba(122/255,122/255,122/255,1)
-                radius: 1
-                border.width: 1
-                color: Qt.rgba(46/255,47/255,51/255,1)
+                border.color: Qt.rgba(70/255,69/255,75/255,1)
+                //radius: 1
+                border.width: 2
+                color: Qt.rgba(62/255,61/255,67/255,1)
             }
             incrementControl :Rectangle {
                 implicitWidth: 15
                 implicitHeight: 20
                 border.color: Qt.rgba(122/255,122/255,122/255,1)
-                radius: 1
+                //radius: 1
                 border.width: 1
                 BorderImage {
                     anchors.fill: parent
@@ -55,7 +56,7 @@ Rectangle {
                 implicitWidth: 15
                 implicitHeight: 20
                 border.color: Qt.rgba(122/255,122/255,122/255,1)
-                radius: 1
+                //radius: 1
                 border.width: 1
                 color: Qt.rgba(46/255,47/255,51/255,1)
             }
@@ -78,9 +79,9 @@ Rectangle {
             handle: Rectangle
             {
                 anchors.centerIn: parent;
-                color:control.pressed ? "white":"lightgray";
+                color:control.pressed ? Qt.rgba(255/255,222/255,10/255,1):Qt.rgba(255/255,193/255,2/255,1);
                 border.color: "gray";
-                border.width: 2;
+                border.width: 0;
                 width: 12;
                 height: 28;
                 radius: 1;
@@ -101,11 +102,16 @@ Rectangle {
                 }
 
             }
-            groove:Rectangle
-            {
-                implicitHeight:8
-                color:"gray"
-                radius:8
+            groove: Rectangle {
+                implicitHeight: 8
+                color: Qt.rgba(75/255,74/255,80/255,1)
+                radius: 3;
+                Rectangle {
+                    implicitHeight: 8
+                    color: Qt.rgba(119/255,104/255,195/255,1)
+                    implicitWidth: styleData.handlePosition
+                    radius: 3;
+                }
             }
         }
     }

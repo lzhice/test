@@ -244,95 +244,95 @@ void FramelessWindow::checkBorderDragging(QMouseEvent *event, QObject *obj) {
                     QRect newRect(topLeft, bottomRight); //定义一个矩形
                     switch(dir)
                     {
-                        case LEFT:
+                    case LEFT:
 
-                            if(bottomRight.x() - (globalPos.x()-Content_PADDING) < this->minimumWidth())
-                            {
-                                newRect.setLeft(bottomRight.x()-this->minimumWidth());  //小于界面的最小宽度时，设置为左上角横坐标为窗口x
-                                //只改变左边界
-                            }
-                            else
-                            {
-                                newRect.setLeft(globalPos.x()-Content_PADDING);
-                            }
-                            break;
-                        case RIGHT:
-                            newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());  //只能改变右边界
-                            break;
-                        case UP:
-                            if(bottomRight.y() - (globalPos.y()-Content_PADDING) < this->minimumHeight())
-                            {
-                                newRect.setY(bottomRight.y()-this->minimumHeight());
-                            }
-                            else
-                            {
-                                newRect.setY(globalPos.y()-Content_PADDING);
-                            }
-                            break;
-                        case DOWN:
+                        if(bottomRight.x() - (globalPos.x()-Content_PADDING) < this->minimumWidth())
+                        {
+                            newRect.setLeft(bottomRight.x()-this->minimumWidth());  //小于界面的最小宽度时，设置为左上角横坐标为窗口x
+                            //只改变左边界
+                        }
+                        else
+                        {
+                            newRect.setLeft(globalPos.x()-Content_PADDING);
+                        }
+                        break;
+                    case RIGHT:
+                        newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());  //只能改变右边界
+                        break;
+                    case UP:
+                        if(bottomRight.y() - (globalPos.y()-Content_PADDING) < this->minimumHeight())
+                        {
+                            newRect.setY(bottomRight.y()-this->minimumHeight());
+                        }
+                        else
+                        {
+                            newRect.setY(globalPos.y()-Content_PADDING);
+                        }
+                        break;
+                    case DOWN:
+                        newRect.setHeight(globalPos.y()+Content_PADDING - topLeft.y());
+                        break;
+                    case LEFTTOP:
+                        if(bottomRight.x() - (globalPos.x()-Content_PADDING) < this->minimumWidth())
+                        {
+                            newRect.setX(bottomRight.x()-this->minimumWidth());
+                        }
+                        else
+                        {
+                            newRect.setX((globalPos.x()-Content_PADDING));
+                        }
+
+                        if(bottomRight.y() - (globalPos.y()-Content_PADDING) < this->minimumHeight())
+                        {
+                            newRect.setY(bottomRight.y() - this->minimumHeight());
+                        }
+                        else
+                        {
+                            newRect.setY((globalPos.y()-Content_PADDING));
+                        }
+                        break;
+                    case RIGHTTOP:
+                        if (globalPos.x()+Content_PADDING - topLeft.x() >= this->minimumWidth())
+                        {
+                            newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());
+                        }
+                        else
+                        {
+                            newRect.setWidth(this->minimumWidth());
+                        }
+                        if (bottomRight.y() - (globalPos.y()-Content_PADDING) >= this->minimumHeight())
+                        {
+                            newRect.setY((globalPos.y()-Content_PADDING));
+                        }
+                        else
+                        {
+                            newRect.setY(bottomRight.y() - this->minimumHeight());
+                        }
+                        break;
+                    case LEFTBOTTOM:
+                        if (bottomRight.x() - (globalPos.x()-Content_PADDING) >= this->minimumWidth())
+                        {
+                            newRect.setX((globalPos.x()-Content_PADDING));
+                        }
+                        else
+                        {
+                            newRect.setX(bottomRight.x() - this->minimumWidth());
+                        }
+                        if (globalPos.y() - topLeft.y() >= this->minimumHeight())
+                        {
                             newRect.setHeight(globalPos.y()+Content_PADDING - topLeft.y());
-                            break;
-                        case LEFTTOP:
-                            if(bottomRight.x() - (globalPos.x()-Content_PADDING) < this->minimumWidth())
-                            {
-                                newRect.setX(bottomRight.x()-this->minimumWidth());
-                            }
-                            else
-                            {
-                                newRect.setX((globalPos.x()-Content_PADDING));
-                            }
-
-                            if(bottomRight.y() - (globalPos.y()-Content_PADDING) < this->minimumHeight())
-                            {
-                                newRect.setY(bottomRight.y() - this->minimumHeight());
-                            }
-                            else
-                            {
-                                newRect.setY((globalPos.y()-Content_PADDING));
-                            }
-                            break;
-                         case RIGHTTOP:
-                              if (globalPos.x()+Content_PADDING - topLeft.x() >= this->minimumWidth())
-                              {
-                                  newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());
-                              }
-                              else
-                              {
-                                  newRect.setWidth(this->minimumWidth());
-                              }
-                              if (bottomRight.y() - (globalPos.y()-Content_PADDING) >= this->minimumHeight())
-                              {
-                                  newRect.setY((globalPos.y()-Content_PADDING));
-                              }
-                              else
-                              {
-                                  newRect.setY(bottomRight.y() - this->minimumHeight());
-                              }
-                              break;
-                         case LEFTBOTTOM:
-                              if (bottomRight.x() - (globalPos.x()-Content_PADDING) >= this->minimumWidth())
-                              {
-                                  newRect.setX((globalPos.x()-Content_PADDING));
-                              }
-                              else
-                              {
-                                  newRect.setX(bottomRight.x() - this->minimumWidth());
-                              }
-                              if (globalPos.y() - topLeft.y() >= this->minimumHeight())
-                              {
-                                  newRect.setHeight(globalPos.y()+Content_PADDING - topLeft.y());
-                              }
-                              else
-                              {
-                                  newRect.setHeight(this->minimumHeight());
-                              }
-                              break;
-                          case RIGHTBOTTOM:
-                              newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());
-                              newRect.setHeight(globalPos.y()+Content_PADDING - topLeft.y());
-                              break;
-                          default:
-                              break;
+                        }
+                        else
+                        {
+                            newRect.setHeight(this->minimumHeight());
+                        }
+                        break;
+                    case RIGHTBOTTOM:
+                        newRect.setWidth(globalPos.x()+Content_PADDING - topLeft.x());
+                        newRect.setHeight(globalPos.y()+Content_PADDING - topLeft.y());
+                        break;
+                    default:
+                        break;
                     }
                     setGeometry(newRect);
                 }
@@ -404,6 +404,7 @@ bool FramelessWindow::eventFilter(QObject *obj, QEvent *event) {
                 mouseReleaseEvent(pMouse);
             }
             m_bMousePressed=false;
+            this->setCursor(QCursor(Qt::ArrowCursor));
         }
     }else if(event->type() == QEvent::MouseButtonDblClick){
         m_bMousePressed=false;
@@ -430,19 +431,19 @@ void FramelessWindow::region(const QPoint &currentGlobalPoint)
         dir = LEFTTOP;
         this->setCursor(QCursor(Qt::SizeFDiagCursor));  // 设置光标形状
     }else if(((x >= rightButton.x() - PADDING) && (x <= rightButton.x()))
-              && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
+             && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
     {
         // 右下角
         dir = RIGHTBOTTOM;
         this->setCursor(QCursor(Qt::SizeFDiagCursor));
     }else if(((x <= topLeft.x() + PADDING) && (x >= topLeft.x()))
-              && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
+             && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
     {
         //左下角
         dir = LEFTBOTTOM;
         this->setCursor(QCursor(Qt::SizeBDiagCursor));
     }else if(((x <= rightButton.x()) && (x >= rightButton.x() - PADDING))
-              && ((y >= topLeft.y()) && (y <= topLeft.y() + PADDING)))
+             && ((y >= topLeft.y()) && (y <= topLeft.y() + PADDING)))
     {
         // 右上角
         dir = RIGHTTOP;
@@ -473,8 +474,10 @@ void FramelessWindow::region(const QPoint &currentGlobalPoint)
         dir = MOVE;
         this->setCursor(QCursor(Qt::ArrowCursor));
     }else{
-        dir=NONE;
-        this->setCursor(QCursor(Qt::ArrowCursor));
+        if(dir!=NONE){
+            dir=NONE;
+            this->setCursor(QCursor(Qt::ArrowCursor));
+        }
     }
 }
 

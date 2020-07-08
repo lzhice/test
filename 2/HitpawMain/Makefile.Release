@@ -161,10 +161,12 @@ release/qrc_img.cpp: img.qrc \
 release/qrc_qml.cpp: qml.qrc \
 		../../Qt/Qt5.12.8/5.12.8/mingw73_64/bin/rcc.exe \
 		qml/ControlPan.qml \
+		qml/VideoImgSliderItem.qml \
 		qml/SliderItem.qml \
 		qml/topPan.qml \
 		qml/VideoMainView.qml \
 		qml/ResizebleText.qml \
+		qml/VideoRangSliderItem.qml \
 		qml/VideoGridItem.qml
 	D:\Qt\Qt5.12.8\5.12.8\mingw73_64\bin\rcc.exe -name qml qml.qrc -o release\qrc_qml.cpp
 

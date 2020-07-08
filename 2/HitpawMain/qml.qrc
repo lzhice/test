@@ -6,5 +6,7 @@
         <file>qml/ControlPan.qml</file>
         <file>qml/topPan.qml</file>
         <file>qml/SliderItem.qml</file>
+        <file>qml/VideoImgSliderItem.qml</file>
+        <file>qml/VideoRangSliderItem.qml</file>
     </qresource>
 </RCC>
