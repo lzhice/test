@@ -31,12 +31,13 @@ MainWindow::MainWindow(QWidget *parent)
             //item->setStyleSheet("background-color: rgb(255, 255, 255);");
             hlayout->addWidget (item);
             //item->setFixedWidth (0);
+            item1=item;
         }
         {
             QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/VideoMainView.qml",this);
             connect(QmlEventManager::getInstatnce(item),&QmlEventManager::emitWidgetEvent,this,&MainWindow::onQmlEvent);
             hlayout->addWidget (item);
-            item1=item;
+
             //item->setStyleSheet("background-color: rgb(0, 0, 0);");
         }
 
@@ -55,10 +56,11 @@ MainWindow::~MainWindow()
 void MainWindow::onQmlEvent(const QString &eventName, const QVariant &value)
 {
     qDebug()<<"onQmlEvent"<<eventName<<value;
+    static int val=900000;
     QVariantMap vMap;
     QVariantList vList;
     vList<<1<<2<<3<<4<<5;
-    vMap.insert("1",1);
+    vMap.insert("1",val+=(10));
     vMap.insert("2",2);
     vMap.insert("3",3);
     vMap.insert("4",vList);

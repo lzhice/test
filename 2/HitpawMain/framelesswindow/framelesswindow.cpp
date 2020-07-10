@@ -355,7 +355,6 @@ void FramelessWindow::mousePressEvent(QMouseEvent *event) {
     if(event->button()==Qt::LeftButton)
     {
         m_bMousePressed = true;
-        qDebug()<<"m_bMousePressed"<<m_bMousePressed;
         if(dir != MOVE)
         {
             m_StartGeometry=this->geometry();
@@ -371,7 +370,7 @@ void FramelessWindow::mousePressEvent(QMouseEvent *event) {
 void FramelessWindow::mouseReleaseEvent(QMouseEvent *event) {
 
     m_bMousePressed = false;
-    if (dir != MOVE)
+    if (dir!=NONE&&dir != MOVE)
     {
         this->releaseMouse(); //释放鼠标抓取
         this->setCursor(QCursor(Qt::ArrowCursor));
@@ -404,7 +403,7 @@ bool FramelessWindow::eventFilter(QObject *obj, QEvent *event) {
                 mouseReleaseEvent(pMouse);
             }
             m_bMousePressed=false;
-            this->setCursor(QCursor(Qt::ArrowCursor));
+            //this->setCursor(QCursor(Qt::ArrowCursor));
         }
     }else if(event->type() == QEvent::MouseButtonDblClick){
         m_bMousePressed=false;
@@ -423,7 +422,6 @@ void FramelessWindow::region(const QPoint &currentGlobalPoint)
 
     int x = currentGlobalPoint.x(); //当前鼠标的坐标
     int y = currentGlobalPoint.y();
-
     if(((topLeft.x() + PADDING >= x) && (topLeft.x() <= x))
             && ((topLeft.y() + PADDING >= y) && (topLeft.y() <= y)))
     {
@@ -475,8 +473,10 @@ void FramelessWindow::region(const QPoint &currentGlobalPoint)
         this->setCursor(QCursor(Qt::ArrowCursor));
     }else{
         if(dir!=NONE){
+            qDebug()<<"dir!=NONE"<<dir;
             dir=NONE;
             this->setCursor(QCursor(Qt::ArrowCursor));
+
         }
     }
 }

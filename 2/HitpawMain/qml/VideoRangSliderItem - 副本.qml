@@ -75,6 +75,7 @@ RangeSlider {
             color: Qt.rgba(62/255,61/255,67/255,0.8)
 
         }
+
         Rectangle {
             id:r1
             x: root.first.visualPosition * parent.width
@@ -91,14 +92,13 @@ RangeSlider {
 //                border.right: 30
 //                border.top: 20
 //            }
-
         }
+
         Rectangle {
             x: r1.x+r1.width
             width: parent.width - x
             height: parent.height
             color: Qt.rgba(62/255,61/255,67/255,0.8)
-
         }
 
     }

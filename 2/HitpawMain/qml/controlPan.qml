@@ -20,6 +20,11 @@ Rectangle {
 //    }
 
     VideoRangSliderItem{
-        anchors.fill:parent
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
+        height: sliderHeight
     }
 }
