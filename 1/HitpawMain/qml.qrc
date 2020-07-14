@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>qml/VideoMainView.qml</file>
-        <file>qml/VideoGridItem.qml</file>
-        <file>qml/ResizebleText.qml</file>
-        <file>qml/ControlPan.qml</file>
-        <file>qml/topPan.qml</file>
-    </qresource>
-</RCC>
