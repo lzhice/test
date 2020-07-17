@@ -11,5 +11,11 @@
         <file>qml/VideoSelectRangItem.qml</file>
         <file>qml/TestItem.qml</file>
         <file>qml/ButtonItem.qml</file>
+        <file>qml/MessageBox.qml</file>
+        <file>qml/TextButton.qml</file>
+        <file>qml/LoadingBox.qml</file>
+        <file>qml/DashRect.qml</file>
+        <file>qml/ShadowMask.qml</file>
+        <file>qml/VideoParametersSetView.qml</file>
     </qresource>
 </RCC>

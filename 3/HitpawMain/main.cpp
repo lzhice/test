@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
-    QFont f("Microsoft YaHei",12);
+    QFont f("Arial",12);
+    f.setWeight(QFont::Medium);
     a.setFont(f);
     a.setStyle(new DarkStyle);
 //    MoveWidget w;
@@ -22,6 +23,8 @@ int main(int argc, char *argv[])
 
 
     FramelessWindow framelessWindow;
+    //framelessWindow.setReSizeEnable(false);
+    framelessWindow.setTopBarHeight(30);
     //framelessWindow.setWindowState(Qt::WindowFullScreen);
     //framelessWindow.setWindowTitle("test title");
     framelessWindow.setWindowIcon(a.style()->standardIcon(QStyle::SP_DesktopIcon));

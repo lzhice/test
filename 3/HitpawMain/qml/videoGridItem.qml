@@ -1,28 +1,28 @@
 import QtQuick 2.0
 
 Item {
-    property color bkColor: Qt.rgba(46/255,47/255,51/255,1)
-    property color boardColor: Qt.rgba(132/255,111/255,248/255,1)
+    property color bkColor: "#2E2F30"
+    property color boardColor: "#8372FF"
     property int boardWidth: 2
 
-    property int logoX: 28
-    property int logoY: 28
-    property int logoWidth: 38
-    property int logoHeight: 38
+    property int logoX: 12
+    property int logoY: 16
+    property int logoWidth: 40
+    property int logoHeight: 40
 
-    property int titleX: 27
-    property int titleY: parent.height/3*1.2
-    property int titleHeight: 30
+    property int titleX: 18
+    property int titleY: 59
+    property int titleHeight: 23
     property color titleColor: Qt.rgba(231/255,231/255,231/255,1)
     property string titleText: "Cut Video"
 
-    property int contextX: 28
-    property int contextY: titleY+titleHeight+5
-    property int contextHeight: 38
+    property int contextX: 18
+    property int contextY: 88
+    property int contextHeight: 32
     property color contextColor: Qt.rgba(90/255,90/255,90/255,1)
     property string contextText: "contextText"
 
-    property string logoPaht:"file:///C:/Users/Admin/Documents/untitled5/1.jpg"
+    property string logoPath:"file:///C:/Users/Admin/Documents/untitled5/1.jpg"
     id:root
     Rectangle{
         id:mainItem
@@ -53,37 +53,37 @@ Item {
                 effectItem.visible=false
             }
         }
-//       Image{
-//           x:logoX
-//           y:logoY
-//           width:logoWidth
-//           height: logoHeight
-//           source: logoPaht
-//       }
+       Image{
+           x:logoX
+           y:logoY
+           width:logoWidth
+           height: logoHeight
+           source: logoPath
+       }
        Text{
            x:titleX
            y:titleY
-           width:parent.width-x
+           width:parent.width-x*2
            height: titleHeight
            text: titleText
            color:titleColor
            horizontalAlignment: Text.AlignLeft
            verticalAlignment: Text.AlignVCenter
            wrapMode:Text.Wrap
-           font.pixelSize:19
+           font.pixelSize:globalStyle.getFontSize("VideoGridItem_titleText",18)
            //font.bold: true
        }
        Text{
            x:contextX
            y:contextY
-           width:parent.width-x
+           width:parent.width-x*2
            height: contextHeight
            text: contextText
-           color:contextColor
+           color:mainItem.border.width===0?contextColor:boardColor
            horizontalAlignment: Text.AlignLeft
            verticalAlignment: Text.AlignTop
            wrapMode:Text.Wrap
-           font.pixelSize:13
+           font.pixelSize:globalStyle.getFontSize("VideoGridItem_contextText",12)
        }
 
        Rectangle{

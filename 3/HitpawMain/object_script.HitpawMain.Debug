@@ -1,6 +1,7 @@
 debug/fmovablewidget.o
 debug/DarkStyle.o
 debug/framelesswindow.o
+debug/globalStyle.o
 debug/main.o
 debug/mainwindow.o
 debug/marginwidget.o
@@ -12,6 +13,7 @@ debug/qrc_qml.o
 debug/moc_fmovablewidget.o
 debug/moc_DarkStyle.o
 debug/moc_framelesswindow.o
+debug/moc_globalStyle.o
 debug/moc_mainwindow.o
 debug/moc_marginwidget.o
 debug/moc_movewidget.o

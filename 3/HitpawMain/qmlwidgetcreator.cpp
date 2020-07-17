@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QColor>
 #include <QDebug>
+#include "globalStyle.h"
 QHash<QObject *,QmlEventManager*> QmlEventManager::m_QmlEventManagerTbl=QHash<QObject *,QmlEventManager*>();
 QHash<QWidget*,QWidget*> QmlWidgetCreator::s_QmlWidgetTbl;
 
@@ -74,6 +75,7 @@ QWidget *QmlWidgetCreator::createQmlWidget(const QString &qmlFilePath, const QHa
     quickWidget->rootContext()->setContextProperty("quickWidget", quickWidget);
     quickWidget->rootContext()->setContextProperty("eventManager", QmlEventManager::getInstatnce(quickWidget));
     quickWidget->rootContext()->setContextProperty("quickRoot", quickWidget->rootObject());
+    quickWidget->rootContext()->setContextProperty("globalStyle", GlobalStyle::getInstance());
 
     foreach (QString strProperty, contextPropertyTbl.keys()) {
         if(contextPropertyTbl[strProperty]){

@@ -10,12 +10,14 @@ Item{
     property point clickPos: "0,0"
     property int actType: 0
     property int rangV_Anchors:10;
-    property int rangH:2;
+    property int rangH:1;
     property int rangH_Anchors:10;
     property bool widthEnable:true;
     property bool heightEnable:true;
-
     property bool isSizeChanged:false;
+    property color borderLineColor: globalStyle.getColor("VideoSelectRangItem_borderLineColor","transparent")
+    property color noSelectRangColor: Qt.rgba(0,0,0,0.5)
+    property int miniWH: 30
     onWidthChanged: {
         if(width>1){
             isSizeChanged=true
@@ -40,7 +42,7 @@ Item{
         width: r5.x
         height: r5.y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r1MouseArea
@@ -60,7 +62,7 @@ Item{
         width: r5.width
         height: r5.y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r2MouseArea
@@ -80,7 +82,7 @@ Item{
         width: parent.width-(r5.x+r5.width)
         height: r5.y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r3MouseArea
@@ -99,7 +101,7 @@ Item{
         width: r5.x
         height: r5.height
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r4MouseArea
@@ -120,7 +122,7 @@ Item{
         width: r3.width
         height: r5.height
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r6MouseArea
@@ -140,7 +142,7 @@ Item{
         width: r5.x
         height: parent.height-y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r7MouseArea
@@ -160,7 +162,7 @@ Item{
         width: r5.width
         height: parent.height-y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r8MouseArea
@@ -180,7 +182,7 @@ Item{
         width: r3.width
         height: parent.height-y
         visible: true
-        color : Qt.rgba(0,0,0,0.5);
+        color : noSelectRangColor
         border.width: 0
         MouseArea {
             id:r9MouseArea
@@ -203,6 +205,18 @@ Item{
         visible: true
         color : Qt.rgba(0,0,0,0.0);
         border.width: 0
+        ShadowMask{
+            anchors.fill: parent
+            Image {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: 30
+                height: 30
+                visible: parent.width<30||parent.height<30?false:true
+                source: "qrc:/img/centerStart.png"
+            }
+        }
+
         onXChanged: {
             if(isSizeChanged)return
             if(x<0){
@@ -291,6 +305,7 @@ Item{
                 }
             }
         }
+
         //-----------------------------------------------------------
         Rectangle {
             id:r5_left
@@ -298,7 +313,7 @@ Item{
             y:0
             width: rangH
             height: r5.height
-            color : Qt.rgba(122,33,0,1);
+            color : borderLineColor
             MouseArea {
                 id:r5_leftMouseArea
                 anchors.fill: parent
@@ -308,8 +323,8 @@ Item{
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 width: rangH_Anchors
-                height:rangH_Anchors
-                color : Qt.rgba(1/255,33,0,1);
+                height:parent.height
+                color : "transparent"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled:true
@@ -346,7 +361,7 @@ Item{
             y:0
             width: rangH
             height: r5.height
-            color : Qt.rgba(122,33,0,1);
+            color : borderLineColor
 
 
 
@@ -359,8 +374,8 @@ Item{
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 width: rangH_Anchors
-                height:rangH_Anchors
-                color : Qt.rgba(1/255,33,0,1);
+                height:parent.height
+                color : "transparent"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled:true
@@ -384,8 +399,8 @@ Item{
                         cursorShape=Qt.SizeHorCursor
                         if(actType===2){
                             var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                            if((r5.width+delta.x)<5){
-                                r5.width=5;
+                            if((r5.width+delta.x)<miniWH){
+                                r5.width=miniWH;
                             }else{
                                 r5.width+=delta.x
                             }
@@ -402,7 +417,7 @@ Item{
             y:-height/2
             width: r5.width
             height: rangH
-            color : Qt.rgba(122,33,0,1);
+            color : borderLineColor
             MouseArea {
                 id:r5_upMouseArea
                 anchors.fill: parent
@@ -411,9 +426,9 @@ Item{
                 id:r5_up_rect
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                width: rangH_Anchors
+                width: parent.width
                 height:rangH_Anchors
-                color : Qt.rgba(1/255,33,0,1);
+                color : "transparent"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled:true
@@ -450,7 +465,7 @@ Item{
             y:r5.height-height/2
             width: r5.width
             height: rangH
-            color : Qt.rgba(122,33,0,1);
+            color : borderLineColor
             MouseArea {
                 id:r5_downMouseArea
                 anchors.fill: parent
@@ -459,9 +474,9 @@ Item{
                 id:r5_down_rect
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                width: rangH_Anchors
+                width: parent.width
                 height:rangH_Anchors
-                color : Qt.rgba(1/255,33,0,1);
+                color : "transparent"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled:true
@@ -485,8 +500,8 @@ Item{
                         cursorShape=Qt.SizeVerCursor
                         if(actType===2){
                             var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                            if((r5.height+delta.y)<5){
-                                r5.height=5;
+                            if((r5.height+delta.y)<miniWH){
+                                r5.height=miniWH;
                             }else{
                                 r5.height+=delta.y
                             }
@@ -502,7 +517,7 @@ Item{
             y:-height/2
             width: rangV_Anchors
             height: rangV_Anchors
-            color : Qt.rgba(122,33,0,1);
+            color : "transparent"
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled:true
@@ -546,7 +561,7 @@ Item{
             y:-height/2
             width: rangV_Anchors
             height: rangV_Anchors
-            color : Qt.rgba(122,33,0,1);
+            color : "transparent"
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled:true
@@ -577,8 +592,8 @@ Item{
                     //鼠标偏移量
                     if(actType===2){
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                        if((r5.width+delta.x)<5){
-                            r5.width=5;
+                        if((r5.width+delta.x)<miniWH){
+                            r5.width=miniWH;
                         }else{
                             r5.width+=delta.x
                         }
@@ -595,7 +610,7 @@ Item{
             y:r5.height-(height/2)
             width: rangV_Anchors
             height: rangV_Anchors
-            color : Qt.rgba(122,33,0,1);
+            color : "transparent"
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled:true
@@ -628,8 +643,8 @@ Item{
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
                         doLeft(delta)
 
-                        if((r5.height+delta.y)<5){
-                            r5.height=5;
+                        if((r5.height+delta.y)<miniWH){
+                            r5.height=miniWH;
                         }else{
                             r5.height+=delta.y
                         }
@@ -643,7 +658,7 @@ Item{
             y:r5.height-(height/2)
             width: rangV_Anchors
             height: rangV_Anchors
-            color : Qt.rgba(122,33,0,1);
+            color : "transparent"
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled:true
@@ -674,13 +689,13 @@ Item{
                     //鼠标偏移量
                     if(actType===2){
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                        if((r5.width+delta.x)<5){
-                            r5.width=5;
+                        if((r5.width+delta.x)<miniWH){
+                            r5.width=miniWH;
                         }else{
                             r5.width+=delta.x
                         }
-                        if((r5.height+delta.y)<5){
-                            r5.height=5;
+                        if((r5.height+delta.y)<miniWH){
+                            r5.height=miniWH;
                         }else{
                             r5.height+=delta.y
                         }
@@ -693,9 +708,9 @@ Item{
         var oldX=r5.x
         var oldRightX=oldX+r5.width
 
-        if((r5.width-delta.x)<5){
-            r5.width=5;
-            r5.x=oldRightX-5
+        if((r5.width-delta.x)<miniWH){
+            r5.width=miniWH;
+            r5.x=oldRightX-miniWH
         }else{
             widthEnable=false
             if((r5.x+delta.x)<0){
@@ -712,9 +727,9 @@ Item{
         var oldY=r5.y
         var oldRightY=oldY+r5.height
 
-        if((r5.height-delta.y)<5){
-            r5.height=5;
-            r5.y=oldRightY-5
+        if((r5.height-delta.y)<miniWH){
+            r5.height=miniWH;
+            r5.y=oldRightY-miniWH
         }else{
             heightEnable=false
             if((r5.y+delta.y)<0){

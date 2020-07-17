@@ -1,5 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>1.jpg</file>
+        <file>img/Rectangle.png</file>
+        <file>img/sliderHand.svg</file>
+        <file>img/sliderHand.png</file>
+        <file>img/sliderHand@1x.png</file>
+        <file>img/Combined Shape Copy 2_LB.png</file>
+        <file>img/Combined Shape Copy 2_LT.png</file>
+        <file>img/Combined Shape Copy 2_RB.png</file>
+        <file>img/Combined Shape Copy 2_RT.png</file>
+        <file>img/centerStart.png</file>
+        <file>img/Grid.png</file>
+        <file>img/downArrow.png</file>
+        <file>img/upArrow.png</file>
+        <file>img/play.png</file>
     </qresource>
 </RCC>

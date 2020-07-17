@@ -18,6 +18,7 @@ SOURCES += \
     fmovablewidget.cpp \
     framelesswindow/DarkStyle.cpp \
     framelesswindow/framelesswindow.cpp \
+    globalStyle.cpp \
     main.cpp \
     mainwindow.cpp \
     marginwidget.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     fmovablewidget.h \
     framelesswindow/DarkStyle.h \
     framelesswindow/framelesswindow.h \
+    globalStyle.h \
     mainwindow.h \
     marginwidget.h \
     movewidget.h \

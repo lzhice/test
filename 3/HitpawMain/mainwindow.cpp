@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
         hlayout->setMargin(0);
         hWidget->setLayout(hlayout);
         {
-            QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/TestItem.qml",this);
+            QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/ControlPan.qml",this);
             //item->setStyleSheet("background-color: rgb(255, 255, 255);");
             hlayout->addWidget (item);
             //item->setFixedWidth (700);
@@ -46,8 +46,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     this->setLayout (vlayout);
-    //setMinimumSize(1200,715);
-    setMinimumSize(100,100);
+    //setMinimumSize(1100-60,620-30);
+    setMinimumSize(1100-60,88);
+      //setFixedSize(240,170);
+//    setMaximumSize(520,170);
+    //this->resize(520,870);
+    //setFixedSize(520,170);
+    //setFixedWidth(240);
+
 }
 
 MainWindow::~MainWindow()
@@ -58,7 +64,7 @@ MainWindow::~MainWindow()
 void MainWindow::onQmlEvent(const QString &eventName, const QVariant &value)
 {
     qDebug()<<"onQmlEvent"<<eventName<<value;
-    static int val=900000;
+    static int val=90000;
     QVariantMap vMap;
     QVariantList vList;
     vList<<1<<2<<3<<4<<5;

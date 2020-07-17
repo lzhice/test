@@ -2,8 +2,9 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 Rectangle {
     anchors.fill: quickRoot
-    color : Qt.rgba(46/255,47/255,51/255,1)
+    color : Qt.rgba(146/255,47/255,51/255,0)
     radius: 10
+
 //    MouseArea {
 //        id: dragRegion
 //        anchors.fill: parent
@@ -19,15 +20,39 @@ Rectangle {
 ////        }
 //    }
 
-//    VideoRangSliderItem{
-//        anchors.bottom: parent.bottom
+//    VideoMainView{
+//        anchors.fill: parent
+//    }
+
+    VideoRangSliderItem{
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 20
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
+        height: sliderHeight
+    }
+
+//    Image {
 //        anchors.left: parent.left
 //        anchors.right: parent.right
-//        anchors.leftMargin: 5
-//        anchors.rightMargin: 5
-//        height: sliderHeight
+//        anchors.top: parent.top
+//        anchors.bottom: parent.bottom
+//        anchors.margins: 20
+//        source: "qrc:/1.jpg"
 //    }
 //    VideoSelectRangItem{
+
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.top: parent.top
+//        anchors.bottom: parent.bottom
+//        anchors.margins: 20
+
+//    }
+
+//    TestItem{
 //        anchors.left: parent.left
 //        anchors.right: parent.right
 //        anchors.top: parent.top
@@ -35,11 +60,10 @@ Rectangle {
 //        anchors.margins: 10
 //    }
 
-    TestItem{
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.margins: 10
-    }
+//    MessageBox{
+//        anchors.fill: parent
+//    }
+//   VideoParametersSetView{
+//        anchors.fill: parent
+//    }
 }

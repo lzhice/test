@@ -102,14 +102,41 @@ void FramelessWindow::changeEvent(QEvent *event) {
 void FramelessWindow::setContent(QWidget *w) {
     w->setObjectName("contentWidget");
     w->setStyleSheet("#contentWidget{border:1px solid palette(shadow);border-radius:0px 0px 10px 10px;}");
+    ui->windowContent->layout()->setMargin(0);
+    ui->windowContent->layout()->setSpacing(0);
     ui->windowContent->layout()->addWidget(w);
     //    QWidget *bottomWidget=new QWidget();
     //    bottomWidget->setObjectName("bottomWidget");
     //    bottomWidget->setStyleSheet("#bottomWidget{border:0px solid palette(shadow);border-radius:10px 10px 0px 0px;}");
     //    ui->windowContent->layout()->addWidget(bottomWidget);
     //    bottomWidget->setFixedHeight(10);
-    //this->setMinimumSize(w->width()+50,w->height()+ui->windowTitlebar->height()+50);
+    //this->setMinimumSize(w->width(),w->height()+ui->windowTitlebar->height());
+    //this->setMinimumSize(w->width(),(w->height()+ui->windowTitlebar->height()));
+    //setFixedSize(520,200+ui->windowTitlebar->height());
     move ((QApplication::desktop()->width() - w->width())/2,(QApplication::desktop()->height() - (w->height()+ui->windowTitlebar->height()))/2);
+}
+
+void FramelessWindow::setReSizeEnable(bool isEnable)
+{
+    if(m_reSizeEnable!=isEnable){
+        m_reSizeEnable=isEnable;
+        if(m_reSizeEnable){
+            ui->closeButton->setVisible(m_reSizeEnable);
+            ui->maximizeButton->setVisible(m_reSizeEnable);
+            ui->minimizeButton->setVisible(m_reSizeEnable);
+        }else{
+            ui->closeButton->setVisible(m_reSizeEnable);
+            ui->maximizeButton->setVisible(m_reSizeEnable);
+            ui->minimizeButton->setVisible(m_reSizeEnable);
+            ui->restoreButton->setVisible(m_reSizeEnable);
+        }
+    }
+
+}
+
+void FramelessWindow::setTopBarHeight(int height)
+{
+    ui->windowTitlebar->setFixedHeight(height);
 }
 
 void FramelessWindow::setWindowTitle(const QString &text) {
@@ -127,7 +154,7 @@ void FramelessWindow::styleWindow(bool bActive, bool bNoState) {
             ui->windowTitlebar->setStyleSheet(QStringLiteral(
                                                   "#windowTitlebar{border: 0px none palette(shadow); "
                                                   "border-top-left-radius:10px; border-top-right-radius:10px; "
-                                                  "background-color:palette(shadow); height:20px;}"));
+                                                  "background-color:palette(shadow); height:24px;}"));
             ui->windowFrame->setStyleSheet(QStringLiteral(
                                                "#windowFrame{border:1px solid palette(highlight); border-radius:10px "
                                                "10px 10px 10px; background-color:palette(Window);}"));
@@ -143,7 +170,7 @@ void FramelessWindow::styleWindow(bool bActive, bool bNoState) {
             ui->windowTitlebar->setStyleSheet(QStringLiteral(
                                                   "#windowTitlebar{border: 0px none palette(shadow); "
                                                   "border-top-left-radius:0px; border-top-right-radius:0px; "
-                                                  "background-color:palette(shadow); height:20px;}"));
+                                                  "background-color:palette(shadow); height:24px;}"));
             ui->windowFrame->setStyleSheet(QStringLiteral(
                                                "#windowFrame{border:1px solid palette(dark); border-radius:0px 0px "
                                                "0px 0px; background-color:palette(Window);}"));
@@ -157,7 +184,7 @@ void FramelessWindow::styleWindow(bool bActive, bool bNoState) {
             ui->windowTitlebar->setStyleSheet(QStringLiteral(
                                                   "#windowTitlebar{border: 0px none palette(shadow); "
                                                   "border-top-left-radius:10px; border-top-right-radius:10px; "
-                                                  "background-color:palette(dark); height:20px;}"));
+                                                  "background-color:palette(dark); height:24px;}"));
             ui->windowFrame->setStyleSheet(QStringLiteral(
                                                "#windowFrame{border:1px solid #000000; border-radius:10px 10px 10px "
                                                "10px; background-color:palette(Window);}"));
@@ -173,7 +200,7 @@ void FramelessWindow::styleWindow(bool bActive, bool bNoState) {
             ui->windowTitlebar->setStyleSheet(QStringLiteral(
                                                   "#titlebarWidget{border: 0px none palette(shadow); "
                                                   "border-top-left-radius:0px; border-top-right-radius:0px; "
-                                                  "background-color:palette(dark); height:20px;}"));
+                                                  "background-color:palette(dark); height:24px;}"));
             ui->windowFrame->setStyleSheet(QStringLiteral(
                                                "#windowFrame{border:1px solid palette(shadow); border-radius:0px "
                                                "0px 0px 0px; background-color:palette(Window);}"));
@@ -217,7 +244,7 @@ void FramelessWindow::on_windowTitlebar_doubleClicked() {
 }
 
 void FramelessWindow::mouseDoubleClickEvent(QMouseEvent *event) {
-    if(ui->titleText->geometry().adjusted(0,-1,0,-1).contains(ui->titleText->mapFromGlobal(event->globalPos()))){
+    if(m_reSizeEnable&&ui->titleText->geometry().adjusted(0,-1,0,-1).contains(ui->titleText->mapFromGlobal(event->globalPos()))){
         on_windowTitlebar_doubleClicked();
     }
 }
@@ -423,62 +450,79 @@ void FramelessWindow::region(const QPoint &currentGlobalPoint)
 
     int x = currentGlobalPoint.x(); //当前鼠标的坐标
     int y = currentGlobalPoint.y();
-    if(((topLeft.x() + PADDING >= x) && (topLeft.x() <= x))
-            && ((topLeft.y() + PADDING >= y) && (topLeft.y() <= y)))
-    {
-        // 左上角
-        dir = LEFTTOP;
-        this->setCursor(QCursor(Qt::SizeFDiagCursor));  // 设置光标形状
-    }else if(((x >= rightButton.x() - PADDING) && (x <= rightButton.x()))
-             && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
-    {
-        // 右下角
-        dir = RIGHTBOTTOM;
-        this->setCursor(QCursor(Qt::SizeFDiagCursor));
-    }else if(((x <= topLeft.x() + PADDING) && (x >= topLeft.x()))
-             && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
-    {
-        //左下角
-        dir = LEFTBOTTOM;
-        this->setCursor(QCursor(Qt::SizeBDiagCursor));
-    }else if(((x <= rightButton.x()) && (x >= rightButton.x() - PADDING))
-             && ((y >= topLeft.y()) && (y <= topLeft.y() + PADDING)))
-    {
-        // 右上角
-        dir = RIGHTTOP;
-        this->setCursor(QCursor(Qt::SizeBDiagCursor));
-    }else if((x <= topLeft.x() + PADDING) && (x >= topLeft.x()))
-    {
-        // 左边
-        dir = LEFT;
-        this->setCursor(QCursor(Qt::SizeHorCursor));
-    }else if((x <= rightButton.x()) && (x >= rightButton.x() - PADDING))
-    {
-        // 右边
-        dir = RIGHT;
-        this->setCursor(QCursor(Qt::SizeHorCursor));
-    }else if((y >= topLeft.y()) && (y <= topLeft.y() + PADDING))
-    {
-        // 上边
-        dir = UP;
-        this->setCursor(QCursor(Qt::SizeVerCursor));
-    }else if((y <= rightButton.y()) && (y >= rightButton.y() - PADDING))
-    {
-        // 下边
-        dir = DOWN;
-        this->setCursor(QCursor(Qt::SizeVerCursor));
-    }else if(ui->titleText->geometry().contains(ui->titleText->mapFromGlobal(currentGlobalPoint)))
-    {
-        // 默认
-        dir = MOVE;
-        this->setCursor(QCursor(Qt::ArrowCursor));
-    }else{
-        if(dir!=NONE){
-            qDebug()<<"dir!=NONE"<<dir;
-            dir=NONE;
+    if(m_reSizeEnable){
+        if(((topLeft.x() + PADDING >= x) && (topLeft.x() <= x))
+                && ((topLeft.y() + PADDING >= y) && (topLeft.y() <= y)))
+        {
+            // 左上角
+            dir = LEFTTOP;
+            this->setCursor(QCursor(Qt::SizeFDiagCursor));  // 设置光标形状
+        }else if(((x >= rightButton.x() - PADDING) && (x <= rightButton.x()))
+                 && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
+        {
+            // 右下角
+            dir = RIGHTBOTTOM;
+            this->setCursor(QCursor(Qt::SizeFDiagCursor));
+        }else if(((x <= topLeft.x() + PADDING) && (x >= topLeft.x()))
+                 && ((y >= rightButton.y() - PADDING) && (y <= rightButton.y())))
+        {
+            //左下角
+            dir = LEFTBOTTOM;
+            this->setCursor(QCursor(Qt::SizeBDiagCursor));
+        }else if(((x <= rightButton.x()) && (x >= rightButton.x() - PADDING))
+                 && ((y >= topLeft.y()) && (y <= topLeft.y() + PADDING)))
+        {
+            // 右上角
+            dir = RIGHTTOP;
+            this->setCursor(QCursor(Qt::SizeBDiagCursor));
+        }else if((x <= topLeft.x() + PADDING) && (x >= topLeft.x()))
+        {
+            // 左边
+            dir = LEFT;
+            this->setCursor(QCursor(Qt::SizeHorCursor));
+        }else if((x <= rightButton.x()) && (x >= rightButton.x() - PADDING))
+        {
+            // 右边
+            dir = RIGHT;
+            this->setCursor(QCursor(Qt::SizeHorCursor));
+        }else if((y >= topLeft.y()) && (y <= topLeft.y() + PADDING))
+        {
+            // 上边
+            dir = UP;
+            this->setCursor(QCursor(Qt::SizeVerCursor));
+        }else if((y <= rightButton.y()) && (y >= rightButton.y() - PADDING))
+        {
+            // 下边
+            dir = DOWN;
+            this->setCursor(QCursor(Qt::SizeVerCursor));
+        }else if(ui->titleText->geometry().contains(ui->titleText->mapFromGlobal(currentGlobalPoint)))
+        {
+            // 默认
+            dir = MOVE;
             this->setCursor(QCursor(Qt::ArrowCursor));
+        }else{
+            if(dir!=NONE){
+                qDebug()<<"dir!=NONE"<<dir;
+                dir=NONE;
+                this->setCursor(QCursor(Qt::ArrowCursor));
 
+            }
+        }
+    }else{
+        if(ui->titleText->geometry().contains(ui->titleText->mapFromGlobal(currentGlobalPoint)))
+        {
+            // 默认
+            dir = MOVE;
+            this->setCursor(QCursor(Qt::ArrowCursor));
+        }else{
+            if(dir!=NONE){
+                qDebug()<<"dir!=NONE"<<dir;
+                dir=NONE;
+                this->setCursor(QCursor(Qt::ArrowCursor));
+
+            }
         }
     }
+
 }
 

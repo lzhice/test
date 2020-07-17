@@ -40,7 +40,8 @@ public:
     explicit FramelessWindow(QWidget *parent = Q_NULLPTR);
     virtual ~FramelessWindow();
     void setContent( QWidget *w );
-
+    void setReSizeEnable(bool isEnable);
+    void setTopBarHeight(int height);
 private:
     void styleWindow(bool bActive, bool bNoState);
 public slots:
@@ -62,6 +63,7 @@ protected:
     virtual bool eventFilter(QObject *obj, QEvent *event);
 private:
     Ui::FramelessWindow *ui;
+    bool m_reSizeEnable=true;
     QPoint m_StartGlobalMousePos;
     QRect m_StartGeometry;
     const quint8 CONST_DRAG_BORDER_SIZE = 15;
