@@ -8,8 +8,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+//    QQuickWindow::setTextRenderType(QQuickWindow::QtTextRendering);
+//    QQuickWindow::setDefaultAlphaBuffer(true);
     QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
+//    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+//    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QFont f("Arial",12);
     f.setWeight(QFont::Medium);
     a.setFont(f);

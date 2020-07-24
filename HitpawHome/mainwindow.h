@@ -4,6 +4,23 @@
 #include <QWidget>
 #include "fmovablewidget.h"
 
+class musicCtrl: public QObject{
+    Q_OBJECT
+};
+
+class MusicCtrl : public QObject
+{
+    Q_OBJECT
+public:
+    static MusicCtrl * getInstance(){static MusicCtrl _this;return &_this;}
+    Q_INVOKABLE QVariantList getPoints(int maxCount);
+
+private:
+    explicit MusicCtrl(QObject *parent = nullptr):QObject(parent){}
+    QHash<QString,QColor> m_colorTbl;
+    QHash<QString,int> m_fontSizeTbl;
+    QHash<QString,QString> m_imgPathTbl;
+};
 class MainWindow : public QWidget
 {
     Q_OBJECT

@@ -2,36 +2,20 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 
 Rectangle {
-    id:button
-    enum Style {
-            Rimless,
-            Bordered
-    }
     property string objectName: ""
     property int textSize : globalStyle.getFontSize("TextButton_textSize",12)
     property string buttonText : ""
-    property int frameStyle: TextButton.Style.Bordered
-    property bool isPresss: false
-    property string selectbutton : ""
-
-    onSelectbuttonChanged: {
-        if(selectbutton===objectName&&objectName!==""){
-            isPresss=true
-        }else{
-            isPresss=false
-        }
-    }
-
+    id:button
     color: "transparent"
-    border.width: frameStyle===TextButton.Style.Bordered?1:0
+    border.width: 1
     border.color : globalStyle.getColor("TextButton_borderColor","#8372FF")
     Text{
         id:button_text
         anchors.fill: parent
         text:buttonText
-        color:frameStyle===TextButton.Style.Bordered?(button.color===globalStyle.getColor("TextButton_color","transparent"))?
+        color:button.color===globalStyle.getColor("TextButton_color","transparent")?
                   globalStyle.getColor("TextButton_text_normalColor","#8372FF"):
-                  globalStyle.getColor("TextButton_text_haverColor","#FFFFFF"):button.isPresss?globalStyle.getColor("TextButton_text_presslColor","#8372FF"):globalStyle.getColor("TextButton_text_normalColor","#E3E3E3")
+                  globalStyle.getColor("TextButton_text_haverColor","#FFFFFF")
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         wrapMode:Text.Wrap
@@ -43,9 +27,7 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled:true
         onEntered: {
-            if(frameStyle===TextButton.Style.Bordered){
-                button.color = globalStyle.getColor("TextButton_color","#8372FF")
-            }
+            button.color = globalStyle.getColor("TextButton_color","#8372FF")
         }
         onExited: {
             button.color = "transparent";
@@ -53,10 +35,6 @@ Rectangle {
         }
         onClicked: {
             eventManager.sendToWidget(button.objectName,"onClicked")
-            if(frameStyle===TextButton.Style.Rimless){
-                button.isPresss=true
-            }
-
         }
         onPressed: {
             button_effectItem.visible=true

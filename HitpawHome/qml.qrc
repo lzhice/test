@@ -18,5 +18,10 @@
         <file>qml/ShadowMask.qml</file>
         <file>qml/VideoParametersSetView.qml</file>
         <file>qml/VideoMusicRangSliderItem.qml</file>
+        <file>qml/VideoMusicChartItem.qml</file>
+        <file>qml/VideoRotateAndSizeSetView.qml</file>
+        <file>qml/ImageButton.qml</file>
+        <file>qml/ImageTextButton.qml</file>
+        <file>qml/DevicePan.qml</file>
     </qresource>
 </RCC>

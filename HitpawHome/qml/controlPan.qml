@@ -61,18 +61,27 @@ Rectangle {
 
     //    }
 
-    //    TestItem{
-    //        anchors.left: parent.left
-    //        anchors.right: parent.right
-    //        anchors.top: parent.top
-    //        anchors.bottom: parent.bottom
-    //        anchors.margins: 10
-    //    }
+        TestItem{
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.margins: 10
+        }
 
-    //    MessageBox{
+//        DevicePan{
+//            anchors.fill: parent
+//        }
+    //   VideoRotateAndSizeSetView{
     //        anchors.fill: parent
     //    }
-    //   VideoParametersSetView{
-    //        anchors.fill: parent
-    //    }
+//    VideoMusicChartItem{
+//        anchors.bottom: parent.bottom
+//        anchors.bottomMargin: 20
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.leftMargin: 5
+//        anchors.rightMargin: 5
+//        height: 400
+//    }
 }

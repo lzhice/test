@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import QtGraphicalEffects 1.12
 import QtQuick.Window 2.12
 Rectangle{
     property string sliderHandSource:"qrc:/img/sliderHand@1x.png"
@@ -25,49 +26,61 @@ Rectangle{
     property bool isSetValue: false
 
     property int oldMusicImgx : 0
+
+    property int maxMusicImgSize : 20000
+    property var widthMusicImgList : []
+
     id:root
     color : "#2E2F30"
-    Image {
+    Item {
         id: playButton
-        mipmap: true
         anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        source: "qrc:/img/play.png"
-        width: 40; height: 40
-        Rectangle{
-            id:effectItem
-            anchors.fill: parent
-            visible: false
-            //radius: 12
-            clip:true
-            color : Qt.rgba(0.6,0.6,0.6,0.8) ;
-        }
-        MouseArea {
-            id:mouseArea
-            anchors.fill: parent
-            hoverEnabled:true
-            onEntered: {
+        anchors.leftMargin: 15
+        anchors.top: parent.top
+        anchors.topMargin:-rootVideoRang.height+(rootVideoRang.height-40)/2
+        width: 40
+        height: 40
+        Image {
+            source: "qrc:/img/play.png"
+            width: 40
+            height: 40
+            Rectangle{
+                id:effectItem
+                anchors.fill: parent
+                visible: false
+                //radius: 12
+                clip:true
+                color : Qt.rgba(0.6,0.6,0.6,0.8) ;
             }
-            onExited: {
-                effectItem.visible=false
-            }
-            onClicked: {
-                eventManager.sendToWidget("playButton","onClicked")
-            }
-            onPressed: {
-                effectItem.visible=true
-            }
-            onReleased: {
-                effectItem.visible=false
+            MouseArea {
+                id:mouseArea
+                anchors.fill: parent
+                hoverEnabled:true
+                onEntered: {
+                }
+                onExited: {
+                    effectItem.visible=false
+                }
+                onClicked: {
+                    eventManager.sendToWidget("playButton","onClicked")
+                }
+                onPressed: {
+                    effectItem.visible=true
+                }
+                onReleased: {
+                    effectItem.visible=false
+                }
             }
         }
     }
+
     Rectangle {
         id:rootVideoRang
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.left: playButton.right
+        anchors.left: parent.left
+        anchors.leftMargin:64-9
         color : "#2E2F30"
         onWidthChanged: {
             console.log("onWidthChanged--------------:")
@@ -80,7 +93,7 @@ Rectangle{
         }
         Timer {
             id: timerUpdate;
-            interval: 50;//设置定时器定时时间为500ms,默认1000ms
+            interval: 150;//设置定时器定时时间为500ms,默认1000ms
             repeat:false //是否重复定时,默认为false
             running:false //是否开启定时，默认是false，当为true的时候，进入此界面就开始定时
             triggeredOnStart:false// 是否开启定时就触发onTriggered，一些特殊用户可以用来设置初始值。
@@ -90,10 +103,9 @@ Rectangle{
                 setStartValue(startValue)
                 setEndValue(endValue)
                 setMillisecondValue(tmcurValue)
+                setMusiceWave()
             }
             //restart ,start,stop,定时器的调用方式，顾名思义
-
-
         }
         ListModel {
             id:listModel
@@ -471,11 +483,13 @@ Rectangle{
                     source: pic
                     width: sliderHeight-10
                     height: sliderHeight-10
+                    smooth: true
                 }
             }
             MouseArea {
                 anchors.fill: parent
             }
+
         }
         Rectangle{
             anchors.verticalCenter: parent.verticalCenter
@@ -485,14 +499,552 @@ Rectangle{
             anchors.rightMargin:rangMargins
             height: sliderHeight
             color : Qt.rgba(0,0,0,1);
-            clip: true
-            Image {
+            //clip: true
+            //            Image {
+            //                id: musicImg
+            //                smooth: true
+            //                antialiasing: true
+            //                x:0
+            //                anchors.verticalCenter: parent.verticalCenter
+            //                height: sliderHeight
+            //                width: (videoView.width/2).toFixed(0)
+            //                source: "qrc:/1.jpg"
+
+            //            }
+            Rectangle{
                 id: musicImg
                 x:0
                 anchors.verticalCenter: parent.verticalCenter
                 height: sliderHeight
-                width: (videoView.width/2).toFixed(0)
-                source: "qrc:/1.jpg"
+                width: 0
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem1
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[0]
+                    onWidthChanged: {
+                        console.log("musicImg_ChartItem1 onWidthChanged:",musicImg_ChartItem1.width)
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem2
+                    anchors.left: musicImg_ChartItem1.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[1]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem3
+                    anchors.left: musicImg_ChartItem2.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[2]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem4
+                    anchors.left: musicImg_ChartItem3.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[3]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem5
+                    anchors.left: musicImg_ChartItem4.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[4]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem6
+                    anchors.left: musicImg_ChartItem5.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[5]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem7
+                    anchors.left: musicImg_ChartItem6.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[6]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem8
+                    anchors.left: musicImg_ChartItem7.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[7]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem9
+                    anchors.left: musicImg_ChartItem8.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[8]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    id:musicImg_ChartItem10
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[9]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[10]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                /*
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[11]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[12]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[13]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[14]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[15]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[16]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[17]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[18]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[19]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[20]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[21]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[22]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[23]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[24]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[25]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[26]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[27]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[28]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[29]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[30]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[31]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[32]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[33]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[34]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[35]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[36]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[37]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[38]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[39]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[40]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[41]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[42]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[43]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[44]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[45]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[46]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[47]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[48]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[49]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }
+                VideoMusicChartItem {
+                    anchors.left: musicImg_ChartItem9.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: widthMusicImgList[50]
+                    onWidthChanged: {
+                        setPieSeries(width)
+                    }
+                }*/
+                function setClearSeries(){
+                    console.log("musicImg_ChartItem1:",musicImg_ChartItem1.width)
+
+                }
+                function setPieSeries(size){
+                    var indexCount=parseInt(musicImg.width/maxMusicImgSize)
+                    var tmpWidthMusicImgList=[]
+                    widthMusicImgList = []
+                    for(var i=0;i<11;i++){
+                        if(i<indexCount){
+                            tmpWidthMusicImgList[i]=maxMusicImgSize
+                        }else if(i===indexCount){
+                            tmpWidthMusicImgList[i]=musicImg.width-indexCount*maxMusicImgSize
+                        }else{
+                            tmpWidthMusicImgList[i]=0;
+                        }
+                    }
+                    widthMusicImgList=tmpWidthMusicImgList
+                    console.log("setPieSeries^^^^^^^^^^^^^^^^^^^^^^:",musicImg.width,maxMusicImgSize,indexCount,musicImg_ChartItem1.width,widthMusicImgList)
+                }
+
             }
             MouseArea {
                 anchors.fill: parent
@@ -501,6 +1053,7 @@ Rectangle{
         Rectangle{
             anchors.fill: parent
             color : "transparent"
+
             Rectangle {
                 id:r1
                 x:0
@@ -569,9 +1122,13 @@ Rectangle{
                             musicImg.x=oldMusicImgx+delta.x
                             if((musicImg.x+musicImg.width+rangMargins*2)<(r5.x+r5.width)){
                                 musicImg.x=r5.x+r5.width-musicImg.width-rangMargins*2
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
                             if(r5.x<musicImg.x){
                                 musicImg.x=r5.x
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
                         }
                     }
@@ -619,9 +1176,13 @@ Rectangle{
                             musicImg.x=oldMusicImgx+delta.x
                             if((musicImg.x+musicImg.width+rangMargins*2)<(r5.x+r5.width)){
                                 musicImg.x=r5.x+r5.width-musicImg.width-rangMargins*2
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
                             if(r5.x<musicImg.x){
                                 musicImg.x=r5.x
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
                         }
                     }
@@ -656,14 +1217,13 @@ Rectangle{
             }
 
             Rectangle {
-
                 id:r5
                 //anchors.horizontalCenter : parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 x:0
                 width: rangMargins*2+2
                 height: sliderHeight
-                color : Qt.rgba(0,0,0,0.0);
+                color : Qt.rgba(131/255, 114/255, 255/255,0);
                 onXChanged: {
                     if(!isSetValue){
                         startValue=x/rangWidth*millisecondTotal
@@ -677,7 +1237,6 @@ Rectangle{
                         }
                     }
                 }
-
                 Rectangle {
                     id:r5_left_shadow
                     anchors.left: parent.left
@@ -757,9 +1316,13 @@ Rectangle{
 
                             if((musicImg.x+musicImg.width+rangMargins*2)<(r5.x+r5.width)){
                                 musicImg.x=r5.x+r5.width-musicImg.width-rangMargins*2
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
                             if(r5.x<musicImg.x){
                                 musicImg.x=r5.x
+                                clickPos  = Qt.point(mouse.x,mouse.y)
+                                oldMusicImgx=musicImg.x
                             }
 
                         }
@@ -834,8 +1397,8 @@ Rectangle{
                                 if(delta.x>0&&(musicImg.x+musicImg.width+rangMargins*2)<(r5.x+r5.width)){
                                     musicImg.x=r5.x+r5.width-musicImg.width-rangMargins*2
                                     if(r5.x<musicImg.x){
-                                       r5.x= musicImg.x
-                                       r5.width=musicImg.width+rangMargins*2
+                                        r5.x= musicImg.x
+                                        r5.width=musicImg.width+rangMargins*2
                                     }
                                 }
                             }
@@ -944,48 +1507,48 @@ Rectangle{
                     height: sliderHeight+40
                     color : "#FF5C00"
                 }
-                MouseArea {
-                    property point clickPos: "0,0"
-                    property int actType: 0
+                //                MouseArea {
+                //                    property point clickPos: "0,0"
+                //                    property int actType: 0
 
-                    anchors.fill: parent
-                    hoverEnabled:true
-                    onEntered: {
-                        cursorShape=Qt.SizeHorCursor
-                    }
-                    onExited: {
-                        cursorShape=Qt.ArrowCursor
-                    }
+                //                    anchors.fill: parent
+                //                    hoverEnabled:true
+                //                    onEntered: {
+                //                        cursorShape=Qt.SizeHorCursor
+                //                    }
+                //                    onExited: {
+                //                        cursorShape=Qt.ArrowCursor
+                //                    }
 
-                    onPressed: {
-                        if(cursorShape===Qt.SizeHorCursor){
-                            actType=1
-                            clickPos  = Qt.point(mouse.x,mouse.y)
-                        }
+                //                    onPressed: {
+                //                        if(cursorShape===Qt.SizeHorCursor){
+                //                            actType=1
+                //                            clickPos  = Qt.point(mouse.x,mouse.y)
+                //                        }
 
-                    }
-                    onReleased: {
-                        actType=0
-                    }
+                //                    }
+                //                    onReleased: {
+                //                        actType=0
+                //                    }
 
-                    onPositionChanged: {
+                //                    onPositionChanged: {
 
-                        //鼠标偏移量
-                        var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                        if(actType===1){
-                            if(progressPin.x+delta.x>=(r5.x+rangMargins)&&(progressPin.x+delta.x+progressPin.width)<=((r5.x+rangMargins)+(r5.width-rangMargins*2))){
-                                progressPin.x=(progressPin.x+delta.x)
-                            }else{
-                                if(progressPin.x+delta.x<(r5.x+rangMargins)){
-                                    progressPin.x=(r5.x+rangMargins)
-                                }
-                                if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
-                                    progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-                                }
-                            }
-                        }
-                    }
-                }
+                //                        //鼠标偏移量
+                //                        var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+                //                        if(actType===1){
+                //                            if(progressPin.x+delta.x>=(r5.x+rangMargins)&&(progressPin.x+delta.x+progressPin.width)<=((r5.x+rangMargins)+(r5.width-rangMargins*2))){
+                //                                progressPin.x=(progressPin.x+delta.x)
+                //                            }else{
+                //                                if(progressPin.x+delta.x<(r5.x+rangMargins)){
+                //                                    progressPin.x=(r5.x+rangMargins)
+                //                                }
+                //                                if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
+                //                                    progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
+                //                                }
+                //                            }
+                //                        }
+                //                    }
+                //                }
             }
             Rectangle{
                 id:progressPinHandle
@@ -1062,56 +1625,56 @@ Rectangle{
                 }
             }
 
-            Rectangle{
-                anchors.centerIn: progressPin
-                width: 8
-                height: progressPin.height
-                color : Qt.rgba(0,222,0,0);
-                MouseArea {
-                    property point clickPos: "0,0"
-                    property int actType: 0
+            //            Rectangle{
+            //                anchors.centerIn: progressPin
+            //                width: 0
+            //                height: progressPin.height
+            //                color : Qt.rgba(0,222,0,1);
+            //                MouseArea {
+            //                    property point clickPos: "0,0"
+            //                    property int actType: 0
 
-                    anchors.fill: parent
-                    hoverEnabled:true
-                    onEntered: {
-                        cursorShape=Qt.SizeHorCursor
-                    }
-                    onExited: {
-                        cursorShape=Qt.ArrowCursor
-                    }
+            //                    anchors.fill: parent
+            //                    hoverEnabled:true
+            //                    onEntered: {
+            //                        cursorShape=Qt.SizeHorCursor
+            //                    }
+            //                    onExited: {
+            //                        cursorShape=Qt.ArrowCursor
+            //                    }
 
-                    onPressed: {
-                        if(cursorShape===Qt.SizeHorCursor){
-                            actType=1
-                            clickPos  = Qt.point(mouse.x,mouse.y)
-                        }
+            //                    onPressed: {
+            //                        if(cursorShape===Qt.SizeHorCursor){
+            //                            actType=1
+            //                            clickPos  = Qt.point(mouse.x,mouse.y)
+            //                        }
 
-                    }
-                    onReleased: {
-                        actType=0
-                    }
+            //                    }
+            //                    onReleased: {
+            //                        actType=0
+            //                    }
 
-                    onPositionChanged: {
-                        //鼠标偏移量
-                        if(r5.width===rangMargins*2) return;
-                        var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                        if(actType===1){
-                            if(progressPin.x+delta.x>=(r5.x+rangMargins)&&(progressPin.x+delta.x+progressPin.width)<((r5.x+rangMargins)+(r5.width-rangMargins*2))){
-                                progressPin.x=(progressPin.x+delta.x)
-                            }else{
-                                if(progressPin.x+delta.x<(r5.x+rangMargins)){
-                                    progressPin.x=(r5.x+rangMargins)
-                                }
-                                if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
-                                    progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-                                    console.log("progressPin.x",progressPin.x)
-                                    console.log("onPositionChanged",r5.x+r5.width-rangMargins);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //                    onPositionChanged: {
+            //                        //鼠标偏移量
+            //                        if(r5.width===rangMargins*2) return;
+            //                        var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+            //                        if(actType===1){
+            //                            if(progressPin.x+delta.x>=(r5.x+rangMargins)&&(progressPin.x+delta.x+progressPin.width)<((r5.x+rangMargins)+(r5.width-rangMargins*2))){
+            //                                progressPin.x=(progressPin.x+delta.x)
+            //                            }else{
+            //                                if(progressPin.x+delta.x<(r5.x+rangMargins)){
+            //                                    progressPin.x=(r5.x+rangMargins)
+            //                                }
+            //                                if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
+            //                                    progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
+            //                                    console.log("progressPin.x",progressPin.x)
+            //                                    console.log("onPositionChanged",r5.x+r5.width-rangMargins);
+            //                                }
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //            }
         }
 
     }
@@ -1135,10 +1698,11 @@ Rectangle{
     //        return time;
     //    }
 
-    function getTextAlign(val){
-        //        r5_left_text.color=Qt.rgba(88/255,88/255,88/255,0.9);
-        //        r5_left_text.visible=true
-        return val
+    function setMusiceWave(){
+        musicImg.setClearSeries()
+        musicImg.width=(videoView.width).toFixed(0)
+        musicImg.setPieSeries(10000);
+        console.log("setMusiceWave--------------:",musicImg.width/8)
     }
 
     function setStartValue(val){
@@ -1246,7 +1810,9 @@ Rectangle{
             var obj=value;
             //console.log("VideoRangSliderItem onEmitQmlEvent:",eventName,curValue["1"])
 
-            setEndValue(value["1"])
+            // musicImg.setClearSeries()
+            // musicImg.width=(videoView.width*10).toFixed(0)
+            //musicImg.setPieSeries(musicImg.width/5);
 
         }
     }

@@ -33,10 +33,12 @@ MainWindow::MainWindow(QWidget *parent)
 
         QHBoxLayout * hlayout=new QHBoxLayout();
         hlayout->setSpacing(0);
-        hlayout->setMargin(0);
+        hlayout->setMargin(2);
         hWidget->setLayout(hlayout);
         {
-            QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/ControlPan.qml",this);
+            QHash<QString, QObject *> contextPropertyTbl;
+            contextPropertyTbl.insert("musicCtrl",MusicCtrl::getInstance());
+            QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/ControlPan.qml",contextPropertyTbl,this);
             //item->setStyleSheet("background-color: rgb(255, 255, 255);");
             hlayout->addWidget (item);
             //item->setFixedWidth (700);
@@ -55,12 +57,13 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     this->setLayout (vlayout);
-    setMinimumSize(1100-60,620-30);
 
-      //setFixedSize(240,170);
+    //setMinimumSize(1100-60,620-30);
+
+      //setFixedSize(196,870);
 //    setMaximumSize(520,170);
     //this->resize(520,870);
-    //setFixedSize(520,170);
+    setFixedSize(520,350);
     //setFixedWidth(240);
 
 }
@@ -87,3 +90,36 @@ void MainWindow::onQmlEvent(const QString &eventName, const QVariant &value)
 
 
 */
+#include <QTime>
+static int getRandomNum(int min, int max)
+{
+    Q_ASSERT(min < max);
+    static bool seedStatus;
+    if (!seedStatus)
+    {
+        qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+        seedStatus = true;
+    }
+    int nRandom = qrand() % (max - min);
+    nRandom = min + nRandom;
+
+    return nRandom;
+}
+QVariantList MusicCtrl::getPoints(int maxCount)
+{
+    QVariantList valueList;
+    for (int i = 0; i < maxCount; i++) {
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+        valueList<<getRandomNum(1,20);
+    }
+    qDebug()<<"MusicCtrl::getPoints~~~~~~~~~~~~~~~~~"<<valueList.size();
+    return valueList;
+}

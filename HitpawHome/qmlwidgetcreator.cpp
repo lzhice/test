@@ -67,6 +67,8 @@ QWidget *QmlWidgetCreator::createQmlWidget( const QString &qmlFilePath, QWidget 
 QWidget *QmlWidgetCreator::createQmlWidget(const QString &qmlFilePath, const QHash<QString, QObject *> &contextPropertyTbl, QWidget *parent)
 {
     QQuickWidget * quickWidget=new QuickWidget();
+    quickWidget->quickWindow()->setPersistentOpenGLContext(true);
+    quickWidget->quickWindow()->setClearBeforeRendering(true);
     quickWidget->setWindowFlag(Qt::FramelessWindowHint);
     quickWidget->setClearColor(QColor(Qt::transparent));
     quickWidget->setAttribute(Qt::WA_AlwaysStackOnTop);
@@ -85,6 +87,17 @@ QWidget *QmlWidgetCreator::createQmlWidget(const QString &qmlFilePath, const QHa
     quickWidget->setSource(QUrl(qmlFilePath));
     quickWidget->setParent(parent);
     s_QmlWidgetTbl.insert (quickWidget,quickWidget);
+
+
+//    quickWidget->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);
+//    // append minimize button flag in case of windows,
+//    // for correct windows native handling of minimize function
+//#if defined(Q_OS_WIN)
+//    quickWidget->setWindowFlags(quickWidget->windowFlags() | Qt::WindowMinimizeButtonHint);
+//#endif
+//    quickWidget->setAttribute(Qt::WA_NoSystemBackground, true);
+//    quickWidget->setAttribute(Qt::WA_TranslucentBackground);
+
     return quickWidget;
 }
 

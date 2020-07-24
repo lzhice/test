@@ -364,7 +364,10 @@ void FramelessWindow::checkBorderDragging(QMouseEvent *event, QObject *obj) {
                     default:
                         break;
                     }
+                    move(newRect.x(),newRect.y());
+                    //resize(newRect.width(),newRect.height());
                     setGeometry(newRect);
+                    this->update();
                 }
                 else
                 {
