@@ -23,5 +23,6 @@
         <file>qml/ImageButton.qml</file>
         <file>qml/ImageTextButton.qml</file>
         <file>qml/DevicePan.qml</file>
+        <file>qml/TestItem2.qml</file>
     </qresource>
 </RCC>

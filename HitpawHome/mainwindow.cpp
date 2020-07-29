@@ -58,12 +58,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setLayout (vlayout);
 
-    //setMinimumSize(1100-60,620-30);
+    setMinimumSize(1100-60,620-30);
 
       //setFixedSize(196,870);
 //    setMaximumSize(520,170);
     //this->resize(520,870);
-    setFixedSize(520,350);
+    //setFixedSize(520,350);
     //setFixedWidth(240);
 
 }

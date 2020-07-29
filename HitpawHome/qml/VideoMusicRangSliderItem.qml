@@ -4,11 +4,13 @@ import QtQuick.Window 2.12
 Rectangle{
     property string sliderHandSource:"qrc:/img/sliderHand@1x.png"
 
-    property real millisecondTotal:88888899;
-
+    property real millisecondTotalVideo:88888899;
+    property real millisecondTotalMusice:88888899;
     property int curValue: 0
     property int startValue: 0
     property int endValue: 0
+
+    property real musiceStartValue: -1
 
     property point clickPos: "0,0"
     property int actType: 0
@@ -517,6 +519,12 @@ Rectangle{
                 anchors.verticalCenter: parent.verticalCenter
                 height: sliderHeight
                 width: 0
+                onXChanged: {
+                    if(!isSetValue){
+                        getMusiceStart()
+                    }isSetValue=false
+                }
+
                 VideoMusicChartItem {
                     id:musicImg_ChartItem1
                     anchors.left: parent.left
@@ -1226,9 +1234,10 @@ Rectangle{
                 color : Qt.rgba(131/255, 114/255, 255/255,0);
                 onXChanged: {
                     if(!isSetValue){
-                        startValue=x/rangWidth*millisecondTotal
-                        endValue=(x+r5.width-2*rangMargins)/rangWidth*millisecondTotal
-                    }isSetValue=false
+                        startValue=x/rangWidth*millisecondTotalVideo
+                        endValue=(x+r5.width-2*rangMargins)/rangWidth*millisecondTotalVideo
+
+                    }
                     if(x<musicImg.x){
                         musicImg.x=x
                         if((musicImg.x+musicImg.width+rangMargins)<(r5.x+r5.width)){
@@ -1236,6 +1245,12 @@ Rectangle{
                             r5.width=musicImg.x+musicImg.width+rangMargins-r5.x
                         }
                     }
+                    if(!isSetValue){
+                        getMusiceStart()
+                    }
+
+                    isSetValue=false
+
                 }
                 Rectangle {
                     id:r5_left_shadow
@@ -1340,13 +1355,13 @@ Rectangle{
                     onXChanged: {
                         if(!isSetValue){
                             console.log("r5_right onXChanged1----------------:",endValue);
-                            endValue=(x+r5.x-rangMargins)/rangWidth*millisecondTotal
+                            endValue=(x+r5.x-rangMargins)/rangWidth*millisecondTotalVideo
                             console.log("r5_right onXChanged1----------------:",endValue);
                         }isSetValue=false
                     }
                     Rectangle {
                         y:r5_right.height-12-sliderHeightMargins
-                        x: (endValue/millisecondTotal)<=0.5 ?  0+rangMargins: -width
+                        x: (endValue/millisecondTotalVideo)<=0.5 ?  0+rangMargins: -width
                         width:62
                         height: 12
                         color : Qt.rgba(88/255,88/255,88/255,0.7);
@@ -1355,7 +1370,7 @@ Rectangle{
                             anchors.fill: parent
                             text:  " " +millisecondToDate(endValue) + " "
                             color:Qt.rgba(1/255,255/255,255/255,1);
-                            horizontalAlignment: (endValue/millisecondTotal)<0.5 ?Text.AlignLeft : Text.AlignRight
+                            horizontalAlignment: (endValue/millisecondTotalVideo)<0.5 ?Text.AlignLeft : Text.AlignRight
                             verticalAlignment: Text.AlignBottom
                             wrapMode:Text.Wrap
                             font.pixelSize:10
@@ -1495,7 +1510,7 @@ Rectangle{
                             }else{
                                 var panPos=x-rangMargins
                                 panValue=panPos/rangWidth
-                                curValue=panValue*millisecondTotal
+                                curValue=panValue*millisecondTotalVideo
                             }
                         }
                     }isSetValue=false
@@ -1700,9 +1715,25 @@ Rectangle{
 
     function setMusiceWave(){
         musicImg.setClearSeries()
-        musicImg.width=(videoView.width).toFixed(0)
+        musicImg.width=(videoView.width*millisecondTotalMusice/millisecondTotalVideo).toFixed(0)
         musicImg.setPieSeries(10000);
-        console.log("setMusiceWave--------------:",musicImg.width/8)
+        if(musiceStartValue>-1){
+            isSetValue=true
+            musicImg.x=r5.x-musiceStartValue*musicImg.width
+            isSetValue=false
+        }
+        console.log("-----------------------------musiceStartValue--------------------------------",musiceStartValue)
+    }
+
+    function getMusiceStart(){
+
+        console.log("getMusiceStart--------------r5.x:",r5.x)
+        console.log("getMusiceStart--------------musicImg.x:",musicImg.x)
+        console.log("getMusiceStart--------------r5.x:",r5.x)
+        console.log("getMusiceStart--------------musicImg.width:",musicImg.width)
+        console.log("getMusiceStart--------------r5.x-musicImg.x:",r5.x-musicImg.x)
+        console.log("-------------------------------------------------------------")
+        musiceStartValue=(r5.x-musicImg.x)/musicImg.width
     }
 
     function setStartValue(val){
@@ -1711,12 +1742,12 @@ Rectangle{
         if(val>=endValue){
             val=endValue-10
         }
-        if(val>millisecondTotal||val<0){
+        if(val>millisecondTotalVideo||val<0){
             return
         }
         startValue=val
         var rightOldx=r5.x+r5.width
-        var tmps=(startValue/millisecondTotal)
+        var tmps=(startValue/millisecondTotalVideo)
         isSetValue=true
         r5.x=(tmps*rangWidth).toFixed(0)
         isSetValue=true
@@ -1730,23 +1761,23 @@ Rectangle{
         if(val<=startValue){
             val=startValue+10
         }
-        if(val>millisecondTotal||val<0){
+        if(val>millisecondTotalVideo||val<0){
             return
         }
         endValue=val
         isSetValue=true
-        var rightx=((endValue/millisecondTotal)*rangWidth+2*rangMargins).toFixed(0)
+        var rightx=((endValue/millisecondTotalVideo)*rangWidth+2*rangMargins).toFixed(0)
         r5.width=rightx-r5.x
         isSetValue=false
         setMillisecondValue(val)
     }
     function setMillisecondValue(val){
-        if(val>millisecondTotal||val<0){
+        if(val>millisecondTotalVideo||val<0){
             return
         }
         console.log("setMillisecondValue------------------:",val,curValue)
         curValue=val
-        panValue=curValue/millisecondTotal
+        panValue=curValue/millisecondTotalVideo
         isSetValue=true
         progressPin.x= (panValue*rangWidth+rangMargins).toFixed(0)
         isSetValue=false
