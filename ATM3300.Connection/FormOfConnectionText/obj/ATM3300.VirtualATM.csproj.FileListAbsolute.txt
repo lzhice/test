@@ -1,0 +1,53 @@
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+K:\ATM3300.UI 2008-10\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\backup\removeDate\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+E:\开发\ATM3300.UI\ATM3300.UI\ATM3300.UI\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb
+F:\ruanjian\ATM3300[1].UI\复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+F:\ruanjian\ATM3300[1].UI\复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+F:\ruanjian\ATM3300[1].UI\复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+F:\ruanjian\ATM3300[1].UI\复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+F:\ruanjian\ATM3300[1].UI\复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe

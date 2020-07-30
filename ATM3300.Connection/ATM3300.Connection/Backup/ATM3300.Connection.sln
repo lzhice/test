@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM3300.Connection", "ATM3300.Connection.csproj", "{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
+		HLL320|Any CPU = HLL320|Any CPU
+		HLL330|Any CPU = HLL330|Any CPU
+		HOL 2006 Demo|Any CPU = HOL 2006 Demo|Any CPU
+		HOL 2006 Enterprise|Any CPU = HOL 2006 Enterprise|Any CPU
+		HOL 2006 Professional|Any CPU = HOL 2006 Professional|Any CPU
+		HOL330|Any CPU = HOL330|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HLL320|Any CPU.ActiveCfg = HLL320|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HLL320|Any CPU.Build.0 = HLL320|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HLL330|Any CPU.ActiveCfg = HLL330|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HLL330|Any CPU.Build.0 = HLL330|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Demo|Any CPU.ActiveCfg = HOL 2006 Demo|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Demo|Any CPU.Build.0 = HOL 2006 Demo|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Enterprise|Any CPU.ActiveCfg = HOL 2006 Enterprise|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Enterprise|Any CPU.Build.0 = HOL 2006 Enterprise|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Professional|Any CPU.ActiveCfg = HOL 2006 Professional|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL 2006 Professional|Any CPU.Build.0 = HOL 2006 Professional|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL330|Any CPU.ActiveCfg = HOL330|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.HOL330|Any CPU.Build.0 = HOL330|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

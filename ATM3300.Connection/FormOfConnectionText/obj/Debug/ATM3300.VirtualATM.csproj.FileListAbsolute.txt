@@ -1,0 +1,14 @@
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\bin\Debug\FormOfConnectionText.pdb
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Debug\ResolveAssemblyReference.cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.Form1.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Debug\FormOfConnectionText.pdb

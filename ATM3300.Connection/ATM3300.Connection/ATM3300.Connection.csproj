@@ -1,0 +1,353 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7511F6DE-EDE3-4450-AAAC-8951AB3BE90C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ATM3300.Connection</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ATM3300.Connection</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HLL330|AnyCPU' ">
+    <OutputPath>bin\HLL330\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HLL320|AnyCPU' ">
+    <OutputPath>bin\HLL320\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Demo|AnyCPU' ">
+    <OutputPath>bin\Demo\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HOL330|AnyCPU' ">
+    <OutputPath>bin\HOL330\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HOL 2006 Enterprise|AnyCPU' ">
+    <OutputPath>bin\HOL 2006 Enterprise\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HOL 2006 Professional|AnyCPU' ">
+    <OutputPath>bin\HOL 2006 Professional\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'HOL 2006 Demo|AnyCPU' ">
+    <OutputPath>bin\HOL 2006 Demo\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\ATM3300.Common\ATM3300.Common\ATM3300.Common.csproj">
+      <Name>ATM3300.Common</Name>
+      <Project>{C668A974-5B13-457E-9FBB-8F32AF801FCC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ATM3300.LOG\Log\Log.csproj">
+      <Project>{C86F19A6-6E05-4138-A269-28FF86E1F2A1}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\USB CAN Connection\USB CAN Connection.csproj">
+      <Project>{DEB0BBE1-A2C9-486C-B8C2-E917D36E28C0}</Project>
+      <Name>USB CAN Connection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CANBus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComputerCOM\AdapterComputerCOM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectionVersionInfoAttribute.cs" />
+    <Compile Include="DataProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataProviderATMSimulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataProviderManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectionCANBusSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectionCOMSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectionFILESetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectionTCPIPSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataProviderCOMSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataProviderTCPIPSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaneCaption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\ShowSetupFormInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forms\TcpipRcuDiagnostic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TcpipRcuDiagnostic.Designer.cs">
+      <DependentUpon>TcpipRcuDiagnostic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TcpipRcuSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TcpipRcuSetupForm.Designer.cs">
+      <DependentUpon>TcpipRcuSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewTcpConversationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewTcpConversationsForm.Designer.cs">
+      <DependentUpon>ViewTcpConversationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IClassInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewCANBusConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.en.Designer.cs">
+      <DependentUpon>Resources.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ScannerCOM.cs" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ScannerCOMUse3Party.cs">
+      <SubType>Code</SubType>
+    </None>
+    <Compile Include="TCPIPClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TCPIPDataProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TcpipRcuConnection.cs" />
+    <Compile Include="TriggerFileText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TriggerFileXML.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="ModelSupport\ATM3300\ATM3300.txvpck" />
+    <None Include="ScannerCOMUseEvent.cs">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="ScannerCOMUseMSCOMM.cs">
+      <SubType>Code</SubType>
+    </None>
+    <EmbeddedResource Include="CANBus.resx">
+      <DependentUpon>CANBus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionCANBusSetupForm.en.resx">
+      <DependentUpon>ConnectionCANBusSetupForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionCANBusSetupForm.resx">
+      <DependentUpon>ConnectionCANBusSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionCOMSetupForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConnectionCOMSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionCOMSetupForm.resx">
+      <DependentUpon>ConnectionCOMSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Forms\ConnectionFILESetupForm.en.resx">
+      <DependentUpon>ConnectionFILESetupForm.cs</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Forms\ConnectionFILESetupForm.en-US.resx">
+      <DependentUpon>ConnectionFILESetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionFILESetupForm.resx">
+      <DependentUpon>ConnectionFILESetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionTCPIPSetupForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConnectionTCPIPSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectionTCPIPSetupForm.resx">
+      <DependentUpon>ConnectionTCPIPSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataProviderCOMSetupForm.en-US.resx">
+      <DependentUpon>DataProviderCOMSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataProviderCOMSetupForm.resx">
+      <DependentUpon>DataProviderCOMSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataProviderTCPIPSetupForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DataProviderTCPIPSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataProviderTCPIPSetupForm.resx">
+      <DependentUpon>DataProviderTCPIPSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaneCaption.resx">
+      <DependentUpon>PaneCaption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TcpipRcuDiagnostic.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TcpipRcuDiagnostic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TcpipRcuSetupForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TcpipRcuSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TcpipRcuSetupForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TcpipRcuSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewTcpConversationsForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ViewTcpConversationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewTcpConversationsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ViewTcpConversationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ControlCAN.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RS232.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

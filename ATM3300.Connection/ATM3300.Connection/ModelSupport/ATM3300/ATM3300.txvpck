@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="i82e4zru4f3zglm_v">
+    <property name="$name" value="ATM3300" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+  </view>
+</nodeSet>

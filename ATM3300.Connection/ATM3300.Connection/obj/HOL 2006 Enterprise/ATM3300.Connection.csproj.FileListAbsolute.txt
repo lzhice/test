@@ -1,0 +1,170 @@
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ControlCAN.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Connection.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Common.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\Log.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\USB CAN Connection.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Common.resources.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ResolveAssemblyReference.cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBus.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.PaneCaption.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuDiagnostic.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.csproj.GenerateResource.Cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.en.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.en-US.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.en-US.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ControlCAN.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Connection.exe
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Common.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\Log.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\USB CAN Connection.exe
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Common.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ResolveAssemblyReference.cache
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBus.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.PaneCaption.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuDiagnostic.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.en-US.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.en-US.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.en.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.csproj.GenerateResource.Cache
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.exe
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ControlCAN.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Connection.exe
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Common.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\Log.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\USB CAN Connection.exe
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Common.resources.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ResolveAssemblyReference.cache
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBus.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.PaneCaption.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuDiagnostic.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.en-US.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.en-US.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.en.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.csproj.GenerateResource.Cache
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.exe
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ControlCAN.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Connection.exe
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Common.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\Log.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\USB CAN Connection.exe
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Common.resources.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBus.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.PaneCaption.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuDiagnostic.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.en-US.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.en-US.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.en.resources
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+C:\Documents and Settings\Administrator\桌面\巴黎半岛ATM3300[1].UI\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ControlCAN.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Connection.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\ATM3300.Common.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\Log.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\USB CAN Connection.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\bin\HOL 2006 Enterprise\en\ATM3300.Common.resources.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ResolveAssemblyReference.cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBus.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.PaneCaption.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuDiagnostic.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCANBusSetupForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionCOMSetupForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionFILESetupForm.en-US.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.ConnectionTCPIPSetupForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderCOMSetupForm.en-US.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.DataProviderTCPIPSetupForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.TcpipRcuSetupForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Forms.ViewTcpConversationsForm.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.Properties.Resources.en.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.csproj.GenerateResource.Cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en\ATM3300.Connection.resources.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\en-US\ATM3300.Connection.resources.dll
+D:\客房\20130506 ATM3300\ATM3300.Connection\ATM3300.Connection\obj\HOL 2006 Enterprise\ATM3300.Connection.exe

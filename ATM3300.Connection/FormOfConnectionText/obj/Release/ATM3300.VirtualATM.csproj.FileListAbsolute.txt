@@ -1,0 +1,20 @@
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+K:\ATM3300.UI 2008-10\Latest\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+F:\ruanjian\ATM3300[1].UI\复件 复件 ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+C:\巴黎半岛ATM3300[1].UI\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\bin\Release\FormOfConnectionText.exe
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Release\ResolveAssemblyReference.cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.Form1.resources
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+D:\客房\20130506 ATM3300\ATM3300.Connection\FormOfConnectionText\obj\Release\FormOfConnectionText.exe

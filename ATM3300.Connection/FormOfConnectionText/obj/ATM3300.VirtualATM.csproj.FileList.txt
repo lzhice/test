@@ -1,0 +1,12 @@
+bin\Debug\FormOfConnectionText.exe
+bin\Debug\FormOfConnectionText.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\FormOfConnectionText.Form1.resources
+obj\Debug\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+obj\Debug\FormOfConnectionText.exe
+obj\Debug\FormOfConnectionText.pdb
+bin\Release\FormOfConnectionText.exe
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\FormOfConnectionText.Form1.resources
+obj\Release\ATM3300.VirtualATM.csproj.GenerateResource.Cache
+obj\Release\FormOfConnectionText.exe

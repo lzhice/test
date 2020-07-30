@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Microsoft YaHei" Size="9" />
+  <Class Name="ATM3300.Connection.ConnectionCANBus" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CANBus.cs</FileName>
+      <HashCode>EAkAAAFAAQEAFAAAElAAAKQgCACEwgAyghgEAAAAKAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionBase" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionBase.cs</FileName>
+      <HashCode>AAAAAABAAAAAAAAAABAAQIAAAAAAAAASgJAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionScannerBase" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAABAAAAAgAAAAggAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionType" Collapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>AAAAAAYAAAAAAAEAAAAAAAAIAAAAAAACAQAAAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionManager" Collapsed="true">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>EAAAQABCAAAAAEWAEgIBECAACAMQQEAAgAAAAAAFAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionVersionInfoAttribute" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionVersionInfoAttribute.cs</FileName>
+      <HashCode>EAAAAABAAAAAAAAAAAAAAAABAAAAAAACAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.DataProviderBase" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataProvider.cs</FileName>
+      <HashCode>AAAAIABAAAAAIAAAAAAAQAAAAAAAAAACgAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.DataProviderATMSimulator" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataProviderATMSimulator.cs</FileName>
+      <HashCode>EAAAAQDAAAAAIAAAAAAwQAAABEEBAQACgAAAEACAXQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.DataProviderManager" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataProviderManager.cs</FileName>
+      <HashCode>AAYAAAIAAAAAAAAAAAIAAAAAAAABABEAAAAgCCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionCANBusSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ConnectionCANBusSetupForm.cs</FileName>
+      <HashCode>BUAAAATAAOAAABgAAACAAAACAAAYAAAAgEEAEQACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionCOMSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ConnectionCOMSetupForm.cs</FileName>
+      <HashCode>AQAAAAQAACAgABAQAASAAEgCAAAYAAACgEAAAQRAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionFILESetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ConnectionFILESetupForm.cs</FileName>
+      <HashCode>AQAAAAAAACAAAAAAAACAAEACAAAYAAAAkEAAAQBAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionTCPIPSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ConnectionTCPIPSetupForm.cs</FileName>
+      <HashCode>ASAAAAQAACAAADAAAACAAEACAAAYAAAAkGAAAQBAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.DataProviderCOMSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\DataProviderCOMSetupForm.cs</FileName>
+      <HashCode>AQAAAAQAACAIABAQAACAAEACAAAYAAACgGAAAQBAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.DataProviderTCPIPSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\DataProviderTCPIPSetupForm.cs</FileName>
+      <HashCode>ATAAAAAAACAAABAAAACAAAACgAA4AAAAkFAAAQBAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.PaneCaption" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\PaneCaption.cs</FileName>
+      <HashCode>AAGAACAAAmYhChAAAEKAIhQCQAQAABAgKAAECQAhAEQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ClassInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Interface\IClassInfo.cs</FileName>
+      <HashCode>IABAAAAEAAAAAAAIgAAAAAQAAABAAACAAAgAAAAAAiA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionNewCANBus" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NewCANBusConnection.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Program" Collapsed="true">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Program.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionScannerCOM" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ScannerCOM.cs</FileName>
+      <HashCode>EAAAAABYABgCFAAAgFAgEIVACAQAgAASglAAQAAACSA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Client" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCPIPClient.cs</FileName>
+      <HashCode>IIAACAvwAAqEAACAAxEQEIUCAAAIAAAbgBAACiBAIgE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.TcpConversation" Collapsed="true">
+    <Position X="21.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCPIPDataProvider.cs</FileName>
+      <HashCode>aAQAAAABACAABJCgACIAACAEkKEBgnAcBIEAQgAAGCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.TcpServer" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCPIPDataProvider.cs</FileName>
+      <HashCode>BQgAAADgAAiAIAgAAEEQ0AEgCIIAAAACiDAAAwCESQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.TcpipRcuConnection" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TcpipRcuConnection.cs</FileName>
+      <HashCode>AAAAIABUIi4KCCAAgAQAVIBAACgAAEESIMAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionTriggerFileText" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TriggerFileText.cs</FileName>
+      <HashCode>AAAAAABQAAAAIAAABBAAAIBAAAAQAAQSgBQAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.ConnectionTriggerFileXml" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TriggerFileXML.cs</FileName>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAQAAAAAAQAACAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Utility" Collapsed="true">
+    <Position X="17.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Utility.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAIBBAAAAIAAAAAAAAACAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Forms.TcpipRcuDiagnostic" Collapsed="true">
+    <Position X="14.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\TcpipRcuDiagnostic.cs</FileName>
+      <HashCode>/wqgIxGQAqoOCDAAxEKJAkELIQKQARAQYOAAAAEIiDA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Forms.TcpipRcuSetupForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\TcpipRcuSetupForm.cs</FileName>
+      <HashCode>AQAAAAAAACAEABAAAACAAgECAACYAQAAgWAAAQQAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ATM3300.Connection.Forms.ViewTcpConversationsForm" Collapsed="true">
+    <Position X="19.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ViewTcpConversationsForm.cs</FileName>
+      <HashCode>QRAAAACAgCAAAAAAAAGAAEQCAACcAAACAGAAIaAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM3300.Connection.Properties.Resources" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAIEAAABFAAAAQAACAEAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ATM3300.Connection.IShowSetupFormInterface" Collapsed="true">
+    <Position X="16" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ShowSetupFormInterface.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ATM3300.Connection.IClassInfo" Collapsed="true">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Interface\IClassInfo.cs</FileName>
+      <HashCode>IABAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="ATM3300.Connection.HaveStartConnectionEventHandler" Collapsed="true">
+    <Position X="21.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ATM3300.Connection.HaveEndConnectionEventHandler" Collapsed="true">
+    <Position X="16" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ATM3300.Connection.HaveCreatConnectionEventHandler" Collapsed="true">
+    <Position X="14.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ATM3300.Connection.HaveRemoveConnectionEventHandler" Collapsed="true">
+    <Position X="19.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConnectionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ATM3300.Connection.HaveStartServerEventHandler" Collapsed="true">
+    <Position X="14.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataProviderManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ATM3300.Connection.HaveEndServerEventHandler" Collapsed="true">
+    <Position X="17.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DataProviderManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>
