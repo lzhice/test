@@ -8,24 +8,17 @@
 #include <QVariant>
 #include <QCoreApplication>
 #include <QDateTime>
-static QByteArray upHeadBytes=QByteArray::fromHex("70756D70");
-static QByteArray downHeadBytes=QByteArray::fromHex("686F7374");
-static int heartOutTimerCount=3;
-DownServer::DownServer(quint16 port, quint8 devCount, QObject *parent) :
-    QTcpServer(parent),m_port(port),m_devCount(devCount)
+DownServer::DownServer( QObject *parent) :
+    QTcpServer(parent)
 {
-    connect(&m_timer,SIGNAL(timeout()),this,SLOT(onHeartbeatTest()));
-    connect(&m_serchTimer,SIGNAL(timeout()),this,SLOT(onSerch()));
-    connect(&m_startTcpTimer,SIGNAL(timeout()),this,SLOT(onStartTcp()));
-    m_timer.start(10000);
-    m_serchTimer.start(500);
-}
 
+}
 void DownServer::sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes)
 {
     if(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)])
         writeData(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)],bytes);
 }
+
 void DownServer::incomingConnection(qintptr socketfd)
 {
     qDebug()<<"incomingConnection"<<socketfd;
@@ -33,6 +26,14 @@ void DownServer::incomingConnection(qintptr socketfd)
     client->setSocketDescriptor(socketfd);
     connect(client, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(client, SIGNAL(disconnected()), this, SLOT(disconnected()));
+}
+
+void DownServer::close()
+{
+    foreach (QTcpSocket* pTcpSocket, m_TcpSocketTbl.values()) {
+        if(pTcpSocket)pTcpSocket->close();
+    }
+    this->close();
 }
 
 void DownServer::removeClient(QTcpSocket *client)
@@ -52,9 +53,11 @@ void DownServer::writeData(QTcpSocket *client, const QByteArray &data)
 
 bool DownServer::startServer()
 {
+    qDebug()<<m_port<<m_udpReceivePort<<m_udpSendPort;
+
     bool re=this->listen(QHostAddress::Any,m_port);
     if(re){
-        m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
+       re = m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
         connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
     }
     return re;
@@ -69,9 +72,9 @@ void DownServer::readyRead()
         quint8 floorNum=(quint8)bytes.at(0);
         quint8 roomNum=(quint8)bytes.at(1);
         if(bytes.at(2)==0x04){//楼层房号应答
-
+            m_TcpSocketTbl.insert(QPair<quint8,quint8>(floorNum,roomNum),client);
         }else if(bytes.at(2)==0x05){//应答心跳包
-
+            writeData(client,bytes);
         }else{
             QByteArray datagram=bytes.mid(2,22)+bytes.mid(0,2);
             m_udpSender.writeDatagram(datagram.data(),datagram.size(),

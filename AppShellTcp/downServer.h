@@ -11,19 +11,22 @@ class DownServer : public QTcpServer
     Q_OBJECT
 public:
     friend class EventTransmitManager;
-    explicit DownServer(quint16 port, quint8 devCount, QObject *parent = 0);
-    void sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes);
+    explicit DownServer( QObject *parent = 0);
+    void setSerPort(quint16 portTcp,quint16 portUdpServer,quint16 portUdpClient){m_port=portTcp;m_udpReceivePort=portUdpServer;m_udpSendPort=portUdpClient;}
 signals:
     void sigReadyRead(quint8 cmd,QByteArray bytes);
     void sigDevDisconnectChange(QHash<quint8,quint8> disconnectDevs);
 public slots:
     bool startServer();
+
 private slots:
     void readyRead();
     void disconnected();
     void processPendingDatagram();
+    void sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes);
 protected:
     void incomingConnection(qintptr socketfd);
+    void close();
 private:
     QUdpSocket m_udpSender;
     quint16 m_udpSendPort=20000;
@@ -31,14 +34,8 @@ private:
     QUdpSocket m_udpReceiver;
     quint16 m_udpReceivePort=20001;
 
-    quint8 m_devCount;
-    quint16 m_port;
-    QTimer m_timer;
-    QTimer m_serchTimer;
-    QTimer m_startTcpTimer;
+    quint16 m_port=55555;
     QHash<QPair<quint8,quint8>,QTcpSocket*> m_TcpSocketTbl;
-    QHash<QTcpSocket*,int> m_TcpByteLenTbl;
-    QHash<QTcpSocket*,QByteArray> m_TcpByteArrayTbl;
 
     inline void removeClient(QTcpSocket *client);
     inline void writeData(QTcpSocket *client,const QByteArray &data);

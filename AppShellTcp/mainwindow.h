@@ -6,7 +6,8 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
+class TrayWidget;
+class DownServer;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -14,8 +15,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+protected:
+    virtual void closeEvent(QCloseEvent *event);
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
+    TrayWidget * pTrayWidget;
+    DownServer * m_DownServer;
+    QString m_Workspaces;
 };
 #endif // MAINWINDOW_H
