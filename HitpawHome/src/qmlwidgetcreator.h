@@ -40,12 +40,15 @@ public:
     ~QmlEventManager(){m_QmlEventManagerTbl.remove(this->parent());}
     Q_INVOKABLE void sendToWidget(const QString& eventName,const QVariant& value);
     Q_INVOKABLE void sendToQml(const QString& eventName,const QVariant& value);
-
+    Q_INVOKABLE void sendToWidgetStart(const QString& eventName);
+    Q_INVOKABLE void addValue(const QString &eventName , const QVariant& value);
+    Q_INVOKABLE void sendToWidgetEnd(const QString& eventName);
 signals:
     void emitWidgetEvent(const QString& eventName,const QVariant& value);
     void emitQmlEvent(const QString& eventName,const QVariant& value);
 
 private:
+    QHash<QString,QVariantList> m_sendToQmlValueList;
     Q_INVOKABLE explicit QmlEventManager(QObject *parent=nullptr):QObject(parent){}
     static QHash<QObject *,QmlEventManager*> m_QmlEventManagerTbl;
 };

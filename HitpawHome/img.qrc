@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>1.jpg</file>
         <file>img/Rectangle.png</file>
         <file>img/sliderHand.svg</file>
         <file>img/sliderHand.png</file>

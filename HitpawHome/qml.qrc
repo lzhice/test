@@ -24,5 +24,7 @@
         <file>qml/ImageTextButton.qml</file>
         <file>qml/DevicePan.qml</file>
         <file>qml/TestItem2.qml</file>
+        <file>qml/VideoCutSetView.qml</file>
+        <file>qml/VideoTimeItem.qml</file>
     </qresource>
 </RCC>

@@ -7,6 +7,7 @@
 #include <QPalette>
 #include <QPainter>
 #include <QColor>
+#include <QVariantList>
 #include <QDebug>
 #include "globalStyle.h"
 QHash<QObject *,QmlEventManager*> QmlEventManager::m_QmlEventManagerTbl=QHash<QObject *,QmlEventManager*>();
@@ -109,6 +110,22 @@ void QmlEventManager::sendToWidget(const QString &eventName, const QVariant &val
 void QmlEventManager::sendToQml(const QString &eventName, const QVariant &value)
 {
     emitQmlEvent(eventName,value);
+}
+
+void QmlEventManager::sendToWidgetStart(const QString &eventName)
+{
+    m_sendToQmlValueList.insert(eventName,QVariantList());
+}
+
+void QmlEventManager::addValue(const QString &eventName,const QVariant &value)
+{
+    m_sendToQmlValueList[eventName].append(value);
+}
+
+void QmlEventManager::sendToWidgetEnd(const QString &eventName)
+{
+    sendToWidget(eventName,m_sendToQmlValueList[eventName]);
+    m_sendToQmlValueList.insert(eventName,QVariantList());
 }
 
 TestWidget::TestWidget(QWidget *parent):QPushButton(parent)

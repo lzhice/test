@@ -3,7 +3,7 @@ import QtQuick.Window 2.12
 Rectangle{
     property string sliderHandSource:"qrc:/img/sliderHand@1x.png"
 
-    property real millisecondTotal:88888899;
+    property real millisecondTotal:8888889;
 
     property int curValue: 0
     property int startValue: 0
@@ -23,8 +23,28 @@ Rectangle{
 
     property real rangWidth:(rootVideoRang.width-rangMargins*2)
     property bool isSetValue: false
+    onCurValueChanged: {
+        eventManager.sendToWidgetStart("VideoRangSliderItem");
+        eventManager.addValue("VideoRangSliderItem","curValue");
+        eventManager.addValue("VideoRangSliderItem",curValue);
+        eventManager.sendToWidgetEnd("VideoRangSliderItem");
+    }
+    onStartValueChanged: {
+        eventManager.sendToWidgetStart("VideoRangSliderItem");
+        eventManager.addValue("VideoRangSliderItem","startValue");
+        eventManager.addValue("VideoRangSliderItem",startValue);
+        eventManager.sendToWidgetEnd("VideoRangSliderItem");
+        updateTimeText();
+    }
+    onEndValueChanged: {
+        eventManager.sendToWidgetStart("VideoRangSliderItem");
+        eventManager.addValue("VideoRangSliderItem","endValue");
+        eventManager.addValue("VideoRangSliderItem",endValue);
+        eventManager.sendToWidgetEnd("VideoRangSliderItem");
+        updateTimeText();
+    }
     id:root
-    color : "#2E2F30"
+    color : "transparent"
     Image {
         id: playButton
         mipmap: true
@@ -66,9 +86,9 @@ Rectangle{
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: playButton.right
-        color : "#2E2F30"
+        color : "transparent"
         onWidthChanged: {
-            console.log("onWidthChanged--------------:")
+            ////console.log("onWidthChanged--------------:")
             var tmcurValue=curValue;
             setStartValue(startValue)
             setEndValue(endValue)
@@ -83,15 +103,13 @@ Rectangle{
             running:false //是否开启定时，默认是false，当为true的时候，进入此界面就开始定时
             triggeredOnStart:false// 是否开启定时就触发onTriggered，一些特殊用户可以用来设置初始值。
             onTriggered: {
-                console.log("timerUpdate--------------:")
+                //console.log("timerUpdate--------------:")
                 var tmcurValue=curValue;
                 setStartValue(startValue)
                 setEndValue(endValue)
                 setMillisecondValue(tmcurValue)
             }
             //restart ,start,stop,定时器的调用方式，顾名思义
-
-
         }
         ListModel {
             id:listModel
@@ -447,12 +465,11 @@ Rectangle{
             anchors.leftMargin:rangMargins
             anchors.rightMargin:rangMargins
             height: sliderHeight
-            color : Qt.rgba(0,0,0,1);
+            color : "transparent"
             clip: true
             onWidthChanged: {
 
             }
-
             ListView {
 
                 anchors.left: parent.left
@@ -485,7 +502,7 @@ Rectangle{
                 width: r5.x
                 height: r5.y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
             Rectangle {
                 id:r2
@@ -494,7 +511,7 @@ Rectangle{
                 width: r5.width
                 height: r5.y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
             Rectangle {
                 id:r3
@@ -503,7 +520,7 @@ Rectangle{
                 width: parent.width-(r5.x+r5.width)-rangMargins
                 height: r5.y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
             Rectangle {
                 id:r4
@@ -512,7 +529,7 @@ Rectangle{
                 width: r5.x
                 height: r5.height
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : Qt.rgba(0,0,0,0.5)
             }
 
             Rectangle {
@@ -522,7 +539,7 @@ Rectangle{
                 width: r3.width
                 height: r5.height
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : Qt.rgba(0,0,0,0.5)
             }
             Rectangle {
                 id:r7
@@ -531,7 +548,7 @@ Rectangle{
                 width: r5.x
                 height: parent.height-y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
             Rectangle {
                 id:r8
@@ -540,7 +557,7 @@ Rectangle{
                 width: r5.width
                 height: parent.height-y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
             Rectangle {
                 id:r9
@@ -549,24 +566,23 @@ Rectangle{
                 width: r3.width
                 height: parent.height-y
                 visible: true
-                color : Qt.rgba(0,0,0,0.5);
+                color : "transparent"
             }
 
             Rectangle {
-
                 id:r5
                 //anchors.horizontalCenter : parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 x:0
                 width: rangMargins*2+2
                 height: sliderHeight
-                color : Qt.rgba(0,0,0,0.0);
+                color : "transparent"
                 onXChanged: {
                     if(!isSetValue){
                         startValue=x/rangWidth*millisecondTotal
-                        console.log("r5 onXChanged1----------------:",endValue);
+                        //console.log("r5 onXChanged1----------------:",endValue);
                         endValue=(x+r5.width-2*rangMargins)/rangWidth*millisecondTotal
-                        console.log("r5 onXChanged2----------------:",endValue);
+                        //console.log("r5 onXChanged2----------------:",endValue);
                     }isSetValue=false
                 }
                 Rectangle {
@@ -615,15 +631,15 @@ Rectangle{
                             var mouseItem=r5.mapToItem(rootVideoRang,mouse.x,mouse.y)
                             var delta = Qt.point( mouseItem.x-progressPin.x, mouseItem.y-progressPin.y)
                             if(progressPin.x+delta.x>=r5.x&&(progressPin.x+delta.x+progressPin.width)<=(r5.x+r5.width)){
-                                //console.log("progress  0")
+                                ////console.log("progress  0")
                                 progressPin.x=(progressPin.x+delta.x)
                             }else{
                                 if(progressPin.x+delta.x<r5.x){
-                                    //console.log("progress  1")
+                                    ////console.log("progress  1")
                                     progressPin.x=r5.x
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>(r5.x+r5.width)){
-                                    //console.log("progress  2")
+                                    ////console.log("progress  2")
                                     progressPin.x=(r5.x+r5.width)-progressPin.width
                                 }
                             }
@@ -632,12 +648,12 @@ Rectangle{
                     }
                     onPositionChanged: {
                         //鼠标偏移量
-                        // //console.log("onPositionChanged:",mouse.y)
+                        // ////console.log("onPositionChanged:",mouse.y)
                         //if(cursorShape!==Qt.OpenHandCursor)cursorShape=Qt.OpenHandCursor
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
                         if(mouse.x>rootVideoRang.width)return
                         if(actType===-1){
-                            //console.log("delta.x",Math.abs(delta.x))
+                            ////console.log("delta.x",Math.abs(delta.x))
                             if(Math.abs(delta.x)>5){
                                 actType=1
                             }
@@ -671,9 +687,9 @@ Rectangle{
                     color : Qt.rgba(122,33,0,0);
                     onXChanged: {
                         if(!isSetValue){
-                            console.log("r5_right onXChanged1----------------:",endValue);
+                            //console.log("r5_right onXChanged1----------------:",endValue);
                             endValue=(x+r5.x-rangMargins)/rangWidth*millisecondTotal
-                            console.log("r5_right onXChanged1----------------:",endValue);
+                            //console.log("r5_right onXChanged1----------------:",endValue);
                         }isSetValue=false
                     }
                     Rectangle {
@@ -808,15 +824,15 @@ Rectangle{
                 height: sliderHeight+40
                 color : Qt.rgba(245,222,0,0);
                 onXChanged: {
-                    //console.log("onXChanged: isSetValue",isSetValue)
+                    ////console.log("onXChanged: isSetValue",isSetValue)
                     if(!isSetValue){
                         if(x<=r5.x+rangMargins){
-                            //console.log("setMillisecondValue(startValue)",startValue)
+                            ////console.log("setMillisecondValue(startValue)",startValue)
                             setMillisecondValue(startValue)
                         }else{
-                            console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
+                            //console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
                             if(x+width>=r5.x+r5.width-rangMargins){
-                                //console.log("setMillisecondValue(endValue)",endValue)
+                                ////console.log("setMillisecondValue(endValue)",endValue)
                                 setMillisecondValue(endValue)
                             }else{
                                 var panPos=x-rangMargins
@@ -883,7 +899,7 @@ Rectangle{
                 anchors.bottomMargin: -16
                 width: 20
                 height: 20
-                color : Qt.rgba(245,222,0,0);
+                color : "transparent"
 
                 Rectangle{
                     anchors.horizontalCenter:parent.horizontalCenter
@@ -955,7 +971,7 @@ Rectangle{
                 anchors.centerIn: progressPin
                 width: 8
                 height: progressPin.height
-                color : Qt.rgba(0,222,0,0);
+                color : "transparent"
                 MouseArea {
                     property point clickPos: "0,0"
                     property int actType: 0
@@ -993,8 +1009,8 @@ Rectangle{
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
                                     progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-                                    console.log("progressPin.x",progressPin.x)
-                                    console.log("onPositionChanged",r5.x+r5.width-rangMargins);
+                                    //console.log("progressPin.x",progressPin.x)
+                                    //console.log("onPositionChanged",r5.x+r5.width-rangMargins);
                                 }
                             }
                         }
@@ -1004,34 +1020,13 @@ Rectangle{
         }
 
     }
-    //    function millisecondToDate(msd) {
-    //        var time = parseFloat(msd) / 1000;
-    //        if (null !== time && "" !== time) {
-    //            if (time > 60 && time < 60 * 60) {
-    //                time = parseInt(time / 60.0) + "分钟" + parseInt((parseFloat(time / 60.0) -
-    //                    parseInt(time / 60.0)) * 60)// + "秒";
-    //            }
-    //            else if (time >= 60 * 60 && time < 60 * 60 * 24) {
-    //                time = parseInt(time / 3600.0) + "小时" + parseInt((parseFloat(time / 3600.0) -
-    //                    parseInt(time / 3600.0)) * 60) + "分钟" +
-    //                    parseInt((parseFloat((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60) -
-    //                    parseInt((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60)) * 60)// + "秒";
-    //            }
-    //            else {
-    //                time = parseInt(time)// + "秒";
-    //            }
-    //        }
-    //        return time;
-    //    }
-
-    function getTextAlign(val){
-        //        r5_left_text.color=Qt.rgba(88/255,88/255,88/255,0.9);
-        //        r5_left_text.visible=true
-        return val
+    function updateTimeText(){
+        var textValue=" " +millisecondToDate(startValue) + "/" +millisecondToDate(endValue) + " "
+        eventManager.sendToQml("updateTimeText",textValue)
     }
 
     function setStartValue(val){
-        console.log("setStartValue------------------:",val)
+        //console.log("setStartValue------------------:",val)
 
         if(val>=endValue){
             val=endValue-10
@@ -1051,7 +1046,7 @@ Rectangle{
         setMillisecondValue(val)
     }
     function setEndValue(val){
-        console.log("setEndValue------------------:",val)
+        //console.log("setEndValue------------------:",val)
         if(val<=startValue){
             val=startValue+10
         }
@@ -1069,16 +1064,27 @@ Rectangle{
         if(val>millisecondTotal||val<0){
             return
         }
-        console.log("setMillisecondValue------------------:",val,curValue)
+        //console.log("setMillisecondValue------------------:",val,curValue)
         curValue=val
         panValue=curValue/millisecondTotal
         isSetValue=true
         progressPin.x= (panValue*rangWidth+rangMargins).toFixed(0)
         isSetValue=false
-
     }
 
     function formatDate(val){
+        if(val<0){
+            val=0;
+        }
+        if(val<10){
+            return "00"+val
+        }else if(val<100){
+            return "0"+val
+        }else{
+            return val
+        }
+    }
+    function formatDate2(val){
         if(val<0){
             val=0;
         }
@@ -1088,43 +1094,17 @@ Rectangle{
             return val
         }
     }
-
-    //    function millisecondToDate(msd) {
-    //        var time = parseFloat(msd) / 1000;
-    //        var tmpTime=parseInt((time-parseInt(time))*60)
-    //        //console.log("millisecondToDate---------------:",tmpTime)
-    //        if (null !== time && "" !== time) {
-    //            if (time > 60 && time < 60 * 60) {
-    //                time = "00:" +formatDate(parseInt(time / 60.0)) + ":" + formatDate(parseInt((parseFloat(time / 60.0) -
-    //                                                                                             parseInt(time / 60.0)) * 60))
-    //            }
-    //            else if (time >= 60 * 60 && time < 60 * 60 * 24) {
-    //                time = formatDate(parseInt(time / 3600.0)) + ":" + formatDate(parseInt((parseFloat(time / 3600.0) -
-    //                                                                                        parseInt(time / 3600.0)) * 60)) + ":" +
-    //                        formatDate(parseInt((parseFloat((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60) -
-    //                                             parseInt((parseFloat(time / 3600.0) - parseInt(time / 3600.0)) * 60)) * 60))
-    //            }
-    //            else {
-    //                time = "00:00:" +formatDate(parseInt(time))
-    //            }
-    //        }
-
-    //        return time+ ":" +formatDate(parseInt(tmpTime));
-    //    }
     function millisecondToDate(msd) {
         var time = parseFloat(msd) / 1000;
-        var tmpTime=parseInt((time-parseInt(time))*60)
-        //console.log("millisecondToDate---------------:",tmpTime)
+        var tmpTime=parseInt(msd-parseInt(time)*1000)
         if (null !== time && "" !== time) {
             if (time > 60 ) {
-                time = formatDate(parseInt(time / 60.0)) + ":" + formatDate(parseInt((parseFloat(time / 60.0) -
+                time = formatDate(parseInt(time / 60.0)) + ":" + formatDate2(parseInt((parseFloat(time / 60.0) -
                                                                                       parseInt(time / 60.0)) * 60))
-            }
-            else {
-                time = "00:" +formatDate(parseInt(time))
+            }else {
+                time = "000:" +formatDate2(parseInt(time))
             }
         }
-
         return time+ ":" +formatDate(parseInt(tmpTime));
     }
     Connections
@@ -1132,11 +1112,17 @@ Rectangle{
         target:eventManager
         onEmitQmlEvent:
         {
-            var obj=value;
-            //console.log("VideoRangSliderItem onEmitQmlEvent:",eventName,curValue["1"])
-
-            setEndValue(value["1"])
-
+            if("VideoRangSliderItem"===eventName){
+                console.log("VideoRangSliderItem onEmitQmlEvent:",value["event"])
+                if(value["event"]==="setMaxValue"){
+                    millisecondTotal=value["value"]
+                }else if(value["event"]==="setStartTime"){
+                    setStartValue(value["value"])
+                }else if(value["event"]==="setEndTime"){
+                    setEndValue(value["value"])
+                }
+                // console.log("VideoRangSliderItem onEmitQmlEvent:",maxValue)
+            }
         }
     }
 }
