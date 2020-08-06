@@ -85,7 +85,7 @@ Rectangle{
         anchors.leftMargin:64-9
         color : "#2E2F30"
         onWidthChanged: {
-            console.log("onWidthChanged--------------:")
+            //console.log("onWidthChanged--------------:")
             var tmcurValue=curValue;
             setStartValue(startValue)
             setEndValue(endValue)
@@ -100,7 +100,7 @@ Rectangle{
             running:false //是否开启定时，默认是false，当为true的时候，进入此界面就开始定时
             triggeredOnStart:false// 是否开启定时就触发onTriggered，一些特殊用户可以用来设置初始值。
             onTriggered: {
-                console.log("timerUpdate--------------:")
+                //console.log("timerUpdate--------------:")
                 var tmcurValue=curValue;
                 setStartValue(startValue)
                 setEndValue(endValue)
@@ -532,7 +532,7 @@ Rectangle{
                     anchors.bottom: parent.bottom
                     width: widthMusicImgList[0]
                     onWidthChanged: {
-                        console.log("musicImg_ChartItem1 onWidthChanged:",musicImg_ChartItem1.width)
+                        //console.log("musicImg_ChartItem1 onWidthChanged:",musicImg_ChartItem1.width)
                         setPieSeries(width)
                     }
                 }
@@ -1033,7 +1033,7 @@ Rectangle{
                     }
                 }*/
                 function setClearSeries(){
-                    console.log("musicImg_ChartItem1:",musicImg_ChartItem1.width)
+                    //console.log("musicImg_ChartItem1:",musicImg_ChartItem1.width)
 
                 }
                 function setPieSeries(size){
@@ -1050,7 +1050,7 @@ Rectangle{
                         }
                     }
                     widthMusicImgList=tmpWidthMusicImgList
-                    console.log("setPieSeries^^^^^^^^^^^^^^^^^^^^^^:",musicImg.width,maxMusicImgSize,indexCount,musicImg_ChartItem1.width,widthMusicImgList)
+                    //console.log("setPieSeries^^^^^^^^^^^^^^^^^^^^^^:",musicImg.width,maxMusicImgSize,indexCount,musicImg_ChartItem1.width,widthMusicImgList)
                 }
 
             }
@@ -1299,15 +1299,15 @@ Rectangle{
                             var mouseItem=r5.mapToItem(rootVideoRang,mouse.x,mouse.y)
                             var delta = Qt.point( mouseItem.x-progressPin.x, mouseItem.y-progressPin.y)
                             if(progressPin.x+delta.x>=r5.x&&(progressPin.x+delta.x+progressPin.width)<=(r5.x+r5.width)){
-                                //console.log("progress  0")
+                                ////console.log("progress  0")
                                 progressPin.x=(progressPin.x+delta.x)
                             }else{
                                 if(progressPin.x+delta.x<r5.x){
-                                    //console.log("progress  1")
+                                    ////console.log("progress  1")
                                     progressPin.x=r5.x
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>(r5.x+r5.width)){
-                                    //console.log("progress  2")
+                                    ////console.log("progress  2")
                                     progressPin.x=(r5.x+r5.width)-progressPin.width
                                 }
                             }
@@ -1316,12 +1316,12 @@ Rectangle{
                     }
                     onPositionChanged: {
                         //鼠标偏移量
-                        // //console.log("onPositionChanged:",mouse.y)
+                        // ////console.log("onPositionChanged:",mouse.y)
                         //if(cursorShape!==Qt.OpenHandCursor)cursorShape=Qt.OpenHandCursor
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
                         //if(mouse.x>rootVideoRang.width)return
                         if(actType===-1){
-                            //console.log("delta.x",Math.abs(delta.x))
+                            ////console.log("delta.x",Math.abs(delta.x))
                             if(Math.abs(delta.x)>5){
                                 actType=1
                             }
@@ -1354,9 +1354,9 @@ Rectangle{
                     color : Qt.rgba(122,33,0,0);
                     onXChanged: {
                         if(!isSetValue){
-                            console.log("r5_right onXChanged1----------------:",endValue);
+                            //console.log("r5_right onXChanged1----------------:",endValue);
                             endValue=(x+r5.x-rangMargins)/rangWidth*millisecondTotalVideo
-                            console.log("r5_right onXChanged1----------------:",endValue);
+                            //console.log("r5_right onXChanged1----------------:",endValue);
                         }isSetValue=false
                     }
                     Rectangle {
@@ -1497,15 +1497,15 @@ Rectangle{
                 height: sliderHeight+40
                 color : Qt.rgba(245,222,0,0);
                 onXChanged: {
-                    //console.log("onXChanged: isSetValue",isSetValue)
+                    ////console.log("onXChanged: isSetValue",isSetValue)
                     if(!isSetValue){
                         if(x<=r5.x+rangMargins){
-                            //console.log("setMillisecondValue(startValue)",startValue)
+                            ////console.log("setMillisecondValue(startValue)",startValue)
                             setMillisecondValue(startValue)
                         }else{
-                            console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
+                            //console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
                             if(x+width>=r5.x+r5.width-rangMargins){
-                                //console.log("setMillisecondValue(endValue)",endValue)
+                                ////console.log("setMillisecondValue(endValue)",endValue)
                                 setMillisecondValue(endValue)
                             }else{
                                 var panPos=x-rangMargins
@@ -1682,8 +1682,8 @@ Rectangle{
             //                                }
             //                                if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
             //                                    progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-            //                                    console.log("progressPin.x",progressPin.x)
-            //                                    console.log("onPositionChanged",r5.x+r5.width-rangMargins);
+            //                                    //console.log("progressPin.x",progressPin.x)
+            //                                    //console.log("onPositionChanged",r5.x+r5.width-rangMargins);
             //                                }
             //                            }
             //                        }
@@ -1722,22 +1722,22 @@ Rectangle{
             musicImg.x=r5.x-musiceStartValue*musicImg.width
             isSetValue=false
         }
-        console.log("-----------------------------musiceStartValue--------------------------------",musiceStartValue)
+        //console.log("-----------------------------musiceStartValue--------------------------------",musiceStartValue)
     }
 
     function getMusiceStart(){
 
-        console.log("getMusiceStart--------------r5.x:",r5.x)
-        console.log("getMusiceStart--------------musicImg.x:",musicImg.x)
-        console.log("getMusiceStart--------------r5.x:",r5.x)
-        console.log("getMusiceStart--------------musicImg.width:",musicImg.width)
-        console.log("getMusiceStart--------------r5.x-musicImg.x:",r5.x-musicImg.x)
-        console.log("-------------------------------------------------------------")
+        //console.log("getMusiceStart--------------r5.x:",r5.x)
+        //console.log("getMusiceStart--------------musicImg.x:",musicImg.x)
+        //console.log("getMusiceStart--------------r5.x:",r5.x)
+        //console.log("getMusiceStart--------------musicImg.width:",musicImg.width)
+        //console.log("getMusiceStart--------------r5.x-musicImg.x:",r5.x-musicImg.x)
+        //console.log("-------------------------------------------------------------")
         musiceStartValue=(r5.x-musicImg.x)/musicImg.width
     }
 
     function setStartValue(val){
-        console.log("setStartValue------------------:",val)
+        //console.log("setStartValue------------------:",val)
 
         if(val>=endValue){
             val=endValue-10
@@ -1757,7 +1757,7 @@ Rectangle{
         setMillisecondValue(val)
     }
     function setEndValue(val){
-        console.log("setEndValue------------------:",val)
+        //console.log("setEndValue------------------:",val)
         if(val<=startValue){
             val=startValue+10
         }
@@ -1775,7 +1775,7 @@ Rectangle{
         if(val>millisecondTotalVideo||val<0){
             return
         }
-        console.log("setMillisecondValue------------------:",val,curValue)
+        //console.log("setMillisecondValue------------------:",val,curValue)
         curValue=val
         panValue=curValue/millisecondTotalVideo
         isSetValue=true
@@ -1798,7 +1798,7 @@ Rectangle{
     //    function millisecondToDate(msd) {
     //        var time = parseFloat(msd) / 1000;
     //        var tmpTime=parseInt((time-parseInt(time))*60)
-    //        //console.log("millisecondToDate---------------:",tmpTime)
+    //        ////console.log("millisecondToDate---------------:",tmpTime)
     //        if (null !== time && "" !== time) {
     //            if (time > 60 && time < 60 * 60) {
     //                time = "00:" +formatDate(parseInt(time / 60.0)) + ":" + formatDate(parseInt((parseFloat(time / 60.0) -
@@ -1820,7 +1820,7 @@ Rectangle{
     function millisecondToDate(msd) {
         var time = parseFloat(msd) / 1000;
         var tmpTime=parseInt((time-parseInt(time))*60)
-        //console.log("millisecondToDate---------------:",tmpTime)
+        ////console.log("millisecondToDate---------------:",tmpTime)
         if (null !== time && "" !== time) {
             if (time > 60 ) {
                 time = formatDate(parseInt(time / 60.0)) + ":" + formatDate(parseInt((parseFloat(time / 60.0) -
@@ -1839,7 +1839,7 @@ Rectangle{
         onEmitQmlEvent:
         {
             var obj=value;
-            //console.log("VideoRangSliderItem onEmitQmlEvent:",eventName,curValue["1"])
+            ////console.log("VideoRangSliderItem onEmitQmlEvent:",eventName,curValue["1"])
 
             // musicImg.setClearSeries()
             // musicImg.width=(videoView.width*10).toFixed(0)

@@ -73,8 +73,8 @@ Rectangle {
 
             }
             onHeightChanged: {
-                console.log("contentItem.height:",contentItem.height)
-                console.log("parent.height:",parent.height)
+                //console.log("contentItem.height:",contentItem.height)
+                //console.log("parent.height:",parent.height)
             }
 
         }
@@ -162,7 +162,7 @@ Rectangle {
         onEmitQmlEvent:
         {
             var obj=value;
-            console.log("onEmitQmlEvent:",eventName,value["4"][2])
+            //console.log("onEmitQmlEvent:",eventName,value["4"][2])
         }
     }
 }

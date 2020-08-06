@@ -6,7 +6,7 @@ Rectangle{
     property color splitLineColor: "#000000"
 
     onSelectbuttonTextChanged: {
-        console.log("onSelectbuttonTextChanged-----------------------------:",selectbuttonText)
+        //console.log("onSelectbuttonTextChanged-----------------------------:",selectbuttonText)
     }
 
     id:root
@@ -109,11 +109,11 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }else{
-                            //console.log("onIsPresssChanged-----------------------------:",objectName)
+                            ////console.log("onIsPresssChanged-----------------------------:",objectName)
                         }
                     }
 
@@ -134,7 +134,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }
@@ -156,7 +156,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }
@@ -178,7 +178,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }
@@ -216,7 +216,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }
@@ -238,7 +238,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }
@@ -260,7 +260,7 @@ Rectangle{
                     frameStyle:TextButton.Style.Rimless
                     selectbutton: selectbuttonText
                     onIsPresssChanged: {
-                        console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
+                        //console.log("onIsPresssChanged-----------------------------:",objectName,isPresss)
                         if(isPresss){
                             selectbuttonText=objectName
                         }

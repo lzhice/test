@@ -301,7 +301,7 @@ Item{
                     r5.x=(r5.x+delta.x)
                     r5.y=(r5.y+delta.y)
                     cursorShape=Qt.SizeAllCursor
-                    console.log("actType===1:")
+                    //console.log("actType===1:")
                 }
             }
         }

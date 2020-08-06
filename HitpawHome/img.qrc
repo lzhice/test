@@ -18,5 +18,6 @@
         <file>img/drawable-xxxhdpi_scale copy.png</file>
         <file>img/drawable-xxxhdpi_scale.png</file>
         <file>img/drawable-xxxhdpi_add.png</file>
+        <file>img/stop.png</file>
     </qresource>
 </RCC>

@@ -20,7 +20,7 @@ SpinBox {
     //font.weight:Font.Medium
     activeFocusOnPress:false
     onValueChanged: {
-        console.log("VideoTimeItem onValueChanged:",spinBox.value)
+        ////console.log("VideoTimeItem onValueChanged:",spinBox.value)
         valText.text=" "+formatDate(spinBox.value)+" "
     }
 

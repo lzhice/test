@@ -323,7 +323,8 @@ Rectangle{
     }
     function checkStartUpdate() {
         var val=(startMinute.value*60+startSecond.value)*1000+startMillisecond.value
-        if(val<=maxValue){
+        var valEnd=(endMinute.value*60+endSecond.value)*1000+endMillisecond.value
+        if(val<=maxValue&&val<=valEnd-10){
             curStartValue=val
             return true;
         }else{
@@ -340,7 +341,7 @@ Rectangle{
         }
     }
     function timeUpdate() {
-        console.log("timeUpdate--------------------------------------:",curStartValue,curEndValue);
+        //console.log("timeUpdate--------------------------------------:",curStartValue,curEndValue);
         eventManager.sendToWidgetStart("VideoCutSetView_timeUpdate");
         eventManager.addValue("VideoCutSetView_timeUpdate",curStartValue);
         eventManager.addValue("VideoCutSetView_timeUpdate",curEndValue);
@@ -366,12 +367,13 @@ Rectangle{
             if("VideoCutSetView"===eventName){
                 if(value["event"]==="setMaxValue"){
                     maxValue=value["value"]
+                    console.log("VideoCutSetView onEmitQmlEvent:",maxValue)
                 }else if(value["event"]==="setStartTime"){
                     setStartTime(value["value"])
                 }else if(value["event"]==="setEndTime"){
                     setEndTime(value["value"])
                 }
-                console.log("VideoCutSetView onEmitQmlEvent:",maxValue)
+
             }
         }
     }

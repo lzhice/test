@@ -21,7 +21,7 @@ Item {
             model: 5
             highlightFollowsCurrentItem :true
             onCurrentIndexChanged: {
-                console.log("current index = ",currentIndex)
+                //console.log("current index = ",currentIndex)
             }
             delegate: Rectangle{
                 id:delegate_list
@@ -49,21 +49,21 @@ Item {
                     anchors.fill: parent
                     onEntered:{
                         delegate_list.color = "#DCDCDC"
-                        //  console.log("in")
+                        //  //console.log("in")
                     }
                     onExited:{
                         delegate_list.color = "white"
-                        //  console.log("out")
+                        //  //console.log("out")
                     }
                     onClicked: {
                         mouse.accepted = false;
                         doAdd();
                        // list.currentIndex=1
-                        console.log("item click.");
+                        //console.log("item click.");
                     }
                     onDoubleClicked: {
                         mouse.accepted = false;
-                        console.log("item double click.");
+                        //console.log("item double click.");
                     }
                 }
             }

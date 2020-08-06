@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 Rectangle{
     property string sliderHandSource:"qrc:/img/sliderHand@1x.png"
-
+    property string playerStatePic: "qrc:/img/stop.png"
     property real millisecondTotal:8888889;
 
     property int curValue: 0
@@ -23,25 +23,42 @@ Rectangle{
 
     property real rangWidth:(rootVideoRang.width-rangMargins*2)
     property bool isSetValue: false
+    property bool isSizeChanged: false
+    property bool isPressState: false
+    onIsPressStateChanged: {
+        if(!isPressState){
+            eventManager.sendToWidgetStart("VideoRangSliderItem");
+            eventManager.addValue("VideoRangSliderItem","isPressState");
+            eventManager.addValue("VideoRangSliderItem",false);
+            eventManager.sendToWidgetEnd("VideoRangSliderItem");
+        }
+    }
+
     onCurValueChanged: {
-        eventManager.sendToWidgetStart("VideoRangSliderItem");
-        eventManager.addValue("VideoRangSliderItem","curValue");
-        eventManager.addValue("VideoRangSliderItem",curValue);
-        eventManager.sendToWidgetEnd("VideoRangSliderItem");
+        if(!isSizeChanged){
+            eventManager.sendToWidgetStart("VideoRangSliderItem");
+            eventManager.addValue("VideoRangSliderItem","curValue");
+            eventManager.addValue("VideoRangSliderItem",curValue);
+            eventManager.sendToWidgetEnd("VideoRangSliderItem");
+        }
     }
     onStartValueChanged: {
-        eventManager.sendToWidgetStart("VideoRangSliderItem");
-        eventManager.addValue("VideoRangSliderItem","startValue");
-        eventManager.addValue("VideoRangSliderItem",startValue);
-        eventManager.sendToWidgetEnd("VideoRangSliderItem");
-        updateTimeText();
+        if(!isSizeChanged){
+            eventManager.sendToWidgetStart("VideoRangSliderItem");
+            eventManager.addValue("VideoRangSliderItem","startValue");
+            eventManager.addValue("VideoRangSliderItem",startValue);
+            eventManager.sendToWidgetEnd("VideoRangSliderItem");
+            updateTimeText();
+        }
     }
     onEndValueChanged: {
-        eventManager.sendToWidgetStart("VideoRangSliderItem");
-        eventManager.addValue("VideoRangSliderItem","endValue");
-        eventManager.addValue("VideoRangSliderItem",endValue);
-        eventManager.sendToWidgetEnd("VideoRangSliderItem");
-        updateTimeText();
+        if(!isSizeChanged){
+            eventManager.sendToWidgetStart("VideoRangSliderItem");
+            eventManager.addValue("VideoRangSliderItem","endValue");
+            eventManager.addValue("VideoRangSliderItem",endValue);
+            eventManager.sendToWidgetEnd("VideoRangSliderItem");
+            updateTimeText();
+        }
     }
     id:root
     color : "transparent"
@@ -50,7 +67,7 @@ Rectangle{
         mipmap: true
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        source: "qrc:/img/play.png"
+        source: playerStatePic
         width: 40; height: 40
         Rectangle{
             id:effectItem
@@ -70,7 +87,7 @@ Rectangle{
                 effectItem.visible=false
             }
             onClicked: {
-                eventManager.sendToWidget("playButton","onClicked")
+                eventManager.sendToWidget("VideoRangSliderItem_PlayButton","onClicked")
             }
             onPressed: {
                 effectItem.visible=true
@@ -88,7 +105,8 @@ Rectangle{
         anchors.left: playButton.right
         color : "transparent"
         onWidthChanged: {
-            ////console.log("onWidthChanged--------------:")
+            isSizeChanged=true;
+            //////console.log("onWidthChanged--------------:")
             var tmcurValue=curValue;
             setStartValue(startValue)
             setEndValue(endValue)
@@ -103,11 +121,12 @@ Rectangle{
             running:false //是否开启定时，默认是false，当为true的时候，进入此界面就开始定时
             triggeredOnStart:false// 是否开启定时就触发onTriggered，一些特殊用户可以用来设置初始值。
             onTriggered: {
-                //console.log("timerUpdate--------------:")
+                ////console.log("timerUpdate--------------:")
                 var tmcurValue=curValue;
                 setStartValue(startValue)
                 setEndValue(endValue)
                 setMillisecondValue(tmcurValue)
+                isSizeChanged=false;
             }
             //restart ,start,stop,定时器的调用方式，顾名思义
         }
@@ -580,9 +599,9 @@ Rectangle{
                 onXChanged: {
                     if(!isSetValue){
                         startValue=x/rangWidth*millisecondTotal
-                        //console.log("r5 onXChanged1----------------:",endValue);
+                        ////console.log("r5 onXChanged1----------------:",endValue);
                         endValue=(x+r5.width-2*rangMargins)/rangWidth*millisecondTotal
-                        //console.log("r5 onXChanged2----------------:",endValue);
+                        ////console.log("r5 onXChanged2----------------:",endValue);
                     }isSetValue=false
                 }
                 Rectangle {
@@ -624,36 +643,37 @@ Rectangle{
                             actType=-1
                             clickPos  = Qt.point(mouse.x,mouse.y)
                         }
+                        isPressState=true
                     }
                     onReleased: {
-
                         if(actType!==1){
                             var mouseItem=r5.mapToItem(rootVideoRang,mouse.x,mouse.y)
                             var delta = Qt.point( mouseItem.x-progressPin.x, mouseItem.y-progressPin.y)
                             if(progressPin.x+delta.x>=r5.x&&(progressPin.x+delta.x+progressPin.width)<=(r5.x+r5.width)){
-                                ////console.log("progress  0")
+                                //////console.log("progress  0")
                                 progressPin.x=(progressPin.x+delta.x)
                             }else{
                                 if(progressPin.x+delta.x<r5.x){
-                                    ////console.log("progress  1")
+                                    //////console.log("progress  1")
                                     progressPin.x=r5.x
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>(r5.x+r5.width)){
-                                    ////console.log("progress  2")
+                                    //////console.log("progress  2")
                                     progressPin.x=(r5.x+r5.width)-progressPin.width
                                 }
                             }
                         }
                         actType=0
+                        isPressState=false
                     }
                     onPositionChanged: {
                         //鼠标偏移量
-                        // ////console.log("onPositionChanged:",mouse.y)
+                        // //////console.log("onPositionChanged:",mouse.y)
                         //if(cursorShape!==Qt.OpenHandCursor)cursorShape=Qt.OpenHandCursor
                         var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
                         if(mouse.x>rootVideoRang.width)return
                         if(actType===-1){
-                            ////console.log("delta.x",Math.abs(delta.x))
+                            //////console.log("delta.x",Math.abs(delta.x))
                             if(Math.abs(delta.x)>5){
                                 actType=1
                             }
@@ -687,9 +707,17 @@ Rectangle{
                     color : Qt.rgba(122,33,0,0);
                     onXChanged: {
                         if(!isSetValue){
-                            //console.log("r5_right onXChanged1----------------:",endValue);
+                            ////console.log("r5_right onXChanged1----------------:",endValue);
                             endValue=(x+r5.x-rangMargins)/rangWidth*millisecondTotal
-                            //console.log("r5_right onXChanged1----------------:",endValue);
+                            if(endValue<=startValue){
+                                if(endValue+10<millisecondTotal){
+                                    endValue+=10
+                                }else{
+                                    startValue-=10
+                                }
+                            }
+
+                            ////console.log("r5_right onXChanged1----------------:",endValue);
                         }isSetValue=false
                     }
                     Rectangle {
@@ -724,9 +752,11 @@ Rectangle{
                                 actType=2
                                 clickPos  = Qt.point(mouse.x,mouse.y)
                             }
+                            isPressState=true
                         }
                         onReleased: {
                             actType=0
+                            isPressState=false
                         }
                         onPositionChanged: {
                             //鼠标偏移量
@@ -786,9 +816,11 @@ Rectangle{
                                 actType=2
                                 clickPos  = Qt.point(mouse.x,mouse.y)
                             }
+                            isPressState=true
                         }
                         onReleased: {
                             actType=0
+                            isPressState=false
                         }
                         onPositionChanged: {
                             //鼠标偏移量
@@ -824,15 +856,15 @@ Rectangle{
                 height: sliderHeight+40
                 color : Qt.rgba(245,222,0,0);
                 onXChanged: {
-                    ////console.log("onXChanged: isSetValue",isSetValue)
+                    //////console.log("onXChanged: isSetValue",isSetValue)
                     if(!isSetValue){
                         if(x<=r5.x+rangMargins){
-                            ////console.log("setMillisecondValue(startValue)",startValue)
+                            //////console.log("setMillisecondValue(startValue)",startValue)
                             setMillisecondValue(startValue)
                         }else{
-                            //console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
+                            ////console.log("setMillisecondValue(endValue)",x,r5.x+r5.width-rangMargins);
                             if(x+width>=r5.x+r5.width-rangMargins){
-                                ////console.log("setMillisecondValue(endValue)",endValue)
+                                //////console.log("setMillisecondValue(endValue)",endValue)
                                 setMillisecondValue(endValue)
                             }else{
                                 var panPos=x-rangMargins
@@ -867,10 +899,11 @@ Rectangle{
                             actType=1
                             clickPos  = Qt.point(mouse.x,mouse.y)
                         }
-
+                        isPressState=true
                     }
                     onReleased: {
                         actType=0
+                        isPressState=false
                     }
 
                     onPositionChanged: {
@@ -941,10 +974,12 @@ Rectangle{
                             actType=1
                             clickPos  = Qt.point(mouse.x,mouse.y)
                         }
+                        isPressState=true
 
                     }
                     onReleased: {
                         actType=0
+                        isPressState=false
                     }
 
                     onPositionChanged: {
@@ -990,10 +1025,11 @@ Rectangle{
                             actType=1
                             clickPos  = Qt.point(mouse.x,mouse.y)
                         }
-
+                        isPressState=true
                     }
                     onReleased: {
                         actType=0
+                        isPressState=false
                     }
 
                     onPositionChanged: {
@@ -1009,8 +1045,8 @@ Rectangle{
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
                                     progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-                                    //console.log("progressPin.x",progressPin.x)
-                                    //console.log("onPositionChanged",r5.x+r5.width-rangMargins);
+                                    ////console.log("progressPin.x",progressPin.x)
+                                    ////console.log("onPositionChanged",r5.x+r5.width-rangMargins);
                                 }
                             }
                         }
@@ -1021,12 +1057,12 @@ Rectangle{
 
     }
     function updateTimeText(){
-        var textValue=" " +millisecondToDate(startValue) + "/" +millisecondToDate(endValue) + " "
+        var textValue=" " +millisecondToDate(startValue) + " / " +millisecondToDate(endValue) + " "
         eventManager.sendToQml("updateTimeText",textValue)
     }
 
     function setStartValue(val){
-        //console.log("setStartValue------------------:",val)
+        ////console.log("setStartValue------------------:",val)
 
         if(val>=endValue){
             val=endValue-10
@@ -1046,7 +1082,7 @@ Rectangle{
         setMillisecondValue(val)
     }
     function setEndValue(val){
-        //console.log("setEndValue------------------:",val)
+        ////console.log("setEndValue------------------:",val)
         if(val<=startValue){
             val=startValue+10
         }
@@ -1064,7 +1100,7 @@ Rectangle{
         if(val>millisecondTotal||val<0){
             return
         }
-        //console.log("setMillisecondValue------------------:",val,curValue)
+        ////console.log("setMillisecondValue------------------:",val,curValue)
         curValue=val
         panValue=curValue/millisecondTotal
         isSetValue=true
@@ -1100,7 +1136,7 @@ Rectangle{
         if (null !== time && "" !== time) {
             if (time > 60 ) {
                 time = formatDate(parseInt(time / 60.0)) + ":" + formatDate2(parseInt((parseFloat(time / 60.0) -
-                                                                                      parseInt(time / 60.0)) * 60))
+                                                                                       parseInt(time / 60.0)) * 60))
             }else {
                 time = "000:" +formatDate2(parseInt(time))
             }
@@ -1113,15 +1149,30 @@ Rectangle{
         onEmitQmlEvent:
         {
             if("VideoRangSliderItem"===eventName){
-                console.log("VideoRangSliderItem onEmitQmlEvent:",value["event"])
+                //console.log("VideoRangSliderItem onEmitQmlEvent:",value["event"])
                 if(value["event"]==="setMaxValue"){
                     millisecondTotal=value["value"]
                 }else if(value["event"]==="setStartTime"){
-                    setStartValue(value["value"])
+                    if(value["value"]!==startValue)
+                        setStartValue(value["value"])
                 }else if(value["event"]==="setEndTime"){
-                    setEndValue(value["value"])
+                    if(value["value"]!==endValue)
+                        setEndValue(value["value"])
+                }else if(value["event"]==="curValue"){
+                    if(value["value"]!==curValue&&value["value"]<endValue){
+                        isSizeChanged=true
+                        setMillisecondValue(value["value"])
+                        isSizeChanged=false
+                    }
+                }else if(value["event"]==="playState"){
+                    console.log("VideoRangSliderItem onEmitQmlEvent: playState",value["value"])
+                    if(value["value"]){
+                        playerStatePic="qrc:/img/stop.png"
+                    }else{
+                        playerStatePic="qrc:/img/play.png"
+                    }
                 }
-                // console.log("VideoRangSliderItem onEmitQmlEvent:",maxValue)
+                // //console.log("VideoRangSliderItem onEmitQmlEvent:",maxValue)
             }
         }
     }
