@@ -26,5 +26,6 @@
         <file>qml/TestItem2.qml</file>
         <file>qml/VideoCutSetView.qml</file>
         <file>qml/VideoTimeItem.qml</file>
+        <file>qml/VideoCutNullView.qml</file>
     </qresource>
 </RCC>

@@ -14,6 +14,8 @@ class MainWindow : public QWidget
 public:
     MainWindow(QWidget *parent = NULL);
     ~MainWindow();
+    void openVideoFile(const QString &file);
+    void showVideoMain();
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event);
     //virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -21,6 +23,8 @@ protected:
 private:
     QWidget * m_pVideoRangSliderItem=NULL;
     QWidget * m_pVideoCutSetView=NULL;
+    QWidget * m_pVideoCutNullView=NULL;
+    QWidget * m_pVideo=NULL;
     MediaPlayer m_MediaPlayer;
     QLineEdit* pLineEdit=NULL;
     qint64 m_nStartTime=0;

@@ -131,7 +131,7 @@ void FramelessWindow::setWindowTitle(const QString &text) {
 }
 
 void FramelessWindow::setWindowIcon(const QIcon &ico) {
-    ui->icon->setPixmap(ico.pixmap(16, 16));
+    //ui->icon->setPixmap(ico.pixmap(16, 16));
 }
 
 void FramelessWindow::styleWindow(bool bActive, bool bNoState) {

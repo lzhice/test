@@ -191,6 +191,7 @@ Rectangle{
                     minimumValue:0
                     maximumValue:9999999
                     valueLen:3
+                    stepSize:100
                     onValueChanged: {
                         if(checkStartUpdate()){
                             var nSecond = parseFloat(value) / 1000

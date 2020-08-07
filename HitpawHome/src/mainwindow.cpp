@@ -3,6 +3,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <QFileDialog>
 #include <QDebug>
 #include <QEventLoop>
 #include "proxyserver.h"
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ProxyServer *pProxyServer=new ProxyServer(55555,this);
     qDebug()<< "pProxyServer->getSeverPort()"<<pProxyServer->getSeverPort();
 
+
     QHBoxLayout * hlayout=new QHBoxLayout();
     hlayout->setSpacing(0);
     hlayout->setMargin(0);
@@ -24,30 +26,33 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout * vlayout=new QVBoxLayout();
     vlayout->setSpacing(0);
     vlayout->setMargin(0);
-
-    QWidget * pvideo=m_MediaPlayer.createPreview();
-    pvideo->setStyleSheet("background-color: rgb(0, 255, 0);");
-    pvideo->setParent(this);
-    qDebug()<<"m_MediaPlayer.openMedia"<< m_MediaPlayer.openMedia("D:/project/Hitpaw/HitpawHome/FLV2.flv");
-    m_MediaPlayer.play();
-    vlayout->addWidget(pvideo);
-
-
+    //
+    {
+        QWidget * m_pVideoCutNullView=QmlWidgetCreator::createQmlWidget("qrc:/qml/VideoCutNullView.qml",this);
+        m_pVideoCutNullView->setVisible(true);
+        vlayout->addWidget (m_pVideoCutNullView);
+    }
+    //
+    QWidget * m_pVideo=m_MediaPlayer.createPreview();
+    m_pVideo->setVisible(false);
+    m_pVideo->setStyleSheet("background-color: rgb(0, 255, 0);");
+    m_pVideo->setParent(this);
+    vlayout->addWidget(m_pVideo);
     {//video slider
         QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/ControlPan.qml",this);
         item->setFixedHeight(30+88);
         m_pVideoRangSliderItem=item;
+        m_pVideoRangSliderItem->setVisible(false);
+        vlayout->addWidget (item);
         {
             QVariantMap vMap;
             vMap.insert("event","setMaxValue");
-            vMap.insert("value",m_MediaPlayer.duration());
+            vMap.insert("value",0);
             QmlEventManager::getInstatnce(m_pVideoRangSliderItem)->sendToQml("VideoRangSliderItem",vMap);
 
             m_nStartTime=0;
-            m_nEndTime=m_MediaPlayer.duration();
+            m_nEndTime=0;
         }
-
-        vlayout->addWidget (item);
         connect(QmlEventManager::getInstatnce(item),&QmlEventManager::emitWidgetEvent,
                 [=](const QString& eventName,const QVariant& value){
             if(m_pVideoCutSetView&&eventName=="VideoRangSliderItem"&&value.toList().size()>1){
@@ -102,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent)
         {
             QVariantMap vMap;
             vMap.insert("event","setMaxValue");
-            vMap.insert("value",m_MediaPlayer.duration());
+            vMap.insert("value",0);
             QmlEventManager::getInstatnce(m_pVideoCutSetView)->sendToQml("VideoCutSetView",vMap);
         }
         connect(QmlEventManager::getInstatnce(item),&QmlEventManager::emitWidgetEvent,
@@ -148,20 +153,22 @@ MainWindow::MainWindow(QWidget *parent)
                         QmlEventManager::getInstatnce(m_pVideoRangSliderItem)->sendToQml("VideoRangSliderItem",vMap);
                     }
                 }
-
-
+            }else if(eventName=="buttonOpenVideo"){
+                QString file = QFileDialog::getOpenFileName(this, tr("selecct video file"),"");
+                if(file!=""){
+                    openVideoFile(file);
+                }
             }
         });
     }
     connect(&m_MediaPlayer,&MediaPlayer::positionChanged,[=](qint64 pos){
+        qDebug()<<"MediaPlayer::positionChanged###################################:"<<pos;
         if(m_MediaPlayer.isPlaying()){
             QVariantMap vMap;
             vMap.insert("event","curValue");
             vMap.insert("value",pos);
             QmlEventManager::getInstatnce(m_pVideoRangSliderItem)->sendToQml("VideoRangSliderItem",vMap);
             if(pos>=m_nEndTime){
-
-                qDebug()<<"do m_MediaPlayer.pauses()~~~~~~~~2"<<pos<<m_nEndTime;
                 m_MediaPlayer.pause();
             }
         }
@@ -179,12 +186,47 @@ MainWindow::MainWindow(QWidget *parent)
     });
     vWidget->setLayout (vlayout);
     this->setLayout(hlayout);
-    setMinimumSize(1100-60,620-30);
+    setMinimumSize(1100,620-24);
+    showVideoMain();
 }
 
 MainWindow::~MainWindow()
 {
     m_MediaPlayer.stop();
+}
+
+void MainWindow::openVideoFile(const QString &file)
+{
+
+    m_MediaPlayer.stop();
+    if(m_MediaPlayer.openMedia(file)){
+        {
+            QVariantMap vMap;
+            vMap.insert("event","setMaxValue");
+            vMap.insert("value",m_MediaPlayer.duration());
+            QmlEventManager::getInstatnce(m_pVideoCutSetView)->sendToQml("VideoCutSetView",vMap);
+        }
+        {
+            QVariantMap vMap;
+            vMap.insert("event","setMaxValue");
+            vMap.insert("value",m_MediaPlayer.duration());
+            QmlEventManager::getInstatnce(m_pVideoRangSliderItem)->sendToQml("VideoRangSliderItem",vMap);
+
+            m_nStartTime=0;
+            m_nEndTime=m_MediaPlayer.duration();
+        }
+        showVideoMain();
+    }else{
+//
+    }
+
+}
+
+void MainWindow::showVideoMain()
+{
+    m_pVideo->setVisible(true);
+    m_pVideoRangSliderItem->setVisible(true);
+    m_pVideoCutNullView->setVisible(false);
 }
 #include <QDrag>
 #include <QDragEnterEvent>
@@ -193,7 +235,6 @@ MainWindow::~MainWindow()
 #include <QApplication>
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-
     if(drag) {
         event->acceptProposedAction();
         QWidget::dragEnterEvent(event);
@@ -202,8 +243,6 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
     }else{
         event->ignore();
     }
-
-
 }
 
 

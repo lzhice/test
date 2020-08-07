@@ -66,6 +66,7 @@ Rectangle{
         id: playButton
         mipmap: true
         anchors.left: parent.left
+        anchors.leftMargin: (rootVideoRang.anchors.leftMargin-width)/2
         anchors.verticalCenter: parent.verticalCenter
         source: playerStatePic
         width: 40; height: 40
@@ -90,7 +91,7 @@ Rectangle{
                 eventManager.sendToWidget("VideoRangSliderItem_PlayButton","onClicked")
             }
             onPressed: {
-                effectItem.visible=true
+                effectItem.visible=false
             }
             onReleased: {
                 effectItem.visible=false
@@ -102,7 +103,8 @@ Rectangle{
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.left: playButton.right
+        anchors.left: parent.left
+        anchors.leftMargin: 64-5
         color : "transparent"
         onWidthChanged: {
             isSizeChanged=true;
@@ -113,6 +115,7 @@ Rectangle{
             setMillisecondValue(tmcurValue)
             timerUpdate.stop();
             timerUpdate.start();
+            isSizeChanged=false;
         }
         Timer {
             id: timerUpdate;
@@ -122,6 +125,7 @@ Rectangle{
             triggeredOnStart:false// 是否开启定时就触发onTriggered，一些特殊用户可以用来设置初始值。
             onTriggered: {
                 ////console.log("timerUpdate--------------:")
+                isSizeChanged=true;
                 var tmcurValue=curValue;
                 setStartValue(startValue)
                 setEndValue(endValue)
@@ -921,6 +925,11 @@ Rectangle{
                                     progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
                                 }
                             }
+
+                            if(progressPin.x+progressPin.width>=r5.x+r5.width-rangMargins){
+                                setMillisecondValue(endValue)
+                            }
+
                         }
                     }
                 }
@@ -997,6 +1006,9 @@ Rectangle{
                                     progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
                                 }
                             }
+                            if(progressPin.x+progressPin.width>=r5.x+r5.width-rangMargins){
+                                setMillisecondValue(endValue)
+                            }
                         }
                     }
                 }
@@ -1045,9 +1057,10 @@ Rectangle{
                                 }
                                 if((progressPin.x+delta.x+progressPin.width)>((r5.x+rangMargins)+(r5.width-rangMargins*2))){
                                     progressPin.x=((r5.x+rangMargins)+(r5.width-rangMargins*2))-progressPin.width
-                                    ////console.log("progressPin.x",progressPin.x)
-                                    ////console.log("onPositionChanged",r5.x+r5.width-rangMargins);
                                 }
+                            }
+                            if(progressPin.x+progressPin.width>=r5.x+r5.width-rangMargins){
+                                setMillisecondValue(endValue)
                             }
                         }
                     }
@@ -1152,6 +1165,9 @@ Rectangle{
                 //console.log("VideoRangSliderItem onEmitQmlEvent:",value["event"])
                 if(value["event"]==="setMaxValue"){
                     millisecondTotal=value["value"]
+                    setStartValue(0)
+                    setEndValue(parseInt(millisecondTotal/2))
+                    setStartValue(0)
                 }else if(value["event"]==="setStartTime"){
                     if(value["value"]!==startValue)
                         setStartValue(value["value"])

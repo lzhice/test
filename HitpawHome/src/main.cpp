@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     a.setStyle(new DarkStyle);
     FramelessWindow framelessWindow;
     //framelessWindow.setReSizeEnable(false);
-    framelessWindow.setTopBarHeight(30);
+    framelessWindow.setTopBarHeight(24);
     //framelessWindow.setWindowState(Qt::WindowFullScreen);
     //framelessWindow.setWindowTitle("test title");
     framelessWindow.setWindowIcon(a.style()->standardIcon(QStyle::SP_DesktopIcon));
