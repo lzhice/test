@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     DarkStyle.cpp \
     downServer.cpp \
+    logform.cpp \
     main.cpp \
     mainwindow.cpp \
     traywidget.cpp
@@ -22,10 +23,12 @@ SOURCES += \
 HEADERS += \
     DarkStyle.h \
     downServer.h \
+    logform.h \
     mainwindow.h \
     traywidget.h
 
 FORMS += \
+    logform.ui \
     mainwindow.ui
 
 # Default rules for deployment.

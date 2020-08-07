@@ -39,6 +39,11 @@ private:
 
     inline void removeClient(QTcpSocket *client);
     inline void writeData(QTcpSocket *client,const QByteArray &data);
+    bool isCanLog();
+    void sendUdpLog(const QString & logText);
+    void revUdpLog(const QString & logText);
+    void sendTcpLog(const QString & logText);
+    void revTcpLog(const QString & logText);
 };
 
 #endif // EVENTSERVER_H

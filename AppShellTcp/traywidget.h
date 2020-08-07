@@ -17,8 +17,6 @@ private:
     QAction *action_quit_;
     QAction *action_qt_;
     QAction *action_palySet_;
-    QAction *action_mouseSet_;
-    QAction *action_videoSet_;
 public Q_SLOTS:
     void showHome();
     void quitExe();
