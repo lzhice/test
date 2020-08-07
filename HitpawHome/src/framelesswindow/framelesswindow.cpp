@@ -126,6 +126,11 @@ void FramelessWindow::setTopBarHeight(int height)
     ui->windowTitlebar->setFixedHeight(height);
 }
 
+void FramelessWindow::doDoubleClick()
+{
+    on_windowTitlebar_doubleClicked();
+}
+
 void FramelessWindow::setWindowTitle(const QString &text) {
     ui->titleText->setText(text);
 }

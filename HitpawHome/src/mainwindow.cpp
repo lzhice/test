@@ -7,10 +7,13 @@
 #include <QDebug>
 #include <QEventLoop>
 #include "proxyserver.h"
-
+#include <QApplication>
+#include "framelesswindow.h"
 MainWindow::MainWindow(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),m_pTitleBar(parent)
 {
+
+    QApplication::instance()->installEventFilter(this);
     this->setAcceptDrops(true);
     setObjectName("contentWidget");
     setStyleSheet("#contentWidget{ background-color: #2e2f30; border:10px solid palette(shadow);border-radius:0px 0px 10px 10px;}");
@@ -28,13 +31,11 @@ MainWindow::MainWindow(QWidget *parent)
     vlayout->setMargin(0);
     //
     {
-        QWidget * m_pVideoCutNullView=QmlWidgetCreator::createQmlWidget("qrc:/qml/VideoCutNullView.qml",this);
-        m_pVideoCutNullView->setVisible(true);
+        m_pVideoCutNullView=QmlWidgetCreator::createQmlWidget("qrc:/qml/VideoCutNullView.qml",this);
         vlayout->addWidget (m_pVideoCutNullView);
     }
     //
-    QWidget * m_pVideo=m_MediaPlayer.createPreview();
-    m_pVideo->setVisible(false);
+    m_pVideo=m_MediaPlayer.createPreview();
     m_pVideo->setStyleSheet("background-color: rgb(0, 255, 0);");
     m_pVideo->setParent(this);
     vlayout->addWidget(m_pVideo);
@@ -42,7 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
         QWidget * item=QmlWidgetCreator::createQmlWidget("qrc:/qml/ControlPan.qml",this);
         item->setFixedHeight(30+88);
         m_pVideoRangSliderItem=item;
-        m_pVideoRangSliderItem->setVisible(false);
         vlayout->addWidget (item);
         {
             QVariantMap vMap;
@@ -187,7 +187,7 @@ MainWindow::MainWindow(QWidget *parent)
     vWidget->setLayout (vlayout);
     this->setLayout(hlayout);
     setMinimumSize(1100,620-24);
-    showVideoMain();
+    showVideoMain(false);
 }
 
 MainWindow::~MainWindow()
@@ -215,18 +215,22 @@ void MainWindow::openVideoFile(const QString &file)
             m_nStartTime=0;
             m_nEndTime=m_MediaPlayer.duration();
         }
-        showVideoMain();
+        showVideoMain(true);
     }else{
-//
+        //
     }
 
 }
 
-void MainWindow::showVideoMain()
+void MainWindow::showVideoMain(bool isShow)
 {
-    m_pVideo->setVisible(true);
-    m_pVideoRangSliderItem->setVisible(true);
-    m_pVideoCutNullView->setVisible(false);
+    qDebug()<<"showVideoMain1";
+    m_pVideo->setVisible(isShow);
+    qDebug()<<"showVideoMain2";
+    m_pVideoRangSliderItem->setVisible(isShow);
+    qDebug()<<"showVideoMain3";
+    m_pVideoCutNullView->setVisible(!isShow);
+    qDebug()<<"showVideoMain4";
 }
 #include <QDrag>
 #include <QDragEnterEvent>
@@ -253,6 +257,20 @@ void MainWindow::dropEvent(QDropEvent *event)
     event->setDropAction(Qt::MoveAction);
     event->acceptProposedAction();
     drag=NULL;
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched==m_pVideo&&event->type() == QEvent::MouseButtonDblClick){
+        FramelessWindow * pFramelessWindow= dynamic_cast<FramelessWindow*>(m_pTitleBar);
+        if(pFramelessWindow){
+            qDebug()<<"MouseButtonDblClick111";
+            pFramelessWindow->doDoubleClick();
+        }
+
+    }
+
+    return QWidget::eventFilter(watched, event);
 }
 
 /*

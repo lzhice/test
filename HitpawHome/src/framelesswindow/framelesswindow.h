@@ -42,6 +42,7 @@ public:
     void setContent( QWidget *w );
     void setReSizeEnable(bool isEnable);
     void setTopBarHeight(int height);
+    void doDoubleClick();
 private:
     void styleWindow(bool bActive, bool bNoState);
 public slots:
