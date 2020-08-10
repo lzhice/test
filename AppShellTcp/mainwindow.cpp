@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    showLogForm(false);
     m_Workspaces = QCoreApplication::applicationDirPath();
     this->setStyleSheet(getQssFromFile(":/style/menu.qss"));
     pTrayWidget=new TrayWidget(this);
@@ -69,10 +69,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showLogForm()
+void MainWindow::showLogForm(bool b)
 {
     static LogForm logForm;
+    if(b){
     logForm.show();
+    }else{
+        logForm.hide();
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

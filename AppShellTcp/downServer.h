@@ -24,10 +24,14 @@ private slots:
     void disconnected();
     void processPendingDatagram();
     void sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes);
+
+    void dealSigUdpDate(const QByteArray &bytes);
 protected:
     void incomingConnection(qintptr socketfd);
     void close();
 private:
+    QTimer m_timer;
+    int liveReceiverData=0;
     QUdpSocket m_udpSender;
     quint16 m_udpSendPort=20000;
 

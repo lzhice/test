@@ -19,8 +19,14 @@ public:
     void revUdpLog(const QString & logText);
     void sendTcpLog(const QString & logText);
     void revTcpLog(const QString & logText);
+
+Q_SIGNALS:
+    void sigUdpDate(const QByteArray &bytes);
 protected:
     virtual void closeEvent(QCloseEvent *event);
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::LogForm *ui;
     static LogForm * _this;

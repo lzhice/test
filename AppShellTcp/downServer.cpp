@@ -12,12 +12,34 @@
 DownServer::DownServer( QObject *parent) :
     QTcpServer(parent)
 {
-
+    connect(LogForm::getInstance(),SIGNAL(sigUdpDate(QByteArray)),this,SLOT(dealSigUdpDate(QByteArray)),Qt::UniqueConnection);
+    connect(&m_timer,&QTimer::timeout,[=](){
+        if(liveReceiverData<0){
+            m_udpReceiver.close();
+            m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
+        }else{
+            --liveReceiverData;
+        }
+    });
+    m_timer.start(800);
 }
 void DownServer::sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes)
 {
     if(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)])
         writeData(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)],bytes);
+}
+
+void DownServer::dealSigUdpDate(const QByteArray &bytes)
+{
+
+    //qDebug()<<"LogForm::setUdpDate*****************************************"<<m_udpReceiver.errorString()<<re;
+
+    qDebug()<< m_udpReceiver.writeDatagram(bytes.data(),bytes.size(),
+                                QHostAddress("127.0.0.1"),m_udpSendPort);
+    qDebug()<<"m_udpReceiver.waitForBytesWritten()"<<m_udpReceiver.waitForBytesWritten();
+    if(isCanLog()){
+        sendUdpLog(QString("[%1:%2 ]").arg("127.0.0.1").arg(m_udpSendPort)+bytes.toHex(' ').toUpper());
+    }
 }
 
 void DownServer::incomingConnection(qintptr socketfd)
@@ -59,6 +81,7 @@ void DownServer::writeData(QTcpSocket *client, const QByteArray &data)
 bool DownServer::isCanLog()
 {
     if(LogForm::getInstance()&&LogForm::getInstance()->isVisible()){
+
         return true;
     }return false;
 }
@@ -90,16 +113,34 @@ void DownServer::revTcpLog(const QString &logText)
         LogForm::getInstance()->revTcpLog(logText);
     }
 }
-
+/*
+    void connected();
+    void disconnected();
+    void stateChanged(QAbstractSocket::SocketState);
+    void error(QAbstractSocket::SocketError);
+*/
 bool DownServer::startServer()
 {
     qDebug()<<m_port<<m_udpReceivePort<<m_udpSendPort;
 
     bool re=this->listen(QHostAddress::Any,m_port);
-    if(re){
-       re = m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
-        connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
-    }
+    connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
+//    if(re){
+//        re = m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
+//        connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
+////        connect(&m_udpReceiver,&QUdpSocket::connected,[=](){
+////            qDebug()<<"m_udpReceiver-QUdpSocket::connected";
+////        });
+////        connect(&m_udpReceiver,&QUdpSocket::disconnected,[=](){
+////            qDebug()<<"m_udpReceiver-QUdpSocket::disconnected";
+////        });
+////        connect(&m_udpReceiver,&QUdpSocket::stateChanged,[=](QAbstractSocket::SocketState state){
+////            qDebug()<<"m_udpReceiver-QUdpSocket::stateChanged"<<state;
+////        });
+//////        connect(&m_udpReceiver,&QUdpSocket::error,[=](QAbstractSocket::SocketError err){
+//////            qDebug()<<"m_udpReceiver-QUdpSocket::error"<<err;
+//////        });
+//    }
     return re;
 }
 
@@ -125,9 +166,9 @@ void DownServer::readyRead()
         }else{
             QByteArray datagram=bytes.mid(2,22)+bytes.mid(0,2);
             m_udpReceiver.writeDatagram(datagram.data(),datagram.size(),
-                                      QHostAddress("127.0.0.1"),m_udpSendPort);
+                                        QHostAddress("127.0.0.1"),m_udpSendPort);
             if(isCanLog()){
-                revUdpLog(QString("[%1:%2 ]").arg("127.0.0.1").arg(m_udpSendPort)+bytes.toHex(' ').toUpper());
+                sendUdpLog(QString("[%1:%2 ]").arg("127.0.0.1").arg(m_udpSendPort)+bytes.toHex(' ').toUpper());
             }
         }
     }
@@ -144,8 +185,10 @@ void DownServer::disconnected()
 
 void DownServer::processPendingDatagram()
 {
+
     while(m_udpReceiver.hasPendingDatagrams()&&m_udpReceiver.pendingDatagramSize()>=24)
     {
+        liveReceiverData=5;
         if(m_udpReceiver.pendingDatagramSize()>24){
             if(isCanLog()){
                 revUdpLog(QString("err--------------------------udp->pendingDatagramSize()>24"));

@@ -9,6 +9,7 @@ LogForm::LogForm(QWidget *parent) :
     _this=this;
     ui->plainTextEdit->setMaximumBlockCount(20000);
     ui->plainTextEdit_2->setMaximumBlockCount(20000);
+    ui->pushButton->hide();
 }
 
 LogForm::~LogForm()
@@ -44,4 +45,9 @@ void LogForm::closeEvent(QCloseEvent *event)
 {
     event->ignore();
     this->hide();
+}
+
+void LogForm::on_pushButton_clicked()
+{
+   emit sigUdpDate(QByteArray(24,'0'));
 }

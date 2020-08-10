@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void showLogForm();
+    void showLogForm(bool b=true);
 protected:
     virtual void closeEvent(QCloseEvent *event);
 private slots:
