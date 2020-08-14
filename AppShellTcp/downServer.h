@@ -6,6 +6,14 @@
 #include <QByteArray>
 #include <QTimer>
 #include <QUdpSocket>
+struct logOut{
+    logOut(const QString& logText );
+    ~logOut();
+    static QList<logOut*> getLogList(){return logOutList;}
+    QString m_logText;
+    static QList<logOut*> logOutList;
+};
+
 class DownServer : public QTcpServer
 {
     Q_OBJECT

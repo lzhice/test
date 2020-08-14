@@ -38,3 +38,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     style.qrc
+
+win32: LIBS += -L$$PWD/lib/ -lNLogger
+
+INCLUDEPATH += $$PWD/lib/inc
+DEPENDPATH += $$PWD/lib/inc
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/lib/NLogger.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/lib/libNLogger.a

@@ -17,7 +17,7 @@ static QString getQssFromFile(QString filename)
         qss = QString::fromUtf8( f.readAll() );
         f.close();
     }
-    qDebug()<<qss;
+    //qDebug()<<qss;
     return qss;
 }
 static QVariantMap loadRawData(const QString &filePath)

@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/VideoMainView.qml</file>
+        <file>qml/VideoGridItem.qml</file>
+        <file>qml/ResizebleText.qml</file>
+        <file>qml/ControlPan.qml</file>
+        <file>qml/topPan.qml</file>
+        <file>qml/SliderItem.qml</file>
+        <file>qml/VideoImgSliderItem.qml</file>
+        <file>qml/VideoRangSliderItem.qml</file>
+        <file>qml/VideoSelectRangItem.qml</file>
+        <file>qml/TestItem.qml</file>
+        <file>qml/ButtonItem.qml</file>
+        <file>qml/MessageBox.qml</file>
+        <file>qml/TextButton.qml</file>
+        <file>qml/LoadingBox.qml</file>
+        <file>qml/DashRect.qml</file>
+        <file>qml/ShadowMask.qml</file>
+        <file>qml/VideoParametersSetView.qml</file>
+        <file>qml/VideoMusicRangSliderItem.qml</file>
+        <file>qml/VideoMusicChartItem.qml</file>
+        <file>qml/VideoRotateAndSizeSetView.qml</file>
+        <file>qml/ImageButton.qml</file>
+        <file>qml/ImageTextButton.qml</file>
+        <file>qml/DevicePan.qml</file>
+        <file>qml/TestItem2.qml</file>
+        <file>qml/VideoCutSetView.qml</file>
+        <file>qml/VideoTimeItem.qml</file>
+        <file>qml/VideoCutNullView.qml</file>
+        <file>qml/MenuUpdateItem.qml</file>
+    </qresource>
+</RCC>

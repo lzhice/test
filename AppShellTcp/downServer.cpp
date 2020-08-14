@@ -9,11 +9,13 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include "logform.h"
+QList<logOut*> logOut::logOutList;
 DownServer::DownServer( QObject *parent) :
     QTcpServer(parent)
 {
     connect(LogForm::getInstance(),SIGNAL(sigUdpDate(QByteArray)),this,SLOT(dealSigUdpDate(QByteArray)),Qt::UniqueConnection);
     connect(&m_timer,&QTimer::timeout,[=](){
+        logOut log("DownServer::QTimer::timeout()");
         if(liveReceiverData<0){
             m_udpReceiver.close();
             m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
@@ -25,6 +27,7 @@ DownServer::DownServer( QObject *parent) :
 }
 void DownServer::sendData(quint8 floorNum, quint8 roomNum, QByteArray bytes)
 {
+    logOut log("DownServer::sendData()");
     if(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)])
         writeData(m_TcpSocketTbl[QPair<quint8,quint8>(floorNum,roomNum)],bytes);
 }
@@ -34,17 +37,17 @@ void DownServer::dealSigUdpDate(const QByteArray &bytes)
 
     //qDebug()<<"LogForm::setUdpDate*****************************************"<<m_udpReceiver.errorString()<<re;
 
-    qDebug()<< m_udpReceiver.writeDatagram(bytes.data(),bytes.size(),
-                                QHostAddress("127.0.0.1"),m_udpSendPort);
-    qDebug()<<"m_udpReceiver.waitForBytesWritten()"<<m_udpReceiver.waitForBytesWritten();
-    if(isCanLog()){
-        sendUdpLog(QString("[%1:%2 ]").arg("127.0.0.1").arg(m_udpSendPort)+bytes.toHex(' ').toUpper());
-    }
+//    qDebug()<< m_udpReceiver.writeDatagram(bytes.data(),bytes.size(),
+//                                QHostAddress("127.0.0.1"),m_udpSendPort);
+//    qDebug()<<"m_udpReceiver.waitForBytesWritten()"<<m_udpReceiver.waitForBytesWritten();
+//    if(isCanLog()){
+//        sendUdpLog(QString("[%1:%2 ]").arg("127.0.0.1").arg(m_udpSendPort)+bytes.toHex(' ').toUpper());
+//    }
 }
 
 void DownServer::incomingConnection(qintptr socketfd)
 {
-    qDebug()<<"incomingConnection"<<socketfd;
+    logOut log("DownServer::incomingConnection()");
     QTcpSocket *client = new QTcpSocket(this);
     client->setSocketDescriptor(socketfd);
     connect(client, SIGNAL(readyRead()), this, SLOT(readyRead()));
@@ -54,22 +57,45 @@ void DownServer::incomingConnection(qintptr socketfd)
 
 void DownServer::close()
 {
+    logOut log("DownServer::close()");
     foreach (QTcpSocket* pTcpSocket, m_TcpSocketTbl.values()) {
         if(pTcpSocket)pTcpSocket->close();
     }
+    m_TcpSocketTbl.clear();
     QTcpServer::close();
 }
-
+//typedef QPair<quint8,quint8> Pair;
+//void DownServer::removeClient(QTcpSocket *client)
+//{
+//    logOut log("DownServer::removeClient()");
+//    if(!client) return;
+//    foreach (Pair key, m_TcpSocketTbl.keys()) {
+//        if(m_TcpSocketTbl[key]==client){
+//            m_TcpSocketTbl.remove(key);
+//        }
+//    }
+//}
 void DownServer::removeClient(QTcpSocket *client)
 {
+    logOut log("DownServer::removeClient()");
     if(!client) return;
+    while(1){
+        if(m_TcpSocketTbl.values().contains(client)){
+            m_TcpSocketTbl.remove(m_TcpSocketTbl.key(client));
+        }
+        if(!m_TcpSocketTbl.values().contains(client)){
+            break;
+        }
+    }
+
     if(m_TcpSocketTbl.values().contains(client)){
-        m_TcpSocketTbl.remove(m_TcpSocketTbl.key(client));
+        qDebug()<<"removeClient m_TcpSocketTbl";
     }
 }
 
 void DownServer::writeData(QTcpSocket *client, const QByteArray &data)
 {
+    logOut log("DownServer::writeData()");
     if(client){
         client->write(data);
         if(isCanLog()){
@@ -80,6 +106,7 @@ void DownServer::writeData(QTcpSocket *client, const QByteArray &data)
 
 bool DownServer::isCanLog()
 {
+    logOut log("DownServer::isCanLog()");
     if(LogForm::getInstance()&&LogForm::getInstance()->isVisible()){
 
         return true;
@@ -88,6 +115,7 @@ bool DownServer::isCanLog()
 
 void DownServer::sendUdpLog(const QString &logText)
 {
+    logOut log("DownServer::sendUdpLog()");
     if(LogForm::getInstance()){
         LogForm::getInstance()->sendUdpLog(logText);
     }
@@ -95,6 +123,7 @@ void DownServer::sendUdpLog(const QString &logText)
 
 void DownServer::revUdpLog(const QString &logText)
 {
+    logOut log("DownServer::revUdpLog()");
     if(LogForm::getInstance()){
         LogForm::getInstance()->revUdpLog(logText);
     }
@@ -102,6 +131,7 @@ void DownServer::revUdpLog(const QString &logText)
 
 void DownServer::sendTcpLog(const QString &logText)
 {
+    logOut log("DownServer::sendTcpLog()");
     if(LogForm::getInstance()){
         LogForm::getInstance()->sendTcpLog(logText);
     }
@@ -109,6 +139,7 @@ void DownServer::sendTcpLog(const QString &logText)
 
 void DownServer::revTcpLog(const QString &logText)
 {
+    logOut log("DownServer::revTcpLog()");
     if(LogForm::getInstance()){
         LogForm::getInstance()->revTcpLog(logText);
     }
@@ -121,34 +152,22 @@ void DownServer::revTcpLog(const QString &logText)
 */
 bool DownServer::startServer()
 {
-    qDebug()<<m_port<<m_udpReceivePort<<m_udpSendPort;
-
+    //qDebug()<<m_port<<m_udpReceivePort<<m_udpSendPort;
+    logOut log("DownServer::startServer()");
     bool re=this->listen(QHostAddress::Any,m_port);
     connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
-//    if(re){
-//        re = m_udpReceiver.bind(QHostAddress("127.0.0.1"),m_udpReceivePort,QUdpSocket::DontShareAddress);
-//        connect(&m_udpReceiver,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
-////        connect(&m_udpReceiver,&QUdpSocket::connected,[=](){
-////            qDebug()<<"m_udpReceiver-QUdpSocket::connected";
-////        });
-////        connect(&m_udpReceiver,&QUdpSocket::disconnected,[=](){
-////            qDebug()<<"m_udpReceiver-QUdpSocket::disconnected";
-////        });
-////        connect(&m_udpReceiver,&QUdpSocket::stateChanged,[=](QAbstractSocket::SocketState state){
-////            qDebug()<<"m_udpReceiver-QUdpSocket::stateChanged"<<state;
-////        });
-//////        connect(&m_udpReceiver,&QUdpSocket::error,[=](QAbstractSocket::SocketError err){
-//////            qDebug()<<"m_udpReceiver-QUdpSocket::error"<<err;
-//////        });
-//    }
+    //m_TcpSocketTbl.value( QPair<quint8,quint8>(0,0))->close();
     return re;
+
 }
 
 void DownServer::readyRead()
 {
     QTcpSocket *client = (QTcpSocket*)sender();
-    qDebug()<<"DownServer::readyRead()"<<client->bytesAvailable();
+
+    //qDebug()<<"DownServer::readyRead()"<<client->bytesAvailable();
     if(client&&client->bytesAvailable()>=24){
+        logOut log("DownServer::readyRead()");
         if(client->bytesAvailable()>24){
             if(isCanLog()){
                 revTcpLog(QString("err--------------------------client->bytesAvailable()>24"));
@@ -177,8 +196,9 @@ void DownServer::disconnected()
 {
     QTcpSocket *client = (QTcpSocket*)sender();
     if(client){
-        client->close();
+        logOut log("DownServer::disconnected()");
         removeClient(client);
+        client->close();
         client->deleteLater();
     }
 }
@@ -188,30 +208,67 @@ void DownServer::processPendingDatagram()
 
     while(m_udpReceiver.hasPendingDatagrams()&&m_udpReceiver.pendingDatagramSize()>=24)
     {
+        logOut log("DownServer::processPendingDatagram()");
         liveReceiverData=5;
-        if(m_udpReceiver.pendingDatagramSize()>24){
-            if(isCanLog()){
-                revUdpLog(QString("err--------------------------udp->pendingDatagramSize()>24"));
-            }
-        }
-        QByteArray bytes;
-        bytes.resize(m_udpReceiver.pendingDatagramSize());
+
+        QByteArray bytesAll;
+        bytesAll.resize(m_udpReceiver.pendingDatagramSize());
         QHostAddress srcAddress;
         quint16 nSrcPort;
-        m_udpReceiver.readDatagram(bytes.data(),bytes.size(),&srcAddress,&nSrcPort);
-        if(isCanLog()){
-            revUdpLog(QString("[%1:%2 ]").arg(srcAddress.toString()).arg(nSrcPort)+bytes.toHex(' ').toUpper());
-        }
-        if((quint8)bytes.at(0)!=0x00){
-            quint8 floorNum=(quint8)bytes.at(1);
-            quint8 roomNum=(quint8)bytes.at(2);
-            sendData(floorNum,roomNum,bytes);
-        }else{//广播cmd
-            foreach (QTcpSocket* pTcpSocket, m_TcpSocketTbl.values()) {
-                if(pTcpSocket)writeData(pTcpSocket,bytes);
+        m_udpReceiver.readDatagram(bytesAll.data(),bytesAll.size(),&srcAddress,&nSrcPort);
+//        if(bytesAll.size()>24){
+//            if(isCanLog()){
+//                revUdpLog(QString("err--------------------------udp->pendingDatagramSize()>24--")+QString::number(bytesAll.size()));
+
+//                revUdpLog(QString("[%1:%2 ]").arg(srcAddress.toString()).arg(nSrcPort)+bytesAll.toHex(' ').toUpper());
+//            }
+
+//        }
+        QByteArray bytes;
+        while (1) {
+            if(bytesAll.size()<24){
+                if(bytesAll.size()>0){
+                    if(isCanLog()){
+                        revUdpLog(QString("err--------------------------lose data:")+bytesAll.toHex(' ').toUpper());
+                    }
+                }
+                break;
+            }
+            bytes=bytesAll.mid(0,24);
+            bytesAll.remove(0,24);
+            if(isCanLog()){
+                revUdpLog(QString("[%1:%2 ]").arg(srcAddress.toString()).arg(nSrcPort)+bytes.toHex(' ').toUpper());
+            }
+            if((quint8)bytes.at(0)!=0x00){
+                quint8 floorNum=(quint8)bytes.at(1);
+                quint8 roomNum=(quint8)bytes.at(2);
+                sendData(floorNum,roomNum,bytes);
+            }else{//广播cmd
+                foreach (QTcpSocket* pTcpSocket, m_TcpSocketTbl.values()) {
+                    if(pTcpSocket)writeData(pTcpSocket,bytes);
+                }
             }
         }
+
     }
 }
 
 
+
+logOut::logOut(const QString &logText)
+{
+    m_logText=logText;
+    logOutList.append(this);
+    //qDebug()<<QString("[in]:")+m_logText;
+}
+
+logOut::~logOut()
+{
+    //qDebug()<<QString("[out]:")+m_logText;
+    for(int i=logOutList.size()-1;i>-1;--i){
+        if(logOutList[i]==this){
+            logOutList.removeAt(i);
+            break;
+        }
+    }
+}
