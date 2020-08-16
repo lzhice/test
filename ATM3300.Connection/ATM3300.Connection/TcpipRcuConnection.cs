@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace ATM3300.Connection
 {
-    [ConnectionVersionInfo("TCP/IP - RCU 连接", 
+    [ConnectionVersionInfo("TCP/IP - RCU 连接",
         "{56928512-3ED4-40b3-9FE0-68DCD6665372}",
         "1.0.0",
         "通过TCP/IP协议连接酒店客房RCU",
@@ -34,15 +34,15 @@ namespace ATM3300.Connection
         protected byte _NetworkID2 = 88;
         protected int _LocalPortNumber = 20000;
         protected int _RemotePortNumber = 20001;
-        protected IPEndPoint _RecieveIPEndPoint = null; 
-        private byte[] _OutsideTemperatureAddress = new byte[2] { 99, 99};
+        protected IPEndPoint _RecieveIPEndPoint = null;
+        private byte[] _OutsideTemperatureAddress = new byte[2] { 99, 99 };
         private bool _NeedBroadcastDataTimer = true;
         private object _Lock = new object();
 
         #endregion
-        
+
         public TcpipRcuConnection(FloorSet floorSet, SettingsBase settings)
-            :base(floorSet , settings)
+            : base(floorSet, settings)
         {
             // TODO Listen to FloorSet events and send to RCU
 
@@ -57,7 +57,7 @@ namespace ATM3300.Connection
 
 
 
-        
+
 
         #region Override methods
         public override ClassInfo ClassInfo()
@@ -126,7 +126,7 @@ namespace ATM3300.Connection
                     _LocalPortNumber);
 
                 _UdpClient = new UdpClient(_LocalPortNumber);
-                _UdpClient.Client.ReceiveTimeout = _ScanTimeout;
+                _UdpClient.Client.ReceiveTimeout = _ScanTimeout;//lzh
                 _ScannerThread = new Thread(new ThreadStart(ScannerMain));
                 _ScannerThread.IsBackground = true;
                 _ScannerThread.Start();
@@ -138,7 +138,7 @@ namespace ATM3300.Connection
                 this.Disconnnect();
                 throw;
             }
-        } 
+        }
         #endregion
 
         /// <summary>
@@ -146,9 +146,23 @@ namespace ATM3300.Connection
         /// </summary>
         private void ScannerMain()
         {
+            int roomCount = 0;
+            int firstRoom = 0;
             while (true)
             {
                 bool successRetrieveData = false;
+                roomCount = 0;
+                firstRoom = 0;
+                while (firstRoom < 1)
+                {
+                    CountDisconnectCurrentRoom();
+                    CurrentRoom = NextRoom;
+                    if (CurrentRoom == _FloorSet.FirstFloor.FirstRoom)
+                    {
+                        firstRoom++;
+                    }
+                    roomCount++;
+                }
                 for (int i = 0; i < _RetryTimesEachScan; i++)
                 {
                     if (!_IsRunning)
@@ -172,22 +186,6 @@ namespace ATM3300.Connection
                     }
                 }
 
-                if (!successRetrieveData)
-                {
-                    CountDisconnectCurrentRoom();
-                }
-                else
-                {
-                    // Remove disconnect counter if existed
-                    if (_DisconnectCounter.ContainsKey(CurrentRoom))
-                    {
-                        _DisconnectCounter.Remove(CurrentRoom);
-                    }
-                    CurrentRoom.MyATM.Connect();
-                }
-
-                // Move to next room
-                CurrentRoom = NextRoom;
             }
         }
 
@@ -198,83 +196,90 @@ namespace ATM3300.Connection
 
 
             // Wait for response data
-            byte[] receiveData = null;
-            bool successReceive = false;
+            byte[] receiveData = new byte[24];
+            bool successReceive = true;
+            List<byte> byteList= new List<byte>();
             IPEndPoint receiveEndPoint = new IPEndPoint(
                    IPAddress.Parse("127.0.0.1"),
                    _LocalPortNumber);
-
+           
             while (true)
             {
                 try
                 {
                     lock (_UdpClient)
                     {
-                        receiveData = _UdpClient.Receive(ref receiveEndPoint);
+                        byte[] tmpBytes = _UdpClient.Receive(ref receiveEndPoint);
+                        byteList.AddRange(tmpBytes);
                     }
                 }
                 catch (Exception er)
                 {
-                    Trace.WriteLine(string.Format(
-                        "TCP/RCU: {0}: {1}",
-                        er.GetType(),
-                        er.Message), "Connection");
-                    break;
-                }
+                     /*Trace.WriteLine(string.Format(
+                         "TCP/RCU: {0}: {1}",
+                         er.GetType(),
+                         er.Message), "Connection");*/
 
-                if (receiveData != null)
-                {
-                    TraceDataInfo(false, receiveData, receiveEndPoint);
-
-                    if ((receiveData.Length == 24) &&
-                        ((receiveData[0] == 2) || (receiveData[0] == 3)))
+                    byte[] receiveDataAll = byteList.ToArray();
+                    int bytesPos = 0;
+                    while (receiveDataAll.Length- bytesPos >= 24)
                     {
-                        // Check if receive from outside temperature
-                        byte[] addressBytes = receiveEndPoint.Address.GetAddressBytes();
-                        if ((addressBytes[2] == _OutsideTemperatureAddress[0]) &&
-                            (addressBytes[3] == _OutsideTemperatureAddress[1]))
+                        Buffer.BlockCopy(receiveDataAll, bytesPos, receiveData, 0, 24);
+                        bytesPos += 24;
+                        //Array.Clear(receiveDataAll, 0, 24);
+                        if (receiveData != null)
                         {
-                            // The data comes from outside ATM
-                            // Save the temperature data
-                            Trace.WriteLine(
-                                string.Format("TcpipRcu: Received outside temperature:{0}",
-                                    receiveData[6]),
-                                "Connection");
-                            _Settings["OutsideTemperature"] = receiveData[6];
-                        }
-                        else
-                        {
-                            // Obtain the receive rooom
-                            Room room = ObtainRoomByIPAddress(
-                                receiveEndPoint.Address);
+                            TraceDataInfo(false, receiveData, receiveEndPoint);
 
-                            if (room != null)
+                            if ((receiveData.Length == 24) &&
+                                ((receiveData[0] == 2) || (receiveData[0] == 3)))
                             {
-                                ApplyData(room, receiveData);
-                            }
+                                // Check if receive from outside temperature
+                                byte[] addressBytes = receiveEndPoint.Address.GetAddressBytes();
+                                if ((addressBytes[2] == _OutsideTemperatureAddress[0]) &&
+                                    (addressBytes[3] == _OutsideTemperatureAddress[1]))
+                                {
+                                    // The data comes from outside ATM
+                                    // Save the temperature data
 
-                            // Validate if is response data
-                            if ((receiveData[0] == 2) &&
-                                (receiveEndPoint.Address.GetAddressBytes()[2] == CurrentRoom.MyFloor.Number) &&
-                                (receiveEndPoint.Address.GetAddressBytes()[3] == CurrentRoom.Number))
-                            {
-                                successReceive = true;
-                                break;
+                                    _Settings["OutsideTemperature"] = receiveData[6];
+                                }
+                                else
+                                {
+                                    // Obtain the receive rooom
+                                    Room room = ObtainRoomByIPAddress(
+                                        receiveData[22], receiveData[23]);
+
+                                    if (room != null)
+                                    {
+                                        ApplyData(room, receiveData);
+                                        if (_DisconnectCounter.ContainsKey(room))
+                                        {
+                                            _DisconnectCounter.Remove(room);
+                                        }
+                                        room.MyATM.Connect();
+                                    }
+
+                                    // Validate if is response data
+
+                                }
                             }
                         }
                     }
+
+                    break;
                 }
+                
             }
             return successReceive;
         }
 
-        private Room ObtainRoomByIPAddress(IPAddress address)
+        private Room ObtainRoomByIPAddress(byte floor, byte roomNumber)
         {
-            byte[] bytes = address.GetAddressBytes();
-            if (bytes.Length == 4 &&
-                _FloorSet.ContainsFloor(bytes[2]))
+            if (
+                _FloorSet.ContainsFloor(floor))
             {
-                return _FloorSet[bytes[2]].GetRoomByRoomNumber(bytes[3]);
+                return _FloorSet[floor].GetRoomByRoomNumber(roomNumber);
             }
             else
             {
@@ -302,20 +307,62 @@ namespace ATM3300.Connection
 
                 IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),
                         _RemotePortNumber);
-
-                byte[] bytesToSend = GenerateRoomScanData(roomToRequest);
-
-                bytesToSend[0] = (byte)(needResponse ? 0x01 : 0x04);
-
-                try
+                if (needResponse)
                 {
-                    SendDataThreadSafety(_UdpClient, bytesToSend, bytesToSend.Length, remoteEndPoint);
-                    //_UdpClient.Send(bytesToSend, bytesToSend.Length, remoteEndPoint);
+                    int roomCount = 0;
+                    int firstRoom = 0;
+                    while (firstRoom < 1)
+                    {
+                        CurrentRoom = NextRoom;
+                        if (CurrentRoom == _FloorSet.FirstFloor.FirstRoom)
+                        {
+                            firstRoom++;
+                        }
+                        roomCount++;
+                    }
+                    if (roomCount < 1) return;
+
+                    byte[] bytesToSend = new byte[24 * roomCount];
+                    roomCount = 0;
+                    firstRoom = 0;
+                    while (firstRoom < 1)
+                    {
+                        byte[] bytesToSendRoom = GenerateRoomScanData(CurrentRoom);
+                        bytesToSendRoom[0] = (byte)(needResponse ? 0x01 : 0x04);
+                        CurrentRoom = NextRoom;
+                        if (CurrentRoom == _FloorSet.FirstFloor.FirstRoom)
+                        {
+                            firstRoom++;
+                        }
+                        Buffer.BlockCopy(bytesToSendRoom, 0, bytesToSend, 24 * roomCount, 24);
+                        roomCount++;
+                    }
+
+                    try
+                    {
+                        SendDataThreadSafety(_UdpClient, bytesToSend, bytesToSend.Length, remoteEndPoint);
+                        //_UdpClient.Send(bytesToSend, bytesToSend.Length, remoteEndPoint);
+                    }
+                    catch (SocketException)
+                    {
+                    }
+                    TraceDataInfo(true, bytesToSend, remoteEndPoint);
                 }
-                catch (SocketException )
+                else
                 {
+                    byte[] bytesToSend = GenerateRoomScanData(roomToRequest);
+                    bytesToSend[0] = (byte)(needResponse ? 0x01 : 0x04);
+
+                    try
+                    {
+                        SendDataThreadSafety(_UdpClient, bytesToSend, bytesToSend.Length, remoteEndPoint);
+                        //_UdpClient.Send(bytesToSend, bytesToSend.Length, remoteEndPoint);
+                    }
+                    catch (SocketException)
+                    {
+                    }
+                    TraceDataInfo(true, bytesToSend, remoteEndPoint);
                 }
-                TraceDataInfo(true, bytesToSend, remoteEndPoint);
             }
         }
 
@@ -352,7 +399,7 @@ namespace ATM3300.Connection
                 {
                     SendDataThreadSafety(_UdpClient, bytesToSend, bytesToSend.Length, remoteEndPoint);
                 }
-                catch (SocketException )
+                catch (SocketException)
                 {
 
                 }
@@ -360,7 +407,7 @@ namespace ATM3300.Connection
 
                 // Send temperature request
                 SendDataThreadSafety(_UdpClient, new byte[24], 24,
-                    new IPEndPoint(IPAddress.Parse("127.0.0.1"), 
+                    new IPEndPoint(IPAddress.Parse("127.0.0.1"),
                         _RemotePortNumber));
                 // TODO May cause multi-thread problem
             }
@@ -407,11 +454,12 @@ namespace ATM3300.Connection
         {
             byte[] scanBytes = new byte[24];
 
-            
+
             scanBytes[1] = 0;       // txtLeaveTemperature.Text);
-            
-            scanBytes[1] = (byte)Utility.BCD(Convert.ToUInt32(room.MyFloor.Number));
-            scanBytes[2] = (byte)(Utility.BCD(Convert.ToUInt32(room.Number)));
+            //scanBytes[1] = (byte)Utility.BCD(Convert.ToUInt32(room.MyFloor.Number));
+            //scanBytes[2] = (byte)(Utility.BCD(Convert.ToUInt32(room.Number)));
+            scanBytes[1] = (byte)(Convert.ToByte(room.MyFloor.Number));
+            scanBytes[2] = (byte)(Convert.ToByte(room.Number));
             scanBytes[3] = (byte)(Convert.ToByte(room.MyAirConditioner.DefaultTemperature) +
                 ((room.MyAirConditioner.DefaultRunningStatus ? 0 : 1) * 128));
             BitArray array = new BitArray(8);
@@ -443,7 +491,7 @@ namespace ATM3300.Connection
             }
             // 睡眠模式设置 
             array[6] = room.AutoSleep && room.IsSleepTime;
-        //    array[7] = room.MyAirConditioner.ApplyRunning;//空调开关设置
+            //    array[7] = room.MyAirConditioner.ApplyRunning;//空调开关设置
             array.CopyTo(scanBytes, 4);
             scanBytes[5] = 0;//(byte)aRoom.MyAirConditioner.RunningType; //每小时开关时间分布
             scanBytes[6] = room.AutoSleep ? (byte)room.ChangeTemperature : (byte)0;//睡眠温度调节: 1~5度范围调节
@@ -463,7 +511,7 @@ namespace ATM3300.Connection
             {
                 _NeedBroadcastDataTimer = false;
             }
-            
+
 
             return scanBytes;
         }
@@ -483,7 +531,7 @@ namespace ATM3300.Connection
             BitArray aData = new BitArray(
                     new byte[] { receiveData[1], receiveData[2] });
 
-          //  BitArray aData = new BitArray(_Connection.ReceivedFrames[i].Data);
+            //  BitArray aData = new BitArray(_Connection.ReceivedFrames[i].Data);
 
             //Key
             if (aData[0] == true)	//Clean
@@ -662,167 +710,167 @@ namespace ATM3300.Connection
 
             room.LightOnNumber = receiveData[7];
 #endif
-                                    
 
-           
-/* original code
-            room.KeyID = receiveData[2].ToString();
-            
-            if (dataBit[0])
-            {
-                room.MyGuestService.Clean();
-            }
-            else
-            {
-                room.MyGuestService.CancelService(ServiceType.Clean);
-            }
 
-            if (dataBit[1])
-            {
-                room.MyGuestService.Call();
-            }
-            else
-            {
-                room.MyGuestService.CancelService(ServiceType.Call);
-            }
 
-            if (dataBit[2])
-            {
-                room.MyGuestService.DontDisturb();
-            }
-            else
-            {
-                room.MyGuestService.CancelService(ServiceType.DontDisturb);
-            }
+            /* original code
+                        room.KeyID = receiveData[2].ToString();
 
-            if (dataBit[3])
-            {
-                room.MyGuestService.QuitRoom();
-            }
-            else
-            {
-                room.MyGuestService.CancelService(ServiceType.QuitRoom);
-            }
+                        if (dataBit[0])
+                        {
+                            room.MyGuestService.Clean();
+                        }
+                        else
+                        {
+                            room.MyGuestService.CancelService(ServiceType.Clean);
+                        }
 
-            if (dataBit[4])
-            {
-                room.MyGuestService.Emergency();
-            }
-            else
-            {
-                room.MyGuestService.EmergencyCancel();
-            }
+                        if (dataBit[1])
+                        {
+                            room.MyGuestService.Call();
+                        }
+                        else
+                        {
+                            room.MyGuestService.CancelService(ServiceType.Call);
+                        }
 
-            if (dataBit[5])
-            {
-                room.CofferOpen();
-            }
-            else
-            {
-                room.CofferClose();
-            }
+                        if (dataBit[2])
+                        {
+                            room.MyGuestService.DontDisturb();
+                        }
+                        else
+                        {
+                            room.MyGuestService.CancelService(ServiceType.DontDisturb);
+                        }
 
-            if (dataBit[6])
-            {
-                room.RefrigeratorOpen();
-            }
-            else
-            {
-                room.RefrigeratorClose();
-            }
+                        if (dataBit[3])
+                        {
+                            room.MyGuestService.QuitRoom();
+                        }
+                        else
+                        {
+                            room.MyGuestService.CancelService(ServiceType.QuitRoom);
+                        }
 
-            if (dataBit[7])
-            {
-                room.DoorOpen();
-            }
-            else
-            {
-                room.DoorClose();
-            }
+                        if (dataBit[4])
+                        {
+                            room.MyGuestService.Emergency();
+                        }
+                        else
+                        {
+                            room.MyGuestService.EmergencyCancel();
+                        }
 
-            // Repair flag
-            if (dataBit[8])
-            {
-                room.HotelUsingStatus = HotelUsingStatusType.Maintanent;
-            }
-            else
-            {
-                if (room.HotelUsingStatus == HotelUsingStatusType.Maintanent)
-                {
-                    room.HotelUsingStatus = HotelUsingStatusType.Vacant;
-                }
-            }
+                        if (dataBit[5])
+                        {
+                            room.CofferOpen();
+                        }
+                        else
+                        {
+                            room.CofferClose();
+                        }
 
-            if (dataBit[9])
-            {
-                room.MyATM.ProblemCaused();
-            }
-            else
-            {
-                room.MyATM.ProblemRepaired();
-            }
+                        if (dataBit[6])
+                        {
+                            room.RefrigeratorOpen();
+                        }
+                        else
+                        {
+                            room.RefrigeratorClose();
+                        }
 
-            if (dataBit[10])
-            {
-                room.MyGuestService.Cleaning();
-            }
-            else
-            {
-                room.MyGuestService.CancelService(ServiceType.Cleaning);
-            }
+                        if (dataBit[7])
+                        {
+                            room.DoorOpen();
+                        }
+                        else
+                        {
+                            room.DoorClose();
+                        }
 
-            if (dataBit[11])
-            {
-                room.MyGuestService.StartChecking();
-            }
-            else
-            {
-                room.MyGuestService.StopChecking();
-            }
-            
-            //room.IsLightOn = dataBit[12];
+                        // Repair flag
+                        if (dataBit[8])
+                        {
+                            room.HotelUsingStatus = HotelUsingStatusType.Maintanent;
+                        }
+                        else
+                        {
+                            if (room.HotelUsingStatus == HotelUsingStatusType.Maintanent)
+                            {
+                                room.HotelUsingStatus = HotelUsingStatusType.Vacant;
+                            }
+                        }
 
-            room.Temperature = receiveData[6];
-            if (dataBit[13] && 
-               (receiveData[1] >= 1) &&
-               (receiveData[1] <= 5))
-            {
-                room.KeyInsert((KeyStatusType)(receiveData[1]));
-            }
-            else
-            {
-                room.KeyPullOut();
-            }
+                        if (dataBit[9])
+                        {
+                            room.MyATM.ProblemCaused();
+                        }
+                        else
+                        {
+                            room.MyATM.ProblemRepaired();
+                        }
 
-            if (receiveData[9] <= 3)
-            {
-                room.MyAirConditioner.Speed =
-                    (AirConditionerSpeedType)receiveData[9];
-            }
+                        if (dataBit[10])
+                        {
+                            room.MyGuestService.Cleaning();
+                        }
+                        else
+                        {
+                            room.MyGuestService.CancelService(ServiceType.Cleaning);
+                        }
 
-            if (receiveData[10] == 0)
-            {
-                room.MyAirConditioner.TurnOff();
-            }
-            else
-            {
-                room.MyAirConditioner.TurnOn();
-            }
+                        if (dataBit[11])
+                        {
+                            room.MyGuestService.StartChecking();
+                        }
+                        else
+                        {
+                            room.MyGuestService.StopChecking();
+                        }
 
-            // Remove disconnect counter if existed
-            if (_DisconnectCounter.ContainsKey(room))
-            {
-                _DisconnectCounter.Remove(room);
-            }
-            room.MyATM.Connect();
+                        //room.IsLightOn = dataBit[12];
 
-            //chkTV.Checked = dataBit[14];
+                        room.Temperature = receiveData[6];
+                        if (dataBit[13] && 
+                           (receiveData[1] >= 1) &&
+                           (receiveData[1] <= 5))
+                        {
+                            room.KeyInsert((KeyStatusType)(receiveData[1]));
+                        }
+                        else
+                        {
+                            room.KeyPullOut();
+                        }
 
-            //txtClientTemp.Text = receiveData[5].ToString();
-            //txtClientHumidity.Text = receiveData[7].ToString();
-            //txtHumidity.Text = receiveData[8].ToString();
-            //txtPlayingVoice.Text = receiveData[12].ToString();
- * */
+                        if (receiveData[9] <= 3)
+                        {
+                            room.MyAirConditioner.Speed =
+                                (AirConditionerSpeedType)receiveData[9];
+                        }
+
+                        if (receiveData[10] == 0)
+                        {
+                            room.MyAirConditioner.TurnOff();
+                        }
+                        else
+                        {
+                            room.MyAirConditioner.TurnOn();
+                        }
+
+                        // Remove disconnect counter if existed
+                        if (_DisconnectCounter.ContainsKey(room))
+                        {
+                            _DisconnectCounter.Remove(room);
+                        }
+                        room.MyATM.Connect();
+
+                        //chkTV.Checked = dataBit[14];
+
+                        //txtClientTemp.Text = receiveData[5].ToString();
+                        //txtClientHumidity.Text = receiveData[7].ToString();
+                        //txtHumidity.Text = receiveData[8].ToString();
+                        //txtPlayingVoice.Text = receiveData[12].ToString();
+             * */
         }
 
         private static string ConvertByteArrayToString(byte[] revData, int index, int length)

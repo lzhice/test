@@ -135,8 +135,8 @@ namespace ATM3300.Connection.Forms
 
                         if ((receiveData.Length == 24) &&
                             (receiveData[0] == 2) &&
-                            (receiveEndPoint.Address.GetAddressBytes()[2] == floorNumber) &&
-                            (receiveEndPoint.Address.GetAddressBytes()[3] == roomNumber))
+                            (receiveData[22] == floorNumber) &&
+                            (receiveData[23] == roomNumber))
                         {
                             receivedReplyData = true;
                             ApplyData(receiveData);

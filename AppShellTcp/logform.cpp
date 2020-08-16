@@ -23,27 +23,27 @@ LogForm::~LogForm()
 void LogForm::sendUdpLog(const QString &logText)
 {
 
-    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss")) + QString("[Send] %1:%2 \n").arg(++num).arg(logText);
+    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss:zzz")) + QString("[Send] %1:%2 \n").arg(++num).arg(logText);
     ui->plainTextEdit->appendPlainText(str);
     LOG_INFO() << str;
 }
 
 void LogForm::revUdpLog(const QString &logText)
 {
-    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss")) + QString("[Receive] %1:%2 \n").arg(++num).arg(logText);
+    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss:zzz")) + QString("[Receive] %1:%2 \n").arg(++num).arg(logText);
     ui->plainTextEdit->appendPlainText(str);
     LOG_INFO() << str;
 }
 
 void LogForm::sendTcpLog(const QString &logText)
 {
-    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss")) + QString("[Send] %1:%2 \n").arg(++num).arg(logText);
+    QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss:zzz")) + QString("[Send] %1:%2 \n").arg(++num).arg(logText);
     ui->plainTextEdit_2->appendPlainText(str);
     LOG_INFO() << str;
 }
 
 void LogForm::revTcpLog(const QString &logText)
-{   QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss")) + QString("[Receive] %1:%2 \n").arg(++num).arg(logText);
+{   QString str=QString("%1 :").arg(QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss:zzz")) + QString("[Receive] %1:%2 \n").arg(++num).arg(logText);
     ui->plainTextEdit_2->appendPlainText(str);
     LOG_INFO() << str;
 }
